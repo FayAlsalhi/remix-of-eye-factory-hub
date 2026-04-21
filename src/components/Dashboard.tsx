@@ -6,6 +6,7 @@ import DashboardTab from './dashboard/DashboardTab';
 import LiveFeedTab from './dashboard/LiveFeedTab';
 import UploadTab from './dashboard/UploadTab';
 import SettingsTab from './dashboard/SettingsTab';
+import qiyafLogo from '@/assets/qiyaf-logo.jpg';
 
 type TabType = 'dashboard' | 'livefeed' | 'upload' | 'settings';
 interface DashboardProps {
@@ -63,19 +64,11 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
         {/* Logo */}
         <div className="p-6 border-b border-border">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-              <svg viewBox="0 0 24 24" className="w-6 h-6 text-primary" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="12" cy="12" r="3" fill="currentColor" />
-                <line x1="12" y1="9" x2="12" y2="4" />
-                <line x1="12" y1="15" x2="12" y2="20" />
-                <line x1="9" y1="12" x2="4" y2="12" />
-                <line x1="15" y1="12" x2="20" y2="12" />
-                <circle cx="4" cy="12" r="2" />
-                <circle cx="20" cy="12" r="2" />
-                <circle cx="12" cy="4" r="2" />
-                <circle cx="12" cy="20" r="2" />
-              </svg>
-            </div>
+            <img
+              src={qiyafLogo}
+              alt="Qiyaf"
+              className="h-10 w-auto object-contain"
+            />
             <div>
               <h1 className="font-bold text-foreground">{t.projectName}</h1>
               <p className="text-xs text-muted-foreground">{t.category}</p>
