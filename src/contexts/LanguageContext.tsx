@@ -83,7 +83,7 @@ const translations: Record<Language, Translations> = {
     liveFeedRGB: 'Live Feed (RGB)',
     uploadSolarPanel: 'Upload Solar Panel Image',
     settings: 'Settings',
-    projectName: 'Eye Factory',
+    projectName: 'Qiyaf',
     category: 'Solar Panel Monitoring',
     // Dashboard Tab
     overview: 'Overview',
@@ -142,7 +142,7 @@ const translations: Record<Language, Translations> = {
     liveFeedRGB: 'البث المباشر (RGB)',
     uploadSolarPanel: 'رفع صورة لوحة شمسية',
     settings: 'الإعدادات',
-    projectName: 'Eye Factory',
+    projectName: 'Qiyaf',
     category: 'مراقبة الألواح الشمسية',
     // Dashboard Tab
     overview: 'نظرة عامة',
