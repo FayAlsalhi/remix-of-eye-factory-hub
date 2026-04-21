@@ -62,18 +62,12 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
       {/* Sidebar */}
       <aside className="w-64 bg-card border-r border-border flex flex-col">
         {/* Logo */}
-        <div className="p-6 border-b border-border">
-          <div className="flex items-center gap-3">
-            <img
-              src={qiyafLogo}
-              alt="Qiyaf"
-              className="h-10 w-auto object-contain"
-            />
-            <div>
-              <h1 className="font-bold text-foreground">{t.projectName}</h1>
-              <p className="text-xs text-muted-foreground">{t.category}</p>
-            </div>
-          </div>
+        <div className="p-6 border-b border-border flex items-center justify-center">
+          <img
+            src={qiyafLogo}
+            alt="Qiyaf"
+            className="h-20 w-auto object-contain"
+          />
         </div>
 
         {/* Navigation */}
