@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 207 55% 14%;
+    --foreground: 0 0% 100%;
+
+    --card: 209 50% 22%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 209 50% 22%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 198 100% 31%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 209 42% 30%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 209 42% 25%;
+    --muted-foreground: 200 20% 70%;
+
+    --accent: 198 100% 31%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 209 40% 30%;
+    --input: 209 40% 35%;
+    --ring: 198 100% 31%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 207 55% 12%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 198 100% 31%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 209 42% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 209 40% 25%;
+    --sidebar-ring: 198 100% 31%;
+  }
+
+  .dark {
+    --background: 207 55% 14%;
+    --foreground: 0 0% 100%;
+
+    --card: 209 50% 22%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 209 50% 22%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 198 100% 31%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 209 42% 30%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 209 42% 25%;
+    --muted-foreground: 200 20% 70%;
+
+    --accent: 198 100% 31%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 209 40% 30%;
+    --input: 209 40% 35%;
+    --ring: 198 100% 31%;
+
+    --sidebar-background: 207 55% 12%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 198 100% 31%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 209 42% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 209 40% 25%;
+    --sidebar-ring: 198 100% 31%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer components {
+  .card-elevated {
+    @apply bg-card rounded-lg p-6 shadow-lg shadow-black/20;
+  }
+
+  .tab-item {
+    @apply px-4 py-2 rounded-md cursor-pointer transition-colors duration-200 hover:bg-primary/80 hover:text-primary-foreground;
+  }
+
+  .tab-item-active {
+    @apply bg-primary text-primary-foreground;
+  }
+}
