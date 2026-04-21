@@ -1,6 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import heroVideo from '@/assets/hero-intro.mp4';
-import qiyafLogo from '@/assets/qiyaf-logo.jpg';
+import qiyafLogo from '@/assets/qiyaf-logo-dark.png';
 
 interface IntroPageProps {
   onStart: () => void;
@@ -23,15 +23,13 @@ const IntroPage = ({ onStart }: IntroPageProps) => {
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Logo positioned at top-center */}
+      {/* Logo positioned at top-center (transparent, no background) */}
       <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20">
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-lg">
-          <img
-            src={qiyafLogo}
-            alt="Qiyaf"
-            className="h-12 md:h-16 w-auto object-contain"
-          />
-        </div>
+        <img
+          src={qiyafLogo}
+          alt="Qiyaf"
+          className="h-20 md:h-28 w-auto object-contain drop-shadow-2xl"
+        />
       </div>
 
       {/* Content at the bottom */}
