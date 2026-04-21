@@ -6,7 +6,7 @@ import DashboardTab from './dashboard/DashboardTab';
 import LiveFeedTab from './dashboard/LiveFeedTab';
 import UploadTab from './dashboard/UploadTab';
 import SettingsTab from './dashboard/SettingsTab';
-import qiyafLogo from '@/assets/qiyaf-logo.jpg';
+import qiyafLogo from '@/assets/qiyaf-logo-dark.png';
 
 type TabType = 'dashboard' | 'livefeed' | 'upload' | 'settings';
 interface DashboardProps {
