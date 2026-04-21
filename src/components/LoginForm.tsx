@@ -3,7 +3,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import DroneHeroIcon from '@/components/DroneHeroIcon';
 
 interface LoginFormProps {
   onLogin: (name: string, email: string) => void;
@@ -53,16 +52,20 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
   };
 
   return (
-    <div 
-      className="w-full max-w-md mx-auto p-8 card-elevated"
+    <div
+      className="w-full"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      {/* Drone Icon with Glow */}
-      <DroneHeroIcon />
+      {/* Header */}
+      <div className="mb-8">
+        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-accent mb-3">
+          <span className="w-6 h-px bg-accent" />
+          {isRTL ? 'مرحباً مجدداً' : 'Welcome Back'}
+        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">{t.logIn}</h2>
+        <p className="text-muted-foreground mt-2">{t.welcomeBack}</p>
+      </div>
 
-      <h2 className="text-2xl font-bold text-center mb-2">{t.logIn}</h2>
-      <p className="text-muted-foreground text-center mb-6">{t.welcomeBack}</p>
-      
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Email Input */}
         <div className="relative">
