@@ -22,8 +22,6 @@ const IntroPage = ({ onStart }: IntroPageProps) => {
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Subtle bottom-only gradient for text legibility */}
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
       {/* Content at the bottom */}
       <div className="relative z-10 flex flex-col items-center justify-end min-h-screen px-8 pb-24">
