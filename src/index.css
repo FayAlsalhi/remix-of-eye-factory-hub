@@ -4,83 +4,86 @@
 
 @layer base {
   :root {
-    --background: 207 55% 14%;
-    --foreground: 0 0% 100%;
+    /* Light theme based on Qiyaf logo: navy + orange/amber accents */
+    --background: 0 0% 100%;
+    --foreground: 213 50% 18%;
 
-    --card: 209 50% 22%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 213 50% 18%;
 
-    --popover: 209 50% 22%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 50% 18%;
 
-    --primary: 198 100% 31%;
+    /* Navy primary from logo */
+    --primary: 213 55% 22%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 209 42% 30%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 210 30% 96%;
+    --secondary-foreground: 213 50% 18%;
 
-    --muted: 209 42% 25%;
-    --muted-foreground: 200 20% 70%;
+    --muted: 210 25% 95%;
+    --muted-foreground: 213 15% 45%;
 
-    --accent: 198 100% 31%;
+    /* Amber/orange accent from logo */
+    --accent: 32 95% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 209 40% 30%;
-    --input: 209 40% 35%;
-    --ring: 198 100% 31%;
+    --border: 213 20% 88%;
+    --input: 213 20% 90%;
+    --ring: 213 55% 22%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 207 55% 12%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 198 100% 31%;
+    --sidebar-background: 210 30% 98%;
+    --sidebar-foreground: 213 50% 18%;
+    --sidebar-primary: 213 55% 22%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 209 42% 25%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 209 40% 25%;
-    --sidebar-ring: 198 100% 31%;
+    --sidebar-accent: 210 30% 94%;
+    --sidebar-accent-foreground: 213 50% 18%;
+    --sidebar-border: 213 20% 88%;
+    --sidebar-ring: 213 55% 22%;
   }
 
   .dark {
-    --background: 207 55% 14%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 100%;
+    --foreground: 213 50% 18%;
 
-    --card: 209 50% 22%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 213 50% 18%;
 
-    --popover: 209 50% 22%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 50% 18%;
 
-    --primary: 198 100% 31%;
+    --primary: 213 55% 22%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 209 42% 30%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 210 30% 96%;
+    --secondary-foreground: 213 50% 18%;
 
-    --muted: 209 42% 25%;
-    --muted-foreground: 200 20% 70%;
+    --muted: 210 25% 95%;
+    --muted-foreground: 213 15% 45%;
 
-    --accent: 198 100% 31%;
+    --accent: 32 95% 55%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62% 30%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 209 40% 30%;
-    --input: 209 40% 35%;
-    --ring: 198 100% 31%;
+    --border: 213 20% 88%;
+    --input: 213 20% 90%;
+    --ring: 213 55% 22%;
 
-    --sidebar-background: 207 55% 12%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 198 100% 31%;
+    --sidebar-background: 210 30% 98%;
+    --sidebar-foreground: 213 50% 18%;
+    --sidebar-primary: 213 55% 22%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 209 42% 25%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 209 40% 25%;
-    --sidebar-ring: 198 100% 31%;
+    --sidebar-accent: 210 30% 94%;
+    --sidebar-accent-foreground: 213 50% 18%;
+    --sidebar-border: 213 20% 88%;
+    --sidebar-ring: 213 55% 22%;
   }
 }
 
@@ -96,7 +99,7 @@
 
 @layer components {
   .card-elevated {
-    @apply bg-card rounded-lg p-6 shadow-lg shadow-black/20;
+    @apply bg-card rounded-lg p-6 shadow-md shadow-primary/5 border border-border;
   }
 
   .tab-item {
