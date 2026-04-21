@@ -6,6 +6,7 @@ import LoginForm from '@/components/LoginForm';
 import ForgotPasswordForm from '@/components/ForgotPasswordForm';
 import Dashboard from '@/components/Dashboard';
 import IntroPage from '@/components/IntroPage';
+import AuthLayout from '@/components/AuthLayout';
 
 type AuthView = 'intro' | 'signup' | 'login' | 'forgot-password';
 
@@ -41,34 +42,34 @@ const Index = () => {
           authView === 'intro' ? (
             <IntroPage onStart={() => setAuthView('signup')} />
           ) : (
-            <>
-              <LanguageSwitcher />
-              <div className="flex items-center justify-center min-h-screen px-4">
-                {authView === 'signup' && (
-                  <SignupForm 
-                    onSignup={handleSignup} 
-                    onSwitchToLogin={() => setAuthView('login')}
-                  />
-                )}
-                {authView === 'login' && (
-                  <LoginForm 
-                    onLogin={handleLogin} 
-                    onSwitchToSignup={() => setAuthView('signup')}
-                    onForgotPassword={() => setAuthView('forgot-password')}
-                  />
-                )}
-                {authView === 'forgot-password' && (
-                  <ForgotPasswordForm 
-                    onBackToLogin={() => setAuthView('login')}
-                  />
-                )}
+            <AuthLayout>
+              <div className="absolute top-4 right-4 z-20">
+                <LanguageSwitcher />
               </div>
-            </>
+              {authView === 'signup' && (
+                <SignupForm
+                  onSignup={handleSignup}
+                  onSwitchToLogin={() => setAuthView('login')}
+                />
+              )}
+              {authView === 'login' && (
+                <LoginForm
+                  onLogin={handleLogin}
+                  onSwitchToSignup={() => setAuthView('signup')}
+                  onForgotPassword={() => setAuthView('forgot-password')}
+                />
+              )}
+              {authView === 'forgot-password' && (
+                <ForgotPasswordForm
+                  onBackToLogin={() => setAuthView('login')}
+                />
+              )}
+            </AuthLayout>
           )
         ) : (
-          <Dashboard 
-            userName={userName} 
-            userEmail={userEmail} 
+          <Dashboard
+            userName={userName}
+            userEmail={userEmail}
             onLogout={handleLogout}
           />
         )}
