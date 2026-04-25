@@ -169,7 +169,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
           </div>
 
           {/* Glass container */}
-          <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.05] p-8 shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-2xl backdrop-saturate-150">
+          <div className="relative w-full max-w-md rounded-2xl border border-white/15 bg-white/[0.04] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.55)] [backdrop-filter:blur(40px)_saturate(180%)] [-webkit-backdrop-filter:blur(40px)_saturate(180%)]">
             {/* Inner highlight */}
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-b from-white/[0.07] via-transparent to-transparent" />
             <div className="relative">
