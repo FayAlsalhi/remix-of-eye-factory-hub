@@ -195,6 +195,10 @@ const translations: Record<Language, Translations> = {
     // Notifications
     notifications: 'الإشعارات',
     newAlert: 'تنبيه جديد',
+    goodMorning: 'صباح الخير',
+    goodAfternoon: 'مساء الخير',
+    goodEvening: 'مساء الخير',
+    live: 'مباشر',
   },
 };
 
