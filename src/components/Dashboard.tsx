@@ -77,13 +77,17 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
     <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Top Header with Logo + Tabs + Actions */}
       <header className="h-20 bg-card border-b border-border flex items-center px-6 gap-4">
-        {/* Logo */}
-        <div className="flex items-center shrink-0">
+        {/* Logo + LIVE badge */}
+        <div className="flex items-center gap-2 shrink-0">
           <img
             src={qiyafLogo}
             alt="Qiyaf"
             className="h-12 w-auto object-contain"
           />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-500 text-white text-[10px] font-bold tracking-wider shadow-md">
+            <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+            {t.live}
+          </span>
         </div>
 
         {/* Tabs Navigation - Centered */}
