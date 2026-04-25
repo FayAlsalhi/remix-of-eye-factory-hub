@@ -176,13 +176,13 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
               </div>
             )}
           </div>
-        </header>
+        </div>
+      </header>
 
-        {/* Content Area */}
-        <main className="flex-1 p-6 bg-background overflow-auto">
-          {renderContent()}
-        </main>
-      </div>
+      {/* Content Area */}
+      <main className="flex-1 p-6 bg-background overflow-auto">
+        {renderContent()}
+      </main>
 
       {/* Click outside to close dropdowns */}
       {(showProfileDropdown || showNotifications) && (
