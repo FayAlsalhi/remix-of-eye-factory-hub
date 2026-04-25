@@ -23,21 +23,50 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[hsl(210_55%_6%)]" dir={isRTL ? 'rtl' : 'ltr'}>
-      {/* ============ FULL-SCREEN BACKGROUND: 3D SOLAR PANEL FIELD ============ */}
+      {/* ============ FULL-SCREEN BACKGROUND: ISOMETRIC TECH GRID ============ */}
       <div className="absolute inset-0">
-        {/* Deep dark gradient base */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(210_55%_5%)] via-[hsl(200_50%_8%)] to-[hsl(210_55%_4%)]" />
+        {/* Deep dark teal gradient base (matches reference) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(195_45%_8%)] via-[hsl(200_50%_6%)] to-[hsl(210_55%_4%)]" />
 
-        {/* 3D Canvas with real solar panels */}
+        {/* Concentric circular grid (radar-like) on the left */}
+        <svg
+          className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.18]"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice"
+          viewBox="0 0 1600 900"
+        >
+          <defs>
+            <radialGradient id="ringFade" cx="20%" cy="50%" r="55%">
+              <stop offset="0%" stopColor="#9be9f5" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#9be9f5" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          {[120, 220, 340, 470, 610, 760].map((r) => (
+            <circle
+              key={r}
+              cx="320"
+              cy="450"
+              r={r}
+              fill="none"
+              stroke="url(#ringFade)"
+              strokeWidth="1"
+            />
+          ))}
+        </svg>
+
+        {/* Big soft teal glow on the left (sun-like aura from reference) */}
+        <div className="pointer-events-none absolute top-1/2 left-[18%] -translate-x-1/2 -translate-y-1/2 w-[42rem] h-[42rem] rounded-full bg-[hsl(180_70%_55%)]/25 blur-[140px]" />
+        <div className="pointer-events-none absolute top-1/2 left-[18%] -translate-x-1/2 -translate-y-1/2 w-[22rem] h-[22rem] rounded-full bg-[hsl(180_80%_70%)]/30 blur-[80px]" />
+
+        {/* 3D Canvas with isometric platforms + nodes */}
         <div className="absolute inset-0">
           <Suspense fallback={null}>
             <SolarField3D />
           </Suspense>
         </div>
 
-        {/* Ambient color glows on top to integrate with brand */}
-        <div className="pointer-events-none absolute top-1/4 left-1/4 w-[40rem] h-[40rem] rounded-full bg-primary/10 blur-[160px] mix-blend-screen" />
-        <div className="pointer-events-none absolute bottom-1/4 right-1/4 w-[36rem] h-[36rem] rounded-full bg-primary/10 blur-[160px] mix-blend-screen" />
+        {/* Subtle warm accent low-right (matches yellow/orange glow in reference) */}
+        <div className="pointer-events-none absolute bottom-[20%] left-[35%] w-[28rem] h-[16rem] rounded-full bg-amber-500/10 blur-[120px] mix-blend-screen" />
 
         {/* Top + bottom vignette for legibility */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[hsl(210_55%_4%)] to-transparent" />
