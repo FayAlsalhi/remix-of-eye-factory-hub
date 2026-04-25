@@ -75,38 +75,20 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
 
   return (
     <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
-      {/* Top Header with Logo + Tabs + Actions */}
-      <header className="h-20 bg-card border-b border-border flex items-center px-6 gap-4">
-        {/* Logo + LIVE badge */}
-        <div className="flex items-center gap-2 shrink-0">
+      {/* Top Header with Logo + Actions */}
+      <header className="h-16 bg-card border-b border-border flex items-center justify-between px-6 gap-4">
+        {/* Logo + small LIVE badge top-right */}
+        <div className="relative shrink-0">
           <img
             src={qiyafLogo}
             alt="Qiyaf"
-            className="h-12 w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-500 text-white text-[10px] font-bold tracking-wider shadow-md">
-            <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+          <span className="absolute -top-1 -right-3 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-red-500 text-white text-[8px] font-bold tracking-wider shadow-md leading-none">
+            <span className="w-1 h-1 bg-white rounded-full animate-pulse"></span>
             {t.live}
           </span>
         </div>
-
-        {/* Tabs Navigation - Centered */}
-        <nav className="flex-1 flex items-center justify-center gap-2">
-          {allTabs.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors border-b-2 ${
-                activeTab === item.id
-                  ? 'text-primary border-primary'
-                  : 'text-muted-foreground border-transparent hover:text-foreground'
-              }`}
-            >
-              <item.icon className="w-4 h-4" />
-              <span>{item.label}</span>
-            </button>
-          ))}
-        </nav>
 
         {/* Right side actions */}
         <div className="flex items-center gap-2 shrink-0">
@@ -194,12 +176,30 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
         </div>
       </header>
 
-      {/* Greeting bar */}
-      <div className="bg-card/40 border-b border-border px-6 py-2.5 flex items-center justify-between text-sm">
-        <div className="text-foreground">
+      {/* Greeting bar with centered tabs */}
+      <div className="bg-card/40 border-b border-border px-6 py-3 flex items-center gap-4 text-sm">
+        <div className="text-foreground shrink-0">
           {greeting}, <span className="text-primary font-semibold">{firstName}!</span>
         </div>
-        <div className="text-muted-foreground text-xs">{dateString}</div>
+
+        <nav className="flex-1 flex items-center justify-center gap-2">
+          {allTabs.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors border-b-2 ${
+                activeTab === item.id
+                  ? 'text-primary border-primary'
+                  : 'text-muted-foreground border-transparent hover:text-foreground'
+              }`}
+            >
+              <item.icon className="w-4 h-4" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+
+        <div className="text-muted-foreground text-xs shrink-0">{dateString}</div>
       </div>
 
       {/* Content Area */}
