@@ -31,6 +31,8 @@ interface Translations {
   defectivePanels: string;
   conformanceRate: string;
   detailedReports: string;
+  recentScans: string;
+  minAgo: string;
   // Live Feed Tab
   realTimeAlerts: string;
   serialNumber: string;
@@ -92,6 +94,8 @@ const translations: Record<Language, Translations> = {
     defectivePanels: 'Defective Panels',
     conformanceRate: 'Conformance Rate',
     detailedReports: 'Detailed Reports',
+    recentScans: 'Recent Scans',
+    minAgo: 'min ago',
     // Live Feed Tab
     realTimeAlerts: 'Real-time Alerts',
     serialNumber: 'Serial Number',
@@ -151,6 +155,8 @@ const translations: Record<Language, Translations> = {
     defectivePanels: 'الألواح المعيبة',
     conformanceRate: 'معدل المطابقة',
     detailedReports: 'تقارير مفصلة',
+    recentScans: 'الفحوصات الأخيرة',
+    minAgo: 'دقيقة',
     // Live Feed Tab
     realTimeAlerts: 'تنبيهات فورية',
     serialNumber: 'الرقم التسلسلي',
