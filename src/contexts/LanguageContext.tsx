@@ -62,6 +62,11 @@ interface Translations {
   // Notifications
   notifications: string;
   newAlert: string;
+  // Greeting
+  goodMorning: string;
+  goodAfternoon: string;
+  goodEvening: string;
+  live: string;
 }
 
 const translations: Record<Language, Translations> = {
