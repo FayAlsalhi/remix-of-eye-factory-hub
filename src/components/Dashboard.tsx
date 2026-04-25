@@ -16,8 +16,19 @@ interface DashboardProps {
 }
 
 const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
-  const { t, isRTL } = useLanguage();
+  const { t, language, isRTL } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabType>('dashboard');
+
+  // Greeting based on hour
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? t.goodMorning : hour < 18 ? t.goodAfternoon : t.goodEvening;
+  const firstName = userName.split(' ')[0] || userName;
+  const dateString = new Date().toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
 
