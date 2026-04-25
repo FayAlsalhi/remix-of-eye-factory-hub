@@ -54,8 +54,8 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
     >
       {/* Header */}
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-accent mb-3">
-          <span className="w-6 h-px bg-accent" />
+        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-primary mb-3">
+          <span className="w-6 h-px bg-primary" />
           {isRTL ? 'انضم إلينا' : 'Join Qiyaf'}
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">{t.createAccount}</h2>
