@@ -176,12 +176,30 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
         </div>
       </header>
 
-      {/* Greeting bar */}
-      <div className="bg-card/40 border-b border-border px-6 py-2.5 flex items-center justify-between text-sm">
-        <div className="text-foreground">
+      {/* Greeting bar with centered tabs */}
+      <div className="bg-card/40 border-b border-border px-6 py-3 flex items-center gap-4 text-sm">
+        <div className="text-foreground shrink-0">
           {greeting}, <span className="text-primary font-semibold">{firstName}!</span>
         </div>
-        <div className="text-muted-foreground text-xs">{dateString}</div>
+
+        <nav className="flex-1 flex items-center justify-center gap-2">
+          {allTabs.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors border-b-2 ${
+                activeTab === item.id
+                  ? 'text-primary border-primary'
+                  : 'text-muted-foreground border-transparent hover:text-foreground'
+              }`}
+            >
+              <item.icon className="w-4 h-4" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+
+        <div className="text-muted-foreground text-xs shrink-0">{dateString}</div>
       </div>
 
       {/* Content Area */}
