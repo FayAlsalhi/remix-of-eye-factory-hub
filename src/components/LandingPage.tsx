@@ -80,18 +80,20 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
 
       {/* Hero */}
       <section className="relative max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 lg:pt-8 pb-20">
-        {/* Center seam blend — soft vertical black shadow merging left content into right visual */}
+        {/* Center seam blend — cinematic dark bridge between text and hero image */}
         <div
           aria-hidden
-          className="pointer-events-none absolute top-0 bottom-0 hidden lg:block"
+          className="pointer-events-none absolute hidden lg:block"
           style={{
-            left: "34%",
-            width: "26%",
+            top: "8%",
+            bottom: "-8%",
+            left: "36%",
+            width: "24%",
             zIndex: 2,
             background:
-              "linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 45%, rgba(0,0,0,0.88) 55%, rgba(0,0,0,0.55) 78%, rgba(0,0,0,0) 100%)",
-            filter: "blur(35px)",
-            boxShadow: "0 0 120px rgba(0,0,0,0.95), 0 0 60px rgba(0,0,0,0.8)",
+              "linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 12%, rgba(0,0,0,0.52) 28%, rgba(0,0,0,0.88) 48%, rgba(0,0,0,0.95) 58%, rgba(0,0,0,0.62) 76%, rgba(0,0,0,0.18) 90%, rgba(0,0,0,0) 100%)",
+            filter: "blur(55px)",
+            boxShadow: "0 0 160px rgba(0,0,0,0.95), 0 0 90px rgba(0,0,0,0.75)",
           }}
         />
         <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-4 items-center min-h-[calc(100vh-5rem)]">
