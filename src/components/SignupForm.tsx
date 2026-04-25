@@ -71,7 +71,7 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
             placeholder={t.fullName}
             value={fullname}
             onChange={(e) => setFullname(e.target.value)}
-            className={`${isRTL ? 'pr-10' : 'pl-10'} bg-card border-border`}
+            className={`${isRTL ? 'pr-10' : 'pl-10'} bg-white/5 border-white/10 backdrop-blur-sm placeholder:text-muted-foreground/70`}
             required
           />
         </div>
@@ -84,7 +84,7 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
             placeholder={t.email}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={`${isRTL ? 'pr-10' : 'pl-10'} bg-card border-border`}
+            className={`${isRTL ? 'pr-10' : 'pl-10'} bg-white/5 border-white/10 backdrop-blur-sm placeholder:text-muted-foreground/70`}
             required
           />
         </div>
@@ -97,7 +97,7 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
             placeholder={t.password}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className={`${isRTL ? 'pr-10 pl-10' : 'pl-10 pr-10'} bg-card border-border`}
+            className={`${isRTL ? 'pr-10 pl-10' : 'pl-10 pr-10'} bg-white/5 border-white/10 backdrop-blur-sm placeholder:text-muted-foreground/70`}
             required
           />
           <button
@@ -132,10 +132,10 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
       <div className="mt-6">
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-border"></div>
+            <div className="w-full border-t border-white/10"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-4 bg-card-elevated text-muted-foreground">{t.orContinueWith}</span>
+            <span className="px-4 bg-transparent text-muted-foreground">{t.orContinueWith}</span>
           </div>
         </div>
         
