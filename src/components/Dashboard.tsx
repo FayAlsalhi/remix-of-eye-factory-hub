@@ -57,58 +57,44 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
     }
   };
 
+  const allTabs = [
+    ...sidebarItems,
+    { id: 'settings' as TabType, label: t.settings, icon: Settings },
+  ];
+
   return (
-    <div className="min-h-screen flex" dir={isRTL ? 'rtl' : 'ltr'}>
-      {/* Sidebar */}
-      <aside className="w-64 bg-card border-r border-border flex flex-col">
+    <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
+      {/* Top Header with Logo + Tabs + Actions */}
+      <header className="h-20 bg-card border-b border-border flex items-center px-6 gap-4">
         {/* Logo */}
-        <div className="p-6 border-b border-border flex items-center justify-center">
+        <div className="flex items-center shrink-0">
           <img
             src={qiyafLogo}
             alt="Qiyaf"
-            className="h-20 w-auto object-contain"
+            className="h-12 w-auto object-contain"
           />
         </div>
 
-        {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-2">
-          {sidebarItems.map((item) => (
+        {/* Tabs Navigation - Centered */}
+        <nav className="flex-1 flex items-center justify-center gap-2">
+          {allTabs.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors border-b-2 ${
                 activeTab === item.id
-                  ? 'bg-primary/10 text-primary'
-                  : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+                  ? 'text-primary border-primary'
+                  : 'text-muted-foreground border-transparent hover:text-foreground'
               }`}
             >
-              <item.icon className="w-5 h-5" />
+              <item.icon className="w-4 h-4" />
               <span>{item.label}</span>
             </button>
           ))}
         </nav>
 
-        {/* Settings at bottom */}
-        <div className="p-4 border-t border-border">
-          <button 
-            onClick={() => setActiveTab('settings')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-              activeTab === 'settings'
-                ? 'bg-primary/10 text-primary'
-                : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
-            }`}
-          >
-            <Settings className="w-5 h-5" />
-            <span>{t.settings}</span>
-          </button>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Top Header */}
-        <header className="h-16 bg-card border-b border-border flex items-center justify-end px-6 gap-2">
-          {/* Language Switcher - Fixed in header */}
+        {/* Right side actions */}
+        <div className="flex items-center gap-2 shrink-0">
           <LanguageSwitcher isInHeader={true} />
 
 
@@ -190,13 +176,13 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
               </div>
             )}
           </div>
-        </header>
+        </div>
+      </header>
 
-        {/* Content Area */}
-        <main className="flex-1 p-6 bg-background overflow-auto">
-          {renderContent()}
-        </main>
-      </div>
+      {/* Content Area */}
+      <main className="flex-1 p-6 bg-background overflow-auto">
+        {renderContent()}
+      </main>
 
       {/* Click outside to close dropdowns */}
       {(showProfileDropdown || showNotifications) && (
