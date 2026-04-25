@@ -130,6 +130,10 @@ const translations: Record<Language, Translations> = {
     // Notifications
     notifications: 'Notifications',
     newAlert: 'New Alert',
+    goodMorning: 'Good morning',
+    goodAfternoon: 'Good afternoon',
+    goodEvening: 'Good evening',
+    live: 'LIVE',
   },
   ar: {
     createAccount: 'إنشاء حساب',
