@@ -2,166 +2,139 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
-// ============ Single Solar Panel ============
-const SolarPanel = ({ position }: { position: [number, number, number] }) => {
-  // Create a panel with subtle cell grid using a canvas texture
-  const texture = useMemo(() => {
-    const canvas = document.createElement('canvas');
-    canvas.width = 256;
-    canvas.height = 384;
-    const ctx = canvas.getContext('2d')!;
-
-    // Dark blue panel base
-    const grad = ctx.createLinearGradient(0, 0, 256, 384);
-    grad.addColorStop(0, '#0a2540');
-    grad.addColorStop(0.5, '#0d1f3a');
-    grad.addColorStop(1, '#08182d');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 256, 384);
-
-    // 6 x 9 cells
-    const cols = 6;
-    const rows = 9;
-    const cw = 256 / cols;
-    const ch = 384 / rows;
-
-    ctx.strokeStyle = 'rgba(0,0,0,0.85)';
-    ctx.lineWidth = 2;
-    for (let i = 1; i < cols; i++) {
-      ctx.beginPath();
-      ctx.moveTo(i * cw, 0);
-      ctx.lineTo(i * cw, 384);
-      ctx.stroke();
-    }
-    for (let j = 1; j < rows; j++) {
-      ctx.beginPath();
-      ctx.moveTo(0, j * ch);
-      ctx.lineTo(256, j * ch);
-      ctx.stroke();
-    }
-
-    // Cell highlights (subtle teal sheen)
-    ctx.strokeStyle = 'rgba(80, 200, 220, 0.18)';
-    ctx.lineWidth = 1;
-    for (let i = 0; i < cols; i++) {
-      for (let j = 0; j < rows; j++) {
-        ctx.beginPath();
-        ctx.moveTo(i * cw + 4, j * ch + 4);
-        ctx.lineTo(i * cw + cw - 4, j * ch + 4);
-        ctx.stroke();
-      }
-    }
-
-    const tex = new THREE.CanvasTexture(canvas);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    return tex;
-  }, []);
+// ============ Wireframe Platform Block ============
+// A semi-transparent block with bright cyan edges (like the reference)
+const PlatformBlock = ({
+  position,
+  size,
+}: {
+  position: [number, number, number];
+  size: [number, number, number];
+}) => {
+  const geometry = useMemo(() => new THREE.BoxGeometry(size[0], size[1], size[2]), [size]);
+  const edges = useMemo(() => new THREE.EdgesGeometry(geometry), [geometry]);
 
   return (
     <group position={position}>
-      {/* Panel surface */}
-      <mesh receiveShadow castShadow>
-        <boxGeometry args={[2, 0.05, 3]} />
-        <meshStandardMaterial
-          map={texture}
-          metalness={0.7}
-          roughness={0.25}
-          envMapIntensity={1.2}
+      {/* Faint translucent fill */}
+      <mesh geometry={geometry}>
+        <meshBasicMaterial
+          color="#0b3a4a"
+          transparent
+          opacity={0.18}
+          depthWrite={false}
         />
       </mesh>
-      {/* Frame */}
-      <mesh position={[0, 0.03, 0]}>
-        <boxGeometry args={[2.05, 0.02, 3.05]} />
-        <meshStandardMaterial color="#1a2a3a" metalness={0.9} roughness={0.4} />
-      </mesh>
-      {/* Support post */}
-      <mesh position={[0, -0.6, 0]}>
-        <cylinderGeometry args={[0.04, 0.04, 1.2, 8]} />
-        <meshStandardMaterial color="#2a3a4a" metalness={0.8} roughness={0.5} />
+      {/* Bright cyan wireframe edges */}
+      <lineSegments geometry={edges}>
+        <lineBasicMaterial color="#9be9f5" transparent opacity={0.85} />
+      </lineSegments>
+    </group>
+  );
+};
+
+// ============ Support Leg (vertical post under platforms) ============
+const SupportLeg = ({
+  position,
+  height,
+}: {
+  position: [number, number, number];
+  height: number;
+}) => {
+  const points = useMemo(
+    () => [new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -height, 0)],
+    [height],
+  );
+  const geometry = useMemo(() => new THREE.BufferGeometry().setFromPoints(points), [points]);
+  return (
+    <group position={position}>
+      <line>
+        <primitive object={geometry} attach="geometry" />
+        <lineBasicMaterial color="#9be9f5" transparent opacity={0.55} />
+      </line>
+      {/* small base cube */}
+      <mesh position={[0, -height, 0]}>
+        <boxGeometry args={[0.18, 0.18, 0.18]} />
+        <meshBasicMaterial color="#9be9f5" transparent opacity={0.4} />
       </mesh>
     </group>
   );
 };
 
-// ============ Pulsing Inspection Node ============
-const InspectionNode = ({ position, delay = 0 }: { position: [number, number, number]; delay?: number }) => {
-  const ref = useRef<THREE.Mesh>(null);
+// ============ Pulsing Inspection Node (glowing dot + ring) ============
+const InspectionNode = ({
+  position,
+  delay = 0,
+}: {
+  position: [number, number, number];
+  delay?: number;
+}) => {
+  const coreRef = useRef<THREE.Mesh>(null);
   const ringRef = useRef<THREE.Mesh>(null);
+  const haloRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime + delay;
-    if (ref.current) {
-      const s = 1 + Math.sin(t * 2) * 0.15;
-      ref.current.scale.set(s, s, s);
+    if (coreRef.current) {
+      const s = 1 + Math.sin(t * 2.2) * 0.2;
+      coreRef.current.scale.set(s, s, s);
     }
     if (ringRef.current) {
-      const s = 1 + ((t * 0.5) % 1) * 2;
+      const s = 1 + ((t * 0.6) % 1) * 2.5;
       ringRef.current.scale.set(s, s, s);
       const mat = ringRef.current.material as THREE.MeshBasicMaterial;
-      mat.opacity = 1 - ((t * 0.5) % 1);
+      mat.opacity = 0.9 - ((t * 0.6) % 1) * 0.9;
+    }
+    if (haloRef.current) {
+      const mat = haloRef.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = 0.25 + Math.sin(t * 2.2) * 0.1;
     }
   });
 
   return (
     <group position={position}>
-      <mesh ref={ref}>
-        <sphereGeometry args={[0.08, 16, 16]} />
-        <meshBasicMaterial color="#5ee9ff" />
+      {/* outer halo disc */}
+      <mesh ref={haloRef} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[0.35, 32]} />
+        <meshBasicMaterial color="#9be9f5" transparent opacity={0.25} />
       </mesh>
-      <pointLight color="#5ee9ff" intensity={2} distance={3} />
-      <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]}>
-        <ringGeometry args={[0.1, 0.12, 32]} />
-        <meshBasicMaterial color="#5ee9ff" transparent opacity={0.6} side={THREE.DoubleSide} />
+      {/* core sphere */}
+      <mesh ref={coreRef} position={[0, 0.05, 0]}>
+        <sphereGeometry args={[0.09, 24, 24]} />
+        <meshBasicMaterial color="#e6fbff" />
       </mesh>
+      {/* expanding ring */}
+      <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.01, 0]}>
+        <ringGeometry args={[0.18, 0.22, 48]} />
+        <meshBasicMaterial color="#9be9f5" transparent opacity={0.8} side={THREE.DoubleSide} />
+      </mesh>
+      <pointLight color="#9be9f5" intensity={1.5} distance={2.5} />
     </group>
   );
 };
 
-// ============ Drone (small flying marker) ============
-const Drone = () => {
-  const ref = useRef<THREE.Group>(null);
-  useFrame((state) => {
-    const t = state.clock.elapsedTime * 0.3;
-    if (ref.current) {
-      ref.current.position.x = Math.sin(t) * 6;
-      ref.current.position.z = Math.cos(t) * 4 - 2;
-      ref.current.position.y = 3 + Math.sin(t * 2) * 0.2;
-      ref.current.rotation.y = -t + Math.PI / 2;
-    }
-  });
-  return (
-    <group ref={ref}>
-      <mesh>
-        <boxGeometry args={[0.3, 0.08, 0.3]} />
-        <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.4} />
-      </mesh>
-      <pointLight color="#f59e42" intensity={1.5} distance={2} />
-    </group>
-  );
-};
+// ============ Connector Path (dashed-like line between two points) ============
+const ConnectorPath = ({
+  points,
+}: {
+  points: [number, number, number][];
+}) => {
+  const geometry = useMemo(() => {
+    const v = points.map((p) => new THREE.Vector3(...p));
+    return new THREE.BufferGeometry().setFromPoints(v);
+  }, [points]);
 
-// ============ Field of panels ============
-const PanelField = () => {
-  const panels: [number, number, number][] = [];
-  const cols = 7;
-  const rows = 5;
-  const spacingX = 2.4;
-  const spacingZ = 3.6;
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      panels.push([
-        (c - (cols - 1) / 2) * spacingX,
-        0,
-        (r - (rows - 1) / 2) * spacingZ,
-      ]);
-    }
-  }
   return (
-    <>
-      {panels.map((p, i) => (
-        <SolarPanel key={i} position={p} />
-      ))}
-    </>
+    <line>
+      <primitive object={geometry} attach="geometry" />
+      <lineDashedMaterial
+        color="#9be9f5"
+        transparent
+        opacity={0.7}
+        dashSize={0.15}
+        gapSize={0.1}
+      />
+    </line>
   );
 };
 
@@ -170,49 +143,66 @@ const Scene = () => {
   const groupRef = useRef<THREE.Group>(null);
   useFrame((state) => {
     if (groupRef.current) {
-      // Very subtle rotation for life
-      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.05) * 0.05;
+      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.04) * 0.04;
     }
   });
 
   return (
     <>
-      {/* Lighting */}
-      <ambientLight intensity={0.25} />
-      <directionalLight
-        position={[5, 10, 5]}
-        intensity={0.6}
-        color="#88c0ff"
-      />
-      <directionalLight
-        position={[-5, 6, -5]}
-        intensity={0.3}
-        color="#5ee9ff"
-      />
-      {/* Ground fog/glow */}
-      <fog attach="fog" args={['#050d1a', 12, 32]} />
+      <ambientLight intensity={0.6} />
+      <fog attach="fog" args={['#0a1f2a', 18, 42]} />
 
       <group ref={groupRef}>
-        {/* Tilt panels slightly toward sun */}
-        <group rotation={[-0.25, 0, 0]} position={[0, 0.2, 0]}>
-          <PanelField />
-        </group>
+        {/* === Composition based on reference image === */}
+        {/* Main large platform on the right */}
+        <PlatformBlock position={[3.5, 0, 0]} size={[5, 0.15, 4.5]} />
+        <SupportLeg position={[1.5, -0.1, 1.8]} height={1.4} />
+        <SupportLeg position={[5.2, -0.1, 1.8]} height={1.4} />
+        <SupportLeg position={[1.5, -0.1, -1.8]} height={1.4} />
 
-        {/* Inspection nodes hovering above some panels */}
-        <InspectionNode position={[-3, 1.2, -3]} delay={0} />
-        <InspectionNode position={[2, 1.2, -1]} delay={0.5} />
-        <InspectionNode position={[-1, 1.2, 2]} delay={1} />
-        <InspectionNode position={[4, 1.2, 3]} delay={1.5} />
-        <InspectionNode position={[-4, 1.2, 4]} delay={0.8} />
+        {/* Smaller raised platform top-right */}
+        <PlatformBlock position={[5.5, 1.2, -3]} size={[2.5, 0.15, 1.8]} />
 
-        {/* Roaming drone */}
-        <Drone />
+        {/* Mid platform connecting */}
+        <PlatformBlock position={[2.8, 0.6, -2.5]} size={[2, 0.12, 1.5]} />
 
-        {/* Ground plane */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.3, 0]} receiveShadow>
-          <planeGeometry args={[60, 60]} />
-          <meshStandardMaterial color="#040a14" roughness={1} metalness={0} />
-        </mesh>
+        {/* Lower extension on the right */}
+        <PlatformBlock position={[7.2, -0.4, 0.5]} size={[1.5, 0.12, 2]} />
+
+        {/* Bottom-right small platform */}
+        <PlatformBlock position={[6, -0.6, 2.8]} size={[2.2, 0.12, 1.5]} />
+        <SupportLeg position={[6, -0.7, 2.8]} height={1.2} />
+
+        {/* === Pulsing inspection nodes on platforms === */}
+        <InspectionNode position={[2.2, 0.1, -0.5]} delay={0} />
+        <InspectionNode position={[3.5, 0.1, 0.8]} delay={0.6} />
+        <InspectionNode position={[4.8, 0.1, -0.3]} delay={1.2} />
+        <InspectionNode position={[5.5, 1.3, -3]} delay={0.3} />
+        <InspectionNode position={[5.5, -0.5, 2.8]} delay={0.9} />
+        <InspectionNode position={[6.7, -0.5, 2.5]} delay={1.5} />
+
+        {/* === Dashed connector paths between nodes === */}
+        <ConnectorPath
+          points={[
+            [2.2, 0.15, -0.5],
+            [3.5, 0.15, 0.8],
+            [4.8, 0.15, -0.3],
+          ]}
+        />
+        <ConnectorPath
+          points={[
+            [4.8, 0.15, -0.3],
+            [5.5, 0.6, -1.5],
+            [5.5, 1.3, -3],
+          ]}
+        />
+        <ConnectorPath
+          points={[
+            [3.5, 0.15, 0.8],
+            [5.5, -0.4, 2.8],
+            [6.7, -0.4, 2.5],
+          ]}
+        />
       </group>
     </>
   );
@@ -221,10 +211,13 @@ const Scene = () => {
 const SolarField3D = () => {
   return (
     <Canvas
-      camera={{ position: [0, 5, 11], fov: 45 }}
+      camera={{ position: [-6, 4.5, 9], fov: 42 }}
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
       style={{ width: '100%', height: '100%' }}
+      onCreated={({ camera }) => {
+        camera.lookAt(2, 0, 0);
+      }}
     >
       <Scene />
     </Canvas>
