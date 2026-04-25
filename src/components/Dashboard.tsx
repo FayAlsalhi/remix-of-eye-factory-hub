@@ -194,6 +194,14 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
         </div>
       </header>
 
+      {/* Greeting bar */}
+      <div className="bg-card/40 border-b border-border px-6 py-2.5 flex items-center justify-between text-sm">
+        <div className="text-foreground">
+          {greeting}, <span className="text-primary font-semibold">{firstName}!</span>
+        </div>
+        <div className="text-muted-foreground text-xs">{dateString}</div>
+      </div>
+
       {/* Content Area */}
       <main className="flex-1 p-6 bg-background overflow-auto">
         {renderContent()}
