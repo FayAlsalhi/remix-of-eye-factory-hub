@@ -1,8 +1,7 @@
 import { ChevronDown, Play, ArrowRight, Sparkles, Activity, BarChart3, Shield, Eye, Bell, FileText, ScanLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import qiyafLogo from "@/assets/qiyaf-logo-brand.png";
-import droneImg from "@/assets/drone-solar-inspection.png";
-import dashboardImg from "@/assets/dashboard-mockup.png";
+import heroComposition from "@/assets/hero-composition.png";
 import videoPreviewImg from "@/assets/video-preview.png";
 
 interface LandingPageProps {
@@ -140,100 +139,47 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
             </div>
           </div>
 
-          {/* Right visual — cinematic hero scene */}
-          <div className="relative lg:-mr-24 xl:-mr-32 pb-20 lg:pb-24">
-            {/* Hero drone image — large, edge-to-edge, dominant */}
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-[5/4]">
+          {/* Right visual — single combined hero composition */}
+          <div className="relative flex items-center justify-center lg:justify-end translate-x-[20px]">
+            <div className="relative w-[58%] sm:w-[55%] lg:w-full max-w-[860px]">
+              {/* Soft teal glow halo */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-10 -z-10 rounded-[40px] blur-3xl"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 50% 50%, hsl(184 75% 48% / 0.28) 0%, hsl(184 75% 48% / 0.08) 45%, transparent 75%)",
+                }}
+              />
+              {/* Deep ambient shadow */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-6 -z-10 rounded-[32px] blur-2xl"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 50% 60%, hsl(0 0% 0% / 0.85) 0%, transparent 70%)",
+                }}
+              />
+
               <img
-                src={droneImg}
-                alt="Drone inspecting solar panels"
-                className="absolute inset-0 w-full h-full object-cover scale-[1.42] origin-[60%_38%]"
+                src={heroComposition}
+                alt="Qiyaf AI drone inspecting solar panels with live dashboard analytics"
+                className="relative block w-full h-auto object-contain"
+                style={{
+                  filter:
+                    "drop-shadow(0 30px 60px hsl(0 0% 0% / 0.6)) drop-shadow(0 0 40px hsl(184 75% 48% / 0.18))",
+                }}
               />
 
-              {/* Vignette: dark fade from left */}
+              {/* Soft vignette around edges */}
               <div
+                aria-hidden
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(90deg, hsl(0 0% 4% / 0.9) 0%, hsl(0 0% 4% / 0.3) 18%, transparent 45%)",
+                    "radial-gradient(ellipse at 50% 50%, transparent 60%, hsl(0 0% 4% / 0.55) 95%, hsl(0 0% 4% / 0.85) 100%)",
                 }}
               />
-              {/* Vignette: soft edges fade into background */}
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 58% 42%, transparent 50%, hsl(0 0% 4% / 0.5) 82%, hsl(0 0% 4% / 0.95) 100%)",
-                }}
-              />
-              {/* Atmospheric haze — subtle teal depth */}
-              <div
-                className="pointer-events-none absolute inset-0 mix-blend-screen opacity-40"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 72% 28%, hsl(184 75% 48% / 0.2), transparent 55%)",
-                }}
-              />
-              {/* Bottom fade so dashboard blends in */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background via-background/65 to-transparent" />
-            </div>
-
-            {/* Embedded dashboard mockup — cinematic composition */}
-            <div
-              className="absolute left-[10%] right-[10%] lg:left-[8%] lg:right-[4%] bottom-[-4%] lg:bottom-[-8%] z-20"
-              style={{
-                transform: "perspective(1600px) rotateY(-3deg) rotateX(2deg)",
-                transformStyle: "preserve-3d",
-              }}
-            >
-              {/* Deep ambient shadow under dashboard */}
-              <div
-                aria-hidden
-                className="absolute -inset-8 -z-10 rounded-[32px] blur-3xl"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 50% 65%, hsl(0 0% 0% / 0.9) 0%, hsl(0 0% 0% / 0.45) 55%, transparent 82%)",
-                }}
-              />
-              {/* Background blur plate for depth separation */}
-              <div
-                aria-hidden
-                className="absolute -inset-2 -z-10 rounded-[24px] backdrop-blur-md bg-background/30"
-              />
-
-              {/* Dashboard frame */}
-              <div
-                className="relative rounded-[18px] overflow-hidden border border-primary/25"
-                style={{
-                  boxShadow:
-                    "0 50px 90px -20px hsl(0 0% 0% / 0.95), 0 0 0 1px hsl(184 75% 48% / 0.18), 0 0 70px -10px hsl(184 75% 48% / 0.35)",
-                }}
-              >
-                <img
-                  src={dashboardImg}
-                  alt="Qiyaf dashboard"
-                  className="block w-full h-auto object-cover"
-                />
-
-                {/* Subtle teal edge glow */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 rounded-[18px]"
-                  style={{
-                    boxShadow:
-                      "inset 0 0 0 1px hsl(184 75% 55% / 0.28), inset 0 0 40px hsl(184 75% 48% / 0.1)",
-                  }}
-                />
-                {/* Glass reflection layer (very subtle) */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 rounded-[18px] opacity-50 mix-blend-overlay"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, hsl(0 0% 100% / 0.08) 0%, transparent 35%, transparent 70%, hsl(0 0% 100% / 0.04) 100%)",
-                  }}
-                />
-              </div>
             </div>
           </div>
         </div>
