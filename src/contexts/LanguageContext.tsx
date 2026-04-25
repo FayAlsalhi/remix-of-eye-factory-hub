@@ -62,6 +62,11 @@ interface Translations {
   // Notifications
   notifications: string;
   newAlert: string;
+  // Greeting
+  goodMorning: string;
+  goodAfternoon: string;
+  goodEvening: string;
+  live: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -125,6 +130,10 @@ const translations: Record<Language, Translations> = {
     // Notifications
     notifications: 'Notifications',
     newAlert: 'New Alert',
+    goodMorning: 'Good morning',
+    goodAfternoon: 'Good afternoon',
+    goodEvening: 'Good evening',
+    live: 'LIVE',
   },
   ar: {
     createAccount: 'إنشاء حساب',
@@ -186,6 +195,10 @@ const translations: Record<Language, Translations> = {
     // Notifications
     notifications: 'الإشعارات',
     newAlert: 'تنبيه جديد',
+    goodMorning: 'صباح الخير',
+    goodAfternoon: 'مساء الخير',
+    goodEvening: 'مساء الخير',
+    live: 'مباشر',
   },
 };
 

@@ -16,8 +16,19 @@ interface DashboardProps {
 }
 
 const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
-  const { t, isRTL } = useLanguage();
+  const { t, language, isRTL } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabType>('dashboard');
+
+  // Greeting based on hour
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? t.goodMorning : hour < 18 ? t.goodAfternoon : t.goodEvening;
+  const firstName = userName.split(' ')[0] || userName;
+  const dateString = new Date().toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
 
@@ -66,13 +77,17 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
     <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Top Header with Logo + Tabs + Actions */}
       <header className="h-20 bg-card border-b border-border flex items-center px-6 gap-4">
-        {/* Logo */}
-        <div className="flex items-center shrink-0">
+        {/* Logo + LIVE badge */}
+        <div className="flex items-center gap-2 shrink-0">
           <img
             src={qiyafLogo}
             alt="Qiyaf"
             className="h-12 w-auto object-contain"
           />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-500 text-white text-[10px] font-bold tracking-wider shadow-md">
+            <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+            {t.live}
+          </span>
         </div>
 
         {/* Tabs Navigation - Centered */}
@@ -178,6 +193,14 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
           </div>
         </div>
       </header>
+
+      {/* Greeting bar */}
+      <div className="bg-card/40 border-b border-border px-6 py-2.5 flex items-center justify-between text-sm">
+        <div className="text-foreground">
+          {greeting}, <span className="text-primary font-semibold">{firstName}!</span>
+        </div>
+        <div className="text-muted-foreground text-xs">{dateString}</div>
+      </div>
 
       {/* Content Area */}
       <main className="flex-1 p-6 bg-background overflow-auto">
