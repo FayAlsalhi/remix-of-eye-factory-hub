@@ -1,5 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Eye, CheckCircle, XCircle, TrendingUp } from 'lucide-react';
+import { Eye, CheckCircle, XCircle, TrendingUp, MapPin } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const DashboardTab = () => {
@@ -45,6 +45,23 @@ const DashboardTab = () => {
               <p className="text-xs text-muted-foreground">{stat.label}</p>
               <p className="text-lg font-bold text-foreground">{stat.value}</p>
             </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Recent Scans */}
+      <h2 className="text-xl font-semibold text-foreground">{t.recentScans}</h2>
+      <div className="flex flex-wrap items-center gap-6 text-sm">
+        {[
+          { sector: 'Sector A-12', time: 2, status: 'bg-green-500' },
+          { sector: 'Sector B-08', time: 5, status: 'bg-red-500' },
+          { sector: 'Sector C-15', time: 8, status: 'bg-yellow-500' },
+        ].map((scan, idx) => (
+          <div key={idx} className="flex items-center gap-2">
+            <span className={`w-2 h-2 rounded-full ${scan.status}`}></span>
+            <MapPin className="w-3.5 h-3.5 text-muted-foreground" />
+            <span className="text-foreground">{scan.sector}</span>
+            <span className="text-muted-foreground">· {scan.time} {t.minAgo}</span>
           </div>
         ))}
       </div>
