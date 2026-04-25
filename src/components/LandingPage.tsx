@@ -80,6 +80,20 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
 
       {/* Hero */}
       <section className="relative max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 lg:pt-8 pb-20">
+        {/* Center seam blend — soft vertical black shadow merging left content into right visual */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-0 bottom-0 hidden lg:block"
+          style={{
+            left: "34%",
+            width: "26%",
+            zIndex: 2,
+            background:
+              "linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.75) 45%, rgba(0,0,0,0.88) 55%, rgba(0,0,0,0.55) 78%, rgba(0,0,0,0) 100%)",
+            filter: "blur(35px)",
+            boxShadow: "0 0 120px rgba(0,0,0,0.95), 0 0 60px rgba(0,0,0,0.8)",
+          }}
+        />
         <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-4 items-center min-h-[calc(100vh-5rem)]">
           {/* Left content */}
           <div className="relative z-10">
