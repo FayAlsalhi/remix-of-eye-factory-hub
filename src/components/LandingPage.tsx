@@ -140,44 +140,37 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
           </div>
 
           {/* Right visual — single combined hero composition */}
-          <div className="relative flex items-center justify-center lg:justify-end translate-x-[20px]">
-            <div className="relative w-[58%] sm:w-[55%] lg:w-full max-w-[860px]">
-              {/* Soft teal glow halo */}
+          <div className="relative flex items-center justify-center lg:justify-end">
+            <div
+              className="relative"
+              style={{
+                width: "58vw",
+                maxWidth: "920px",
+                minWidth: "320px",
+                transform: "translate(30px, -20px) scale(1.2)",
+                transformOrigin: "center center",
+              }}
+            >
+              {/* Large circular black radial shadow behind image */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute -inset-10 -z-10 rounded-[40px] blur-3xl"
+                className="pointer-events-none absolute -z-10"
                 style={{
+                  inset: "-80px",
                   background:
-                    "radial-gradient(ellipse at 50% 50%, hsl(184 75% 48% / 0.28) 0%, hsl(184 75% 48% / 0.08) 45%, transparent 75%)",
-                }}
-              />
-              {/* Deep ambient shadow */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -inset-6 -z-10 rounded-[32px] blur-2xl"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 50% 60%, hsl(0 0% 0% / 0.85) 0%, transparent 70%)",
+                    "radial-gradient(circle at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0) 72%)",
+                  filter: "blur(45px)",
                 }}
               />
 
               <img
                 src={heroComposition}
                 alt="Qiyaf AI drone inspecting solar panels with live dashboard analytics"
-                className="relative block w-full h-auto object-contain"
+                className="relative block w-full h-auto"
                 style={{
-                  filter:
-                    "drop-shadow(0 30px 60px hsl(0 0% 0% / 0.6)) drop-shadow(0 0 40px hsl(184 75% 48% / 0.18))",
-                }}
-              />
-
-              {/* Soft vignette around edges */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 50% 50%, transparent 60%, hsl(0 0% 4% / 0.55) 95%, hsl(0 0% 4% / 0.85) 100%)",
+                  borderRadius: "24px",
+                  boxShadow:
+                    "0 50px 140px rgba(0,0,0,0.75), 0 0 80px rgba(0,220,220,0.08)",
                 }}
               />
             </div>
