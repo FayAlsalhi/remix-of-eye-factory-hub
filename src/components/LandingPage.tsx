@@ -140,15 +140,100 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
             </div>
           </div>
 
-          {/* Right visual */}
-          <div className="relative">
+          {/* Right visual — cinematic hero scene */}
+          <div className="relative lg:-mr-16 lg:scale-[1.18] lg:translate-x-6 origin-center pb-24 lg:pb-32">
+            {/* Hero drone image with atmospheric blending */}
             <div className="relative rounded-2xl overflow-hidden">
-              <img src={droneImg} alt="Drone inspecting solar panels" className="w-full h-auto object-contain" />
+              <img
+                src={droneImg}
+                alt="Drone inspecting solar panels"
+                className="w-full h-auto object-contain"
+              />
+
+              {/* Vignette: dark fade from left */}
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(90deg, hsl(0 0% 4% / 0.85) 0%, hsl(0 0% 4% / 0.35) 22%, transparent 55%)",
+                }}
+              />
+              {/* Vignette: edges fade into background */}
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 60% 45%, transparent 45%, hsl(0 0% 4% / 0.55) 80%, hsl(0 0% 4%) 100%)",
+                }}
+              />
+              {/* Atmospheric haze — subtle teal depth */}
+              <div
+                className="pointer-events-none absolute inset-0 mix-blend-screen opacity-40"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 70% 30%, hsl(184 75% 48% / 0.18), transparent 55%)",
+                }}
+              />
+              {/* Bottom fade so dashboard blends in */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-background via-background/60 to-transparent" />
             </div>
 
-            {/* Floating dashboard card */}
-            <div className="absolute -bottom-10 -left-6 lg:-left-16 w-[88%] lg:w-[78%] rounded-xl overflow-hidden border border-border/60 shadow-2xl backdrop-blur-sm bg-card/40">
-              <img src={dashboardImg} alt="Qiyaf dashboard" className="w-full h-auto object-cover" />
+            {/* Embedded dashboard mockup — cinematic composition */}
+            <div
+              className="absolute left-[8%] right-[-6%] lg:left-[6%] lg:right-[-10%] bottom-[-6%] lg:bottom-[-10%] z-20"
+              style={{
+                transform: "perspective(1400px) rotateY(-3deg) rotateX(2deg)",
+                transformStyle: "preserve-3d",
+              }}
+            >
+              {/* Deep ambient shadow under dashboard */}
+              <div
+                aria-hidden
+                className="absolute -inset-6 -z-10 rounded-[28px] blur-2xl"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 50% 60%, hsl(0 0% 0% / 0.85) 0%, hsl(0 0% 0% / 0.4) 55%, transparent 80%)",
+                }}
+              />
+              {/* Background blur plate for depth separation */}
+              <div
+                aria-hidden
+                className="absolute -inset-2 -z-10 rounded-[24px] backdrop-blur-md bg-background/30"
+              />
+
+              {/* Dashboard frame */}
+              <div
+                className="relative rounded-[20px] overflow-hidden border border-primary/25"
+                style={{
+                  boxShadow:
+                    "0 40px 80px -20px hsl(0 0% 0% / 0.9), 0 0 0 1px hsl(184 75% 48% / 0.15), 0 0 60px -10px hsl(184 75% 48% / 0.35)",
+                }}
+              >
+                <img
+                  src={dashboardImg}
+                  alt="Qiyaf dashboard"
+                  className="block w-full h-auto object-cover"
+                />
+
+                {/* Subtle teal edge glow */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 rounded-[20px]"
+                  style={{
+                    boxShadow:
+                      "inset 0 0 0 1px hsl(184 75% 55% / 0.25), inset 0 0 40px hsl(184 75% 48% / 0.08)",
+                  }}
+                />
+                {/* Glass reflection layer (very subtle) */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 rounded-[20px] opacity-50 mix-blend-overlay"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, hsl(0 0% 100% / 0.08) 0%, transparent 35%, transparent 70%, hsl(0 0% 100% / 0.04) 100%)",
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
