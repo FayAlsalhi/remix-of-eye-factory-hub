@@ -6,6 +6,7 @@ import LoginForm from '@/components/LoginForm';
 import ForgotPasswordForm from '@/components/ForgotPasswordForm';
 import Dashboard from '@/components/Dashboard';
 import IntroPage from '@/components/IntroPage';
+import LandingPage from '@/components/LandingPage';
 import AuthLayout from '@/components/AuthLayout';
 
 type AuthView = 'intro' | 'signup' | 'login' | 'forgot-password';
@@ -40,7 +41,10 @@ const Index = () => {
       <div className="min-h-screen bg-background">
         {!isLoggedIn ? (
           authView === 'intro' ? (
-            <IntroPage onStart={() => setAuthView('signup')} />
+            <LandingPage
+              onGetStarted={() => setAuthView('signup')}
+              onLogin={() => setAuthView('login')}
+            />
           ) : (
             <AuthLayout>
               <div className="absolute top-4 right-4 z-20">
