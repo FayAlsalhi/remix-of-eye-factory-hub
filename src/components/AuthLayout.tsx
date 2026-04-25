@@ -17,134 +17,129 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
     ? 'فحص الألواح الشمسية بالطائرات بدون طيار، مدعوم بالذكاء الاصطناعي.'
     : 'AI-powered solar panel inspection, delivered by autonomous UAVs.';
 
-  // Compact isometric grid sits to the right side of the brand zone.
-  // Coordinates inside a 600x500 viewBox.
+  // Glowing data nodes spread across the full-screen isometric grid
   const dataNodes = [
-    { x: 230, y: 180, delay: '0s' },
-    { x: 360, y: 150, delay: '0.6s' },
-    { x: 470, y: 200, delay: '1.2s' },
-    { x: 300, y: 260, delay: '0.4s' },
-    { x: 420, y: 290, delay: '1.0s' },
+    { x: 380, y: 340, delay: '0s' },
+    { x: 560, y: 300, delay: '0.6s' },
+    { x: 740, y: 360, delay: '1.2s' },
+    { x: 900, y: 320, delay: '1.8s' },
+    { x: 470, y: 430, delay: '0.3s' },
+    { x: 650, y: 460, delay: '0.9s' },
+    { x: 830, y: 440, delay: '1.5s' },
+    { x: 1010, y: 420, delay: '2.1s' },
   ];
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[hsl(210_55%_6%)]" dir={isRTL ? 'rtl' : 'ltr'}>
-      {/* ============ BACKGROUND BASE ============ */}
+      {/* ============ FULL-SCREEN BACKGROUND: 3D ISOMETRIC GRID ============ */}
       <div className="absolute inset-0">
-        {/* Deep gradient base */}
         <div className="absolute inset-0 bg-gradient-to-br from-[hsl(210_55%_5%)] via-[hsl(200_50%_8%)] to-[hsl(210_55%_4%)]" />
 
-        {/* Soft ambient glow behind the brand area (left-center) */}
-        <div className="pointer-events-none absolute top-[30%] left-[18%] w-[36rem] h-[36rem] rounded-full bg-primary/15 blur-[140px]" />
-        <div className="pointer-events-none absolute bottom-[10%] right-[40%] w-[28rem] h-[28rem] rounded-full bg-primary/8 blur-[120px]" />
+        <div className="pointer-events-none absolute top-1/4 left-1/4 w-[40rem] h-[40rem] rounded-full bg-primary/10 blur-[160px]" />
+        <div className="pointer-events-none absolute bottom-1/4 right-1/4 w-[36rem] h-[36rem] rounded-full bg-primary/8 blur-[160px]" />
+
+        <svg
+          className="absolute inset-0 w-full h-full"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="xMidYMid slice"
+          fill="none"
+        >
+          <defs>
+            <filter id="nodeGlow" x="-200%" y="-200%" width="500%" height="500%">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <radialGradient id="nodeGradient">
+              <stop offset="0%" stopColor="hsl(188 100% 75%)" stopOpacity="1" />
+              <stop offset="40%" stopColor="hsl(188 90% 55%)" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="hsl(188 90% 45%)" stopOpacity="0" />
+            </radialGradient>
+
+            <pattern id="isoGrid" x="0" y="0" width="80" height="46" patternUnits="userSpaceOnUse">
+              <path d="M 0 23 L 40 0 L 80 23 L 40 46 Z" stroke="hsl(188 75% 50%)" strokeWidth="0.6" fill="none" opacity="0.35" />
+            </pattern>
+
+            <linearGradient id="fadeGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="white" stopOpacity="0" />
+              <stop offset="20%" stopColor="white" stopOpacity="1" />
+              <stop offset="80%" stopColor="white" stopOpacity="1" />
+              <stop offset="100%" stopColor="white" stopOpacity="0.3" />
+            </linearGradient>
+            <mask id="gridFade">
+              <rect x="0" y="280" width="1200" height="520" fill="url(#fadeGrad)" />
+            </mask>
+          </defs>
+
+          <g mask="url(#gridFade)">
+            <rect x="0" y="280" width="1200" height="520" fill="url(#isoGrid)" />
+          </g>
+
+          {dataNodes.map((node, i) => (
+            <line
+              key={`pole-${i}`}
+              x1={node.x}
+              y1={node.y}
+              x2={node.x}
+              y2={node.y + 90}
+              stroke="hsl(188 90% 60%)"
+              strokeWidth="1"
+              opacity="0.55"
+              strokeDasharray="2 3"
+            />
+          ))}
+
+          <g stroke="hsl(188 85% 55%)" strokeWidth="1" opacity="0.4">
+            <line x1="380" y1="340" x2="560" y2="300" />
+            <line x1="560" y1="300" x2="740" y2="360" />
+            <line x1="740" y1="360" x2="900" y2="320" />
+            <line x1="470" y1="430" x2="650" y2="460" />
+            <line x1="650" y1="460" x2="830" y2="440" />
+            <line x1="830" y1="440" x2="1010" y2="420" />
+            <line x1="380" y1="340" x2="470" y2="430" />
+            <line x1="560" y1="300" x2="650" y2="460" />
+            <line x1="740" y1="360" x2="830" y2="440" />
+            <line x1="900" y1="320" x2="1010" y2="420" />
+          </g>
+
+          {dataNodes.map((node, i) => (
+            <g key={`node-${i}`} filter="url(#nodeGlow)">
+              <circle cx={node.x} cy={node.y} r="14" fill="url(#nodeGradient)">
+                <animate attributeName="r" values="10;18;10" dur="3s" begin={node.delay} repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3s" begin={node.delay} repeatCount="indefinite" />
+              </circle>
+              <circle cx={node.x} cy={node.y} r="4" fill="hsl(188 100% 85%)" />
+              <circle cx={node.x} cy={node.y + 90} r="2" fill="hsl(188 90% 60%)" opacity="0.7" />
+            </g>
+          ))}
+        </svg>
       </div>
 
       {/* ============ FOREGROUND: TWO-COLUMN LAYOUT ============ */}
       <div className="relative z-10 grid min-h-screen lg:grid-cols-2">
-        {/* Left: Brand zone with the compact isometric mesh on the right side */}
-        <div className="relative hidden lg:flex flex-col justify-between p-12 overflow-hidden">
-          {/* Top: Small logo (color-shifted to match theme — removes orange) */}
+        {/* Left: Brand zone */}
+        <div className="relative hidden lg:flex flex-col justify-between p-12">
           <div className="flex items-center gap-3">
             <img
               src={qiyafLogo}
               alt="Qiyaf"
-              className="h-9 w-auto object-contain opacity-90"
+              className="h-10 w-auto object-contain opacity-90"
               style={{ filter: 'hue-rotate(150deg) saturate(0.85) brightness(1.05)' }}
             />
           </div>
 
-          {/* Compact isometric grid — positioned to the right of the brand zone */}
-          <svg
-            className="pointer-events-none absolute right-[-4%] top-[20%] h-[70%] w-[70%]"
-            viewBox="0 0 600 500"
-            fill="none"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <defs>
-              <filter id="nodeGlow" x="-200%" y="-200%" width="500%" height="500%">
-                <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-              <radialGradient id="nodeGradient">
-                <stop offset="0%" stopColor="hsl(188 100% 80%)" stopOpacity="1" />
-                <stop offset="50%" stopColor="hsl(188 90% 55%)" stopOpacity="0.85" />
-                <stop offset="100%" stopColor="hsl(188 90% 45%)" stopOpacity="0" />
-              </radialGradient>
-
-              {/* Smaller, denser isometric diamond pattern */}
-              <pattern id="isoGrid" x="0" y="0" width="60" height="34" patternUnits="userSpaceOnUse">
-                <path d="M 0 17 L 30 0 L 60 17 L 30 34 Z" stroke="hsl(188 75% 55%)" strokeWidth="0.5" fill="none" opacity="0.45" />
-              </pattern>
-
-              {/* Radial fade so the grid blends softly into the background */}
-              <radialGradient id="gridFade" cx="50%" cy="55%" r="55%">
-                <stop offset="0%" stopColor="white" stopOpacity="1" />
-                <stop offset="70%" stopColor="white" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="white" stopOpacity="0" />
-              </radialGradient>
-              <mask id="gridMask">
-                <rect x="0" y="0" width="600" height="500" fill="url(#gridFade)" />
-              </mask>
-            </defs>
-
-            {/* Grid floor */}
-            <g mask="url(#gridMask)">
-              <rect x="0" y="120" width="600" height="380" fill="url(#isoGrid)" />
-            </g>
-
-            {/* Vertical poles */}
-            {dataNodes.map((node, i) => (
-              <line
-                key={`pole-${i}`}
-                x1={node.x}
-                y1={node.y}
-                x2={node.x}
-                y2={node.y + 80}
-                stroke="hsl(188 90% 60%)"
-                strokeWidth="0.9"
-                opacity="0.55"
-                strokeDasharray="2 3"
-              />
-            ))}
-
-            {/* Connecting beams */}
-            <g stroke="hsl(188 85% 55%)" strokeWidth="0.9" opacity="0.4">
-              <line x1="230" y1="180" x2="360" y2="150" />
-              <line x1="360" y1="150" x2="470" y2="200" />
-              <line x1="230" y1="180" x2="300" y2="260" />
-              <line x1="300" y1="260" x2="420" y2="290" />
-              <line x1="420" y1="290" x2="470" y2="200" />
-              <line x1="360" y1="150" x2="300" y2="260" />
-            </g>
-
-            {/* Nodes */}
-            {dataNodes.map((node, i) => (
-              <g key={`node-${i}`} filter="url(#nodeGlow)">
-                <circle cx={node.x} cy={node.y} r="12" fill="url(#nodeGradient)">
-                  <animate attributeName="r" values="9;15;9" dur="3s" begin={node.delay} repeatCount="indefinite" />
-                  <animate attributeName="opacity" values="0.85;0.35;0.85" dur="3s" begin={node.delay} repeatCount="indefinite" />
-                </circle>
-                <circle cx={node.x} cy={node.y} r="3.5" fill="hsl(188 100% 88%)" />
-                <circle cx={node.x} cy={node.y + 80} r="1.8" fill="hsl(188 90% 60%)" opacity="0.7" />
-              </g>
-            ))}
-          </svg>
-
-          {/* Center-left: Big brand mark (color-shifted to match theme) */}
-          <div className="relative z-10 flex flex-col items-start justify-center pl-4 xl:pl-10">
+          <div className="flex flex-col items-center justify-center text-center">
             <img
               src={qiyafLogo}
               alt="Qiyaf"
-              className="h-44 xl:h-56 w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
+              className="h-48 xl:h-64 w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
               style={{ filter: 'hue-rotate(150deg) saturate(0.85) brightness(1.05)' }}
             />
           </div>
 
-          {/* Bottom: Tagline */}
-          <div className="relative z-10 max-w-md">
+          <div className="max-w-md">
             <div className="h-px w-16 bg-primary mb-5" />
             <h2 className="text-3xl xl:text-4xl font-bold text-foreground leading-tight tracking-tight">
               {tagline}
@@ -162,9 +157,8 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
           </div>
         </div>
 
-        {/* Right: Glassmorphism form card */}
+        {/* Right: Glassmorphism (blurred) form card */}
         <div className="relative flex items-center justify-center p-6 sm:p-10">
-          {/* Mobile-only top logo */}
           <div className="lg:hidden absolute top-6 left-1/2 -translate-x-1/2 z-20">
             <img
               src={qiyafLogo}
@@ -174,8 +168,8 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
             />
           </div>
 
-          {/* Glass container */}
-          <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.05] p-8 shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-2xl backdrop-saturate-150">
+          {/* GLASS / BLUR CONTAINER */}
+          <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.04] p-8 shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-2xl backdrop-saturate-150">
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-b from-white/[0.07] via-transparent to-transparent" />
             <div className="relative">
               {children}
