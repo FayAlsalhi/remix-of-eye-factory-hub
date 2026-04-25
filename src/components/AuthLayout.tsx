@@ -1,6 +1,8 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense, lazy } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import qiyafLogo from '@/assets/qiyaf-logo-dark.png';
+
+const SolarField3D = lazy(() => import('./SolarField3D'));
 
 interface AuthLayoutProps {
   children: ReactNode;
