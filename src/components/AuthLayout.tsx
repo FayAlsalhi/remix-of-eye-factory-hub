@@ -19,16 +19,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
     ? 'فحص الألواح الشمسية بالطائرات بدون طيار، مدعوم بالذكاء الاصطناعي.'
     : 'AI-powered solar panel inspection, delivered by autonomous UAVs.';
 
-  // Glowing data nodes positioned on the solar field (in viewBox 1200x800 coords)
-  const dataNodes = [
-    { x: 320, y: 380, delay: '0s' },
-    { x: 560, y: 340, delay: '0.6s' },
-    { x: 800, y: 400, delay: '1.2s' },
-    { x: 980, y: 360, delay: '1.8s' },
-    { x: 440, y: 520, delay: '0.3s' },
-    { x: 700, y: 560, delay: '0.9s' },
-    { x: 920, y: 540, delay: '1.5s' },
-  ];
+
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[hsl(210_55%_6%)]" dir={isRTL ? 'rtl' : 'ltr'}>
