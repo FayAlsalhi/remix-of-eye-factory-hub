@@ -80,8 +80,8 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
       </header>
 
       {/* Hero */}
-      <section className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-24">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-6 items-center">
+      <section className="relative max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 lg:pt-8 pb-20">
+        <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-4 items-center min-h-[calc(100vh-5rem)]">
           {/* Left content */}
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 mb-7">
@@ -141,13 +141,13 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
           </div>
 
           {/* Right visual — cinematic hero scene */}
-          <div className="relative lg:-mr-16 lg:scale-[1.18] lg:translate-x-6 origin-center pb-24 lg:pb-32">
-            {/* Hero drone image with atmospheric blending */}
-            <div className="relative rounded-2xl overflow-hidden">
+          <div className="relative lg:-mr-24 xl:-mr-32 pb-20 lg:pb-24">
+            {/* Hero drone image — large, edge-to-edge, dominant */}
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-[5/4]">
               <img
                 src={droneImg}
                 alt="Drone inspecting solar panels"
-                className="w-full h-auto object-contain"
+                className="absolute inset-0 w-full h-full object-cover scale-[1.42] origin-[60%_38%]"
               />
 
               {/* Vignette: dark fade from left */}
@@ -155,15 +155,15 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(90deg, hsl(0 0% 4% / 0.85) 0%, hsl(0 0% 4% / 0.35) 22%, transparent 55%)",
+                    "linear-gradient(90deg, hsl(0 0% 4% / 0.9) 0%, hsl(0 0% 4% / 0.3) 18%, transparent 45%)",
                 }}
               />
-              {/* Vignette: edges fade into background */}
+              {/* Vignette: soft edges fade into background */}
               <div
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 60% 45%, transparent 45%, hsl(0 0% 4% / 0.55) 80%, hsl(0 0% 4%) 100%)",
+                    "radial-gradient(ellipse at 58% 42%, transparent 50%, hsl(0 0% 4% / 0.5) 82%, hsl(0 0% 4% / 0.95) 100%)",
                 }}
               />
               {/* Atmospheric haze — subtle teal depth */}
@@ -171,28 +171,28 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
                 className="pointer-events-none absolute inset-0 mix-blend-screen opacity-40"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 70% 30%, hsl(184 75% 48% / 0.18), transparent 55%)",
+                    "radial-gradient(ellipse at 72% 28%, hsl(184 75% 48% / 0.2), transparent 55%)",
                 }}
               />
               {/* Bottom fade so dashboard blends in */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-background via-background/60 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background via-background/65 to-transparent" />
             </div>
 
             {/* Embedded dashboard mockup — cinematic composition */}
             <div
-              className="absolute left-[8%] right-[-6%] lg:left-[6%] lg:right-[-10%] bottom-[-6%] lg:bottom-[-10%] z-20"
+              className="absolute left-[10%] right-[10%] lg:left-[8%] lg:right-[4%] bottom-[-4%] lg:bottom-[-8%] z-20"
               style={{
-                transform: "perspective(1400px) rotateY(-3deg) rotateX(2deg)",
+                transform: "perspective(1600px) rotateY(-3deg) rotateX(2deg)",
                 transformStyle: "preserve-3d",
               }}
             >
               {/* Deep ambient shadow under dashboard */}
               <div
                 aria-hidden
-                className="absolute -inset-6 -z-10 rounded-[28px] blur-2xl"
+                className="absolute -inset-8 -z-10 rounded-[32px] blur-3xl"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 50% 60%, hsl(0 0% 0% / 0.85) 0%, hsl(0 0% 0% / 0.4) 55%, transparent 80%)",
+                    "radial-gradient(ellipse at 50% 65%, hsl(0 0% 0% / 0.9) 0%, hsl(0 0% 0% / 0.45) 55%, transparent 82%)",
                 }}
               />
               {/* Background blur plate for depth separation */}
@@ -203,10 +203,10 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
 
               {/* Dashboard frame */}
               <div
-                className="relative rounded-[20px] overflow-hidden border border-primary/25"
+                className="relative rounded-[18px] overflow-hidden border border-primary/25"
                 style={{
                   boxShadow:
-                    "0 40px 80px -20px hsl(0 0% 0% / 0.9), 0 0 0 1px hsl(184 75% 48% / 0.15), 0 0 60px -10px hsl(184 75% 48% / 0.35)",
+                    "0 50px 90px -20px hsl(0 0% 0% / 0.95), 0 0 0 1px hsl(184 75% 48% / 0.18), 0 0 70px -10px hsl(184 75% 48% / 0.35)",
                 }}
               >
                 <img
@@ -218,16 +218,16 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
                 {/* Subtle teal edge glow */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 rounded-[20px]"
+                  className="pointer-events-none absolute inset-0 rounded-[18px]"
                   style={{
                     boxShadow:
-                      "inset 0 0 0 1px hsl(184 75% 55% / 0.25), inset 0 0 40px hsl(184 75% 48% / 0.08)",
+                      "inset 0 0 0 1px hsl(184 75% 55% / 0.28), inset 0 0 40px hsl(184 75% 48% / 0.1)",
                   }}
                 />
                 {/* Glass reflection layer (very subtle) */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 rounded-[20px] opacity-50 mix-blend-overlay"
+                  className="pointer-events-none absolute inset-0 rounded-[18px] opacity-50 mix-blend-overlay"
                   style={{
                     background:
                       "linear-gradient(135deg, hsl(0 0% 100% / 0.08) 0%, transparent 35%, transparent 70%, hsl(0 0% 100% / 0.04) 100%)",
