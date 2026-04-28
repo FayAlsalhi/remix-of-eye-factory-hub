@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Eye, CheckCircle, XCircle, TrendingUp, TrendingDown, Filter } from 'lucide-react';
+import { Eye, CheckCircle, XCircle, TrendingUp, TrendingDown, Filter, AlertTriangle, Bell, Radio, MapPin, Clock } from 'lucide-react';
+import liveFeedImg from '@/assets/live-feed-solar-panel.jpg';
 import {
   LineChart,
   Line,
@@ -235,6 +236,143 @@ const DashboardTab = () => {
             className="w-full h-full object-cover"
           />
         </div>
+      </div>
+
+      {/* Recent Alerts + Live Feed + Defect Distribution */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        {/* Recent Alerts */}
+        <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)]">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Bell className="w-4 h-4 text-cyan-300" />
+              <h3 className="text-base font-semibold text-foreground">Recent Alerts</h3>
+            </div>
+            <span className="text-xs text-muted-foreground hover:text-foreground cursor-pointer">View all</span>
+          </div>
+          <div className="space-y-3">
+            {[
+              { sev: 'Critical', color: 'rose', dot: 'bg-rose-500', ring: 'border-rose-500/30 bg-rose-500/10 text-rose-300', title: 'Severe defect detected', loc: 'SP-001 · Sector A-12', time: '2m ago' },
+              { sev: 'Warning', color: 'amber', dot: 'bg-amber-400', ring: 'border-amber-400/30 bg-amber-400/10 text-amber-300', title: 'Soiling above threshold', loc: 'SP-047 · Sector B-08', time: '14m ago' },
+              { sev: 'Info', color: 'sky', dot: 'bg-sky-400', ring: 'border-sky-400/30 bg-sky-400/10 text-sky-300', title: 'Inspection completed', loc: 'Sector C-15', time: '38m ago' },
+              { sev: 'Critical', color: 'rose', dot: 'bg-rose-500', ring: 'border-rose-500/30 bg-rose-500/10 text-rose-300', title: 'Hot-spot anomaly', loc: 'SP-112 · Sector D-20', time: '1h ago' },
+            ].map((a, i) => (
+              <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition">
+                <span className={`mt-1.5 w-2 h-2 rounded-full ${a.dot} shadow-[0_0_8px_currentColor]`} />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <p className="text-sm text-foreground truncate">{a.title}</p>
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full border ${a.ring}`}>{a.sev}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{a.loc}</span>
+                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{a.time}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Live Feed (RGB) */}
+        <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)]">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Radio className="w-4 h-4 text-cyan-300" />
+              <h3 className="text-base font-semibold text-foreground">Live Feed (RGB)</h3>
+            </div>
+            <span className="flex items-center gap-1.5 text-xs text-cyan-300 cursor-pointer hover:text-cyan-200">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-300 animate-pulse shadow-[0_0_8px_currentColor]" />
+              View live
+            </span>
+          </div>
+          <div className="relative rounded-xl overflow-hidden border border-white/10">
+            <img src={liveFeedImg} alt="Live RGB feed of solar panel with detected defects" className="w-full h-44 object-cover" />
+            <span className="absolute top-2 left-2 text-[10px] px-2 py-0.5 rounded-full bg-rose-500/90 text-white font-semibold tracking-wide shadow-[0_0_10px_rgba(244,63,94,0.5)]">
+              ● DEFECTIVE
+            </span>
+            <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded-full bg-black/60 text-foreground border border-white/10 backdrop-blur-sm">
+              SP-001
+            </span>
+            <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] text-foreground/90 bg-black/50 backdrop-blur-sm rounded-lg px-2 py-1 border border-white/10">
+              <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-cyan-300" />Sector A-12</span>
+              <span className="flex items-center gap-1"><Clock className="w-3 h-3 text-cyan-300" />14:23:08</span>
+            </div>
+          </div>
+          <div className="mt-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+              <span className="text-xs text-foreground">Soiling — heavy</span>
+            </div>
+            <span className="text-[10px] px-2 py-0.5 rounded-full border border-rose-500/30 bg-rose-500/10 text-rose-300">98% confidence</span>
+          </div>
+        </div>
+
+        {/* Defect Distribution */}
+        {(() => {
+          const defects = [
+            { label: 'Soiling', value: 42, color: 'hsl(0,75%,60%)' },
+            { label: 'Hot-spot', value: 24, color: 'hsl(45,90%,55%)' },
+            { label: 'Micro-crack', value: 18, color: 'hsl(190,90%,55%)' },
+            { label: 'Discoloration', value: 10, color: 'hsl(160,75%,55%)' },
+            { label: 'Other', value: 6, color: 'hsl(260,60%,65%)' },
+          ];
+          const total = defects.reduce((a, b) => a + b.value, 0);
+          const r = 56;
+          const c = 2 * Math.PI * r;
+          let acc = 0;
+          return (
+            <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)]">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-base font-semibold text-foreground">Defect Distribution</h3>
+                <select className="bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-foreground">
+                  <option>7D</option>
+                </select>
+              </div>
+              <div className="flex items-center justify-center my-2">
+                <div className="relative w-40 h-40">
+                  <svg viewBox="0 0 160 160" className="w-full h-full -rotate-90">
+                    <circle cx="80" cy="80" r={r} fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="14" />
+                    {defects.map((d, i) => {
+                      const len = (d.value / total) * c;
+                      const seg = (
+                        <circle
+                          key={i}
+                          cx="80"
+                          cy="80"
+                          r={r}
+                          fill="none"
+                          stroke={d.color}
+                          strokeWidth="14"
+                          strokeDasharray={`${len} ${c - len}`}
+                          strokeDashoffset={-acc}
+                          strokeLinecap="butt"
+                          style={{ filter: 'drop-shadow(0 0 4px rgba(34,211,238,0.25))' }}
+                        />
+                      );
+                      acc += len;
+                      return seg;
+                    })}
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-2xl font-semibold text-foreground">{total}</span>
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-wider">defects</span>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-3 grid grid-cols-1 gap-1.5">
+                {defects.map((d, i) => (
+                  <div key={i} className="flex items-center justify-between text-xs">
+                    <span className="flex items-center gap-2 text-muted-foreground">
+                      <span className="w-2 h-2 rounded-full" style={{ background: d.color, boxShadow: `0 0 6px ${d.color}` }} />
+                      {d.label}
+                    </span>
+                    <span className="text-foreground font-medium">{d.value}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
       </div>
 
       {/* Sector performance + Health */}
