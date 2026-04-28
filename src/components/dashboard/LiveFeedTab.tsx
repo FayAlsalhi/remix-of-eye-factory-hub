@@ -198,6 +198,56 @@ const LiveFeedTab = () => {
           </div>
         </div>
 
+        {/* Right column: AI Copilot + Detection Summary */}
+        <div className="space-y-6">
+        {/* AI Copilot - Smart Tools Panel */}
+        <div className="group relative overflow-hidden rounded-2xl p-[1px] bg-gradient-to-br from-amber-400/40 via-yellow-500/20 to-amber-600/30 transition-all duration-300 hover:from-amber-300/60 hover:via-yellow-400/40 hover:to-amber-500/50">
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+            <div className="absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(251,191,36,0.25),transparent_60%)] blur-2xl" />
+          </div>
+          <div className="relative bg-gradient-to-br from-[#1a1408] via-card to-[#0f0a04] rounded-2xl p-4 backdrop-blur-sm">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2.5">
+                <div className="relative">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400/30 to-yellow-600/20 border border-amber-400/40 flex items-center justify-center shadow-[0_0_15px_rgba(251,191,36,0.25)]">
+                    <Sparkles className="w-4 h-4 text-amber-300" />
+                  </div>
+                  <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-amber-300 animate-pulse shadow-[0_0_8px_rgba(251,191,36,0.9)]" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold bg-gradient-to-r from-amber-200 to-yellow-400 bg-clip-text text-transparent leading-tight">AI Copilot</h3>
+                  <p className="text-[10px] text-amber-200/60 mt-0.5">Smart analysis & instant reporting</p>
+                </div>
+              </div>
+              <span className="text-[9px] uppercase tracking-wider text-amber-300/80 font-medium px-1.5 py-0.5 rounded border border-amber-400/30 bg-amber-400/5">AI</span>
+            </div>
+
+            {/* Quick Actions grid */}
+            <div className="grid grid-cols-3 gap-1.5 mb-2">
+              {[
+                { icon: FileText, label: 'Create Report' },
+                { icon: Brain, label: 'AI Summary' },
+                { icon: Zap, label: 'Deep Analysis' },
+              ].map(({ icon: Icon, label }) => (
+                <button
+                  key={label}
+                  className="flex flex-col items-center gap-1 p-2 rounded-lg bg-amber-400/5 border border-amber-400/15 hover:border-amber-300/50 hover:bg-amber-400/10 hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] transition-all"
+                >
+                  <Icon className="w-3.5 h-3.5 text-amber-300" />
+                  <span className="text-[9.5px] text-amber-100/80 font-medium text-center leading-tight">{label}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Ask AI primary button */}
+            <button className="w-full flex items-center justify-center gap-2 py-2 rounded-lg bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-400 text-[#1a1408] text-xs font-semibold shadow-[0_0_20px_rgba(251,191,36,0.4)] hover:shadow-[0_0_30px_rgba(251,191,36,0.6)] hover:brightness-110 transition-all">
+              <MessageSquare className="w-3.5 h-3.5" />
+              Ask AI
+            </button>
+          </div>
+        </div>
+
         {/* Detection Summary */}
         <div className="bg-gradient-to-br from-card to-card/60 border border-border rounded-2xl p-5 backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)]">
           {/* Camera status header */}
