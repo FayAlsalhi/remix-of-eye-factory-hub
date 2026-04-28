@@ -231,6 +231,64 @@ const LiveFeedTab = () => {
             </div>
           </div>
 
+          {/* AI Copilot — embedded smart strip */}
+          <div className="relative mt-4 overflow-hidden rounded-xl p-[1px] bg-[linear-gradient(120deg,#39DDFD_0%,#6EE7B7_50%,#F6C453_100%)]/60">
+            <div
+              className="absolute inset-0 opacity-40 pointer-events-none"
+              style={{
+                background:
+                  'linear-gradient(120deg, rgba(57,221,253,0.18) 0%, rgba(110,231,183,0.14) 50%, rgba(246,196,83,0.18) 100%)',
+              }}
+            />
+            <div className="relative rounded-[11px] bg-gradient-to-br from-[#0a1620] via-card to-[#0a1410] backdrop-blur-sm px-3 py-2.5">
+              {/* glass reflection */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-[11px] bg-gradient-to-b from-white/[0.06] to-transparent" />
+
+              <div className="relative flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="relative shrink-0">
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[linear-gradient(135deg,rgba(57,221,253,0.25),rgba(110,231,183,0.2),rgba(246,196,83,0.25))] border border-white/10 shadow-[0_0_12px_rgba(110,231,183,0.25)]">
+                      <Sparkles className="w-3.5 h-3.5 text-[#6EE7B7]" />
+                    </div>
+                    <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#39DDFD] animate-pulse shadow-[0_0_6px_rgba(57,221,253,0.9)]" />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-[12px] font-semibold leading-tight bg-[linear-gradient(90deg,#39DDFD,#6EE7B7,#F6C453)] bg-clip-text text-transparent">
+                      AI Copilot
+                    </h4>
+                    <p className="text-[9.5px] text-muted-foreground/80 leading-tight truncate">
+                      Smart analysis & instant reporting
+                    </p>
+                  </div>
+                </div>
+                <span className="text-[8.5px] uppercase tracking-wider font-medium px-1.5 py-0.5 rounded border border-white/10 bg-white/[0.03] text-[#6EE7B7]">
+                  AI
+                </span>
+              </div>
+
+              {/* Quick actions row */}
+              <div className="relative grid grid-cols-4 gap-1.5 mt-2.5">
+                {[
+                  { icon: FileText, label: 'Report', tone: '#39DDFD' },
+                  { icon: Brain, label: 'Summary', tone: '#6EE7B7' },
+                  { icon: Zap, label: 'Analyze', tone: '#F6C453' },
+                ].map(({ icon: Icon, label, tone }) => (
+                  <button
+                    key={label}
+                    className="group/btn flex flex-col items-center justify-center gap-0.5 py-1.5 rounded-md bg-white/[0.025] border border-white/[0.06] hover:border-white/20 hover:bg-white/[0.05] transition-all"
+                  >
+                    <Icon className="w-3 h-3 transition-colors" style={{ color: tone }} />
+                    <span className="text-[9px] text-foreground/80 font-medium leading-none">{label}</span>
+                  </button>
+                ))}
+                <button className="group/ask relative flex items-center justify-center gap-1 py-1.5 rounded-md text-[10px] font-semibold text-[#06141c] bg-[linear-gradient(90deg,#39DDFD,#6EE7B7,#F6C453)] shadow-[0_0_14px_rgba(110,231,183,0.35)] hover:shadow-[0_0_22px_rgba(110,231,183,0.55)] hover:brightness-110 transition-all">
+                  <MessageSquare className="w-3 h-3" />
+                  Ask AI
+                </button>
+              </div>
+            </div>
+          </div>
+
           {/* Detection Summary list */}
           <div className="pt-4">
             <h3 className="text-sm font-semibold text-foreground mb-3">Detection Summary</h3>
