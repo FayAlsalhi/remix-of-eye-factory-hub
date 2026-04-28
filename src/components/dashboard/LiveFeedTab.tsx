@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { AlertTriangle, CheckCircle, Video, Clock, Filter, X } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Video, Clock, Filter, X, Sparkles, FileText, Brain, Zap, MessageSquare } from 'lucide-react';
 import solarDusty from '@/assets/solar-panel-dusty.jpg';
 import solarCracked from '@/assets/solar-panel-cracked.jpg';
 import solarClean from '@/assets/solar-panel-clean.jpg';
