@@ -286,27 +286,34 @@ const UploadTab = () => {
               <div>
                 <p className="text-sm font-semibold text-foreground mb-3">Recommendations</p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {recommendations.map((r, i) => (
-                    <div
-                      key={i}
-                      className="rounded-xl border border-border bg-gradient-to-br from-[#0a1620] to-[#050B16] p-4 hover:border-primary/40 transition-colors shadow-[0_0_20px_rgba(0,108,158,0.05)]"
-                    >
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="p-1.5 rounded-md bg-primary/10 text-primary border border-primary/20">
-                          {r.icon}
-                        </div>
-                        <p className="text-sm font-semibold text-foreground">{r.title}</p>
-                      </div>
-                      <span
-                        className={`inline-block text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border mb-3 ${priorityStyles[r.priority]}`}
+                  {recommendations.map((r, i) => {
+                    const t = recTones[r.tone];
+                    return (
+                      <div
+                        key={i}
+                        className={`rounded-xl border p-4 transition-all duration-300 backdrop-blur-sm flex flex-col ${t.card}`}
                       >
-                        {r.priority}
-                      </span>
-                      <Button size="sm" className="w-full h-8 text-xs">
-                        {r.cta}
-                      </Button>
-                    </div>
-                  ))}
+                        <div className="flex items-center gap-2 mb-2 flex-wrap">
+                          <span className={t.iconWrap}>{r.icon}</span>
+                          <p className="text-sm font-semibold text-foreground">{r.title}</p>
+                          <span className="text-muted-foreground/60 text-xs">→</span>
+                          <span
+                            className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border ${t.pill}`}
+                          >
+                            {r.priority}
+                          </span>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed mb-4 flex-1">
+                          {r.description}
+                        </p>
+                        <button
+                          className={`w-full h-9 rounded-md text-xs font-semibold transition-colors ${t.button}`}
+                        >
+                          {r.cta}
+                        </button>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
