@@ -308,6 +308,7 @@ const LiveFeedTab = () => {
             </div>
           </div>
         </div>
+        </div>
       </div>
 
       {/* Real-time Alerts section */}
