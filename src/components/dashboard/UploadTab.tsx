@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Upload, Loader2, Wrench, CalendarClock, Sparkles } from 'lucide-react';
+import { Upload, Loader2, Zap, Snowflake, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import solarPanelImg from '@/assets/solar-panel-physical-damage.jpg';
 
@@ -13,12 +13,37 @@ interface Detection {
   box: { left: number; top: number; width: number; height: number };
 }
 
+type RecTone = 'red' | 'blue' | 'amber';
+
 interface Recommendation {
   title: string;
+  description: string;
   priority: 'High Priority' | 'Medium Priority' | 'Low Priority';
   cta: string;
   icon: React.ReactNode;
+  tone: RecTone;
 }
+
+const recTones: Record<RecTone, { card: string; iconWrap: string; pill: string; button: string }> = {
+  red: {
+    card: 'border-red-500/40 bg-gradient-to-br from-red-950/40 via-[#1a0a10] to-[#0a0508] shadow-[0_0_25px_rgba(239,68,68,0.08)] hover:shadow-[0_0_30px_rgba(239,68,68,0.18)]',
+    iconWrap: 'text-red-400',
+    pill: 'bg-red-500/15 text-red-400 border-red-500/40',
+    button: 'bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/40',
+  },
+  blue: {
+    card: 'border-blue-500/40 bg-gradient-to-br from-blue-950/40 via-[#0a1424] to-[#05080f] shadow-[0_0_25px_rgba(59,130,246,0.08)] hover:shadow-[0_0_30px_rgba(59,130,246,0.18)]',
+    iconWrap: 'text-blue-400',
+    pill: 'bg-blue-500/15 text-blue-400 border-blue-500/40',
+    button: 'bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/40',
+  },
+  amber: {
+    card: 'border-amber-500/40 bg-gradient-to-br from-amber-950/30 via-[#1a1408] to-[#0a0805] shadow-[0_0_25px_rgba(251,191,36,0.08)] hover:shadow-[0_0_30px_rgba(251,191,36,0.18)]',
+    iconWrap: 'text-amber-400',
+    pill: 'bg-amber-500/15 text-amber-400 border-amber-500/40',
+    button: 'bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/40',
+  },
+};
 
 interface RecentUpload {
   fileName: string;
@@ -57,21 +82,27 @@ const detections: Detection[] = [
 const recommendations: Recommendation[] = [
   {
     title: 'Repair Cracked Cells',
+    description: 'Cracked cells can lead to hot spots and further damage. Immediate repair recommended.',
     priority: 'High Priority',
     cta: 'Repair Now',
-    icon: <Wrench className="w-4 h-4" />,
+    icon: <Zap className="w-5 h-5" />,
+    tone: 'red',
   },
   {
     title: 'Clean Snow',
+    description: 'Clear snow from panels to restore optimal performance.',
     priority: 'Medium Priority',
     cta: 'Schedule Cleaning',
-    icon: <CalendarClock className="w-4 h-4" />,
+    icon: <Snowflake className="w-5 h-5" />,
+    tone: 'blue',
   },
   {
     title: 'Clean Panels',
+    description: 'Remove dust accumulation to improve efficiency and performance.',
     priority: 'Medium Priority',
     cta: 'Schedule Cleaning',
-    icon: <Sparkles className="w-4 h-4" />,
+    icon: <Lightbulb className="w-5 h-5" />,
+    tone: 'amber',
   },
 ];
 
@@ -255,27 +286,34 @@ const UploadTab = () => {
               <div>
                 <p className="text-sm font-semibold text-foreground mb-3">Recommendations</p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {recommendations.map((r, i) => (
-                    <div
-                      key={i}
-                      className="rounded-xl border border-border bg-gradient-to-br from-[#0a1620] to-[#050B16] p-4 hover:border-primary/40 transition-colors shadow-[0_0_20px_rgba(0,108,158,0.05)]"
-                    >
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="p-1.5 rounded-md bg-primary/10 text-primary border border-primary/20">
-                          {r.icon}
-                        </div>
-                        <p className="text-sm font-semibold text-foreground">{r.title}</p>
-                      </div>
-                      <span
-                        className={`inline-block text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border mb-3 ${priorityStyles[r.priority]}`}
+                  {recommendations.map((r, i) => {
+                    const t = recTones[r.tone];
+                    return (
+                      <div
+                        key={i}
+                        className={`rounded-xl border p-4 transition-all duration-300 backdrop-blur-sm flex flex-col ${t.card}`}
                       >
-                        {r.priority}
-                      </span>
-                      <Button size="sm" className="w-full h-8 text-xs">
-                        {r.cta}
-                      </Button>
-                    </div>
-                  ))}
+                        <div className="flex items-center gap-2 mb-2 flex-wrap">
+                          <span className={t.iconWrap}>{r.icon}</span>
+                          <p className="text-sm font-semibold text-foreground">{r.title}</p>
+                          <span className="text-muted-foreground/60 text-xs">→</span>
+                          <span
+                            className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border ${t.pill}`}
+                          >
+                            {r.priority}
+                          </span>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed mb-4 flex-1">
+                          {r.description}
+                        </p>
+                        <button
+                          className={`w-full h-9 rounded-md text-xs font-semibold transition-colors ${t.button}`}
+                        >
+                          {r.cta}
+                        </button>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
