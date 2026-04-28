@@ -310,11 +310,11 @@ const DashboardTab = () => {
         {/* Defect Distribution */}
         {(() => {
           const defects = [
-            { label: 'Soiling', value: 42, color: 'hsl(0,75%,60%)' },
-            { label: 'Hot-spot', value: 24, color: 'hsl(45,90%,55%)' },
-            { label: 'Micro-crack', value: 18, color: 'hsl(190,90%,55%)' },
-            { label: 'Discoloration', value: 10, color: 'hsl(160,75%,55%)' },
-            { label: 'Other', value: 6, color: 'hsl(260,60%,65%)' },
+            { label: 'Soiling', value: 42, color: '#F59E0B' },
+            { label: 'Hot-spot', value: 24, color: '#FBBF24' },
+            { label: 'Micro-crack', value: 18, color: '#22D3EE' },
+            { label: 'Discoloration', value: 10, color: '#14B8A6' },
+            { label: 'Other', value: 6, color: '#E5E7EB' },
           ];
           const total = defects.reduce((a, b) => a + b.value, 0);
           const r = 56;
