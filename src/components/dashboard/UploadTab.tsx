@@ -13,12 +13,37 @@ interface Detection {
   box: { left: number; top: number; width: number; height: number };
 }
 
+type RecTone = 'red' | 'blue' | 'amber';
+
 interface Recommendation {
   title: string;
+  description: string;
   priority: 'High Priority' | 'Medium Priority' | 'Low Priority';
   cta: string;
   icon: React.ReactNode;
+  tone: RecTone;
 }
+
+const recTones: Record<RecTone, { card: string; iconWrap: string; pill: string; button: string }> = {
+  red: {
+    card: 'border-red-500/40 bg-gradient-to-br from-red-950/40 via-[#1a0a10] to-[#0a0508] shadow-[0_0_25px_rgba(239,68,68,0.08)] hover:shadow-[0_0_30px_rgba(239,68,68,0.18)]',
+    iconWrap: 'text-red-400',
+    pill: 'bg-red-500/15 text-red-400 border-red-500/40',
+    button: 'bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/40',
+  },
+  blue: {
+    card: 'border-blue-500/40 bg-gradient-to-br from-blue-950/40 via-[#0a1424] to-[#05080f] shadow-[0_0_25px_rgba(59,130,246,0.08)] hover:shadow-[0_0_30px_rgba(59,130,246,0.18)]',
+    iconWrap: 'text-blue-400',
+    pill: 'bg-blue-500/15 text-blue-400 border-blue-500/40',
+    button: 'bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/40',
+  },
+  amber: {
+    card: 'border-amber-500/40 bg-gradient-to-br from-amber-950/30 via-[#1a1408] to-[#0a0805] shadow-[0_0_25px_rgba(251,191,36,0.08)] hover:shadow-[0_0_30px_rgba(251,191,36,0.18)]',
+    iconWrap: 'text-amber-400',
+    pill: 'bg-amber-500/15 text-amber-400 border-amber-500/40',
+    button: 'bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/40',
+  },
+};
 
 interface RecentUpload {
   fileName: string;
