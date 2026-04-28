@@ -82,21 +82,27 @@ const detections: Detection[] = [
 const recommendations: Recommendation[] = [
   {
     title: 'Repair Cracked Cells',
+    description: 'Cracked cells can lead to hot spots and further damage. Immediate repair recommended.',
     priority: 'High Priority',
     cta: 'Repair Now',
-    icon: <Wrench className="w-4 h-4" />,
+    icon: <Zap className="w-5 h-5" />,
+    tone: 'red',
   },
   {
     title: 'Clean Snow',
+    description: 'Clear snow from panels to restore optimal performance.',
     priority: 'Medium Priority',
     cta: 'Schedule Cleaning',
-    icon: <CalendarClock className="w-4 h-4" />,
+    icon: <Snowflake className="w-5 h-5" />,
+    tone: 'blue',
   },
   {
     title: 'Clean Panels',
+    description: 'Remove dust accumulation to improve efficiency and performance.',
     priority: 'Medium Priority',
     cta: 'Schedule Cleaning',
-    icon: <Sparkles className="w-4 h-4" />,
+    icon: <Lightbulb className="w-5 h-5" />,
+    tone: 'amber',
   },
 ];
 
