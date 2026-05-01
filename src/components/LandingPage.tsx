@@ -18,14 +18,6 @@ const heroFeatures = [
   { icon: Shield, title: "Enterprise Ready", desc: "Secure, scalable, and built for large-scale operations" },
 ];
 
-const partners = ["ACWA POWER", "MASDAR", "edf renewables", "TotalEnergies", "JinKO Solar"];
-
-const stats = [
-  { value: "99.2%", label: "Detection Accuracy" },
-  { value: "50%+", label: "Reduction in Manual\nInspection Time" },
-  { value: "24/7", label: "Real-time Monitoring" },
-  { value: "ROI", label: "Higher Energy Yield\n& Lower O&M Costs" },
-];
 
 const capabilities = [
   { icon: Eye, title: "Defect Detection", desc: "Identify cracks, hotspots, dirt, and micro-cracks with high precision." },
