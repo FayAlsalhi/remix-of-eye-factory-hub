@@ -111,13 +111,78 @@
 
 @layer utilities {
   @keyframes pulse-node {
-    0%, 100% {
-      opacity: 0.55;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.5);
-    }
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+  }
+
+  /* === Premium auth animations === */
+  @keyframes auth-breathe {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.06); }
+  }
+  @keyframes auth-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes auth-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes auth-particle {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    20% { opacity: 0.7; }
+    100% { transform: translateY(-120px) translateX(20px); opacity: 0; }
+  }
+  @keyframes auth-sweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+
+  .animate-auth-breathe { animation: auth-breathe 7s ease-in-out infinite; }
+  .animate-auth-float { animation: auth-float 8s ease-in-out infinite; }
+  .animate-auth-particle { animation: auth-particle 9s linear infinite; }
+
+  .btn-qiyaf-gradient {
+    background-image: linear-gradient(90deg, #11C5D9 0%, #4FD9A6 50%, #FF9800 100%);
+    background-size: 200% 100%;
+    transition: background-position 0.6s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px -10px rgba(255, 152, 0, 0.35), 0 6px 20px -8px rgba(17, 197, 217, 0.35);
+  }
+  .btn-qiyaf-gradient:hover {
+    background-position: 100% 0;
+    box-shadow: 0 14px 40px -10px rgba(255, 152, 0, 0.55), 0 10px 30px -8px rgba(17, 197, 217, 0.45);
+    transform: translateY(-1px);
+  }
+  .btn-qiyaf-gradient::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+    transform: translateX(-100%);
+    pointer-events: none;
+  }
+  .btn-qiyaf-gradient:hover::after {
+    animation: auth-sweep 1.2s ease forwards;
+  }
+
+  .input-premium {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #262626;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .input-premium:focus,
+  .input-premium:focus-visible {
+    border-color: rgba(17, 197, 217, 0.6);
+    box-shadow: 0 0 0 3px rgba(17, 197, 217, 0.12), 0 8px 24px -10px rgba(17, 197, 217, 0.35);
+    background: rgba(255, 255, 255, 0.05);
+    outline: none;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(90deg, #FFFFFF 0%, #FFE2B5 60%, #FF9800 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
 }
