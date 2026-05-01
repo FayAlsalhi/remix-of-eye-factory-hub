@@ -222,7 +222,7 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
           <div className="grid md:grid-cols-5 gap-10">
             <div className="md:col-span-2">
-              <img src={qiyafLogo} alt="Qiyaf" className="h-44 w-auto object-contain mb-4" />
+              <img src={qiyafLogo} alt="Qiyaf" className="h-16 w-auto object-contain mb-4" />
               <p className="text-sm text-muted-foreground max-w-xs">
                 AI-powered solar panel inspection platform built for enterprise scale.
               </p>
