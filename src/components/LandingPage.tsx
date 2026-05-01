@@ -43,10 +43,10 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
 
       {/* Navbar */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/85 border-b border-border/50 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
-        <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto pl-2 pr-6 lg:pl-4 lg:pr-10 h-20 flex items-center justify-between">
           <div className="flex items-center gap-12">
             <Link to="/" aria-label="Qiyaf home">
-              <img src={qiyafLogo} alt="Qiyaf" className="h-44 w-auto object-contain" />
+              <img src={qiyafLogo} alt="Qiyaf" className="h-16 w-auto object-contain" />
             </Link>
             <ul className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => (
@@ -222,13 +222,13 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
           <div className="grid md:grid-cols-5 gap-10">
             <div className="md:col-span-2">
-              <img src={qiyafLogo} alt="Qiyaf" className="h-44 w-auto object-contain mb-4" />
+              <img src={qiyafLogo} alt="Qiyaf" className="h-16 w-auto object-contain mb-4" />
               <p className="text-sm text-muted-foreground max-w-xs">
                 AI-powered solar panel inspection platform built for enterprise scale.
               </p>
             </div>
             <div className="md:col-span-3">
-              <h4 className="text-sm font-semibold mb-4">Navigation</h4>
+              <h4 className="text-sm font-semibold mb-4">Quick Links</h4>
               <ul className="flex flex-wrap gap-x-8 gap-y-2.5">
                 {["Home", "Solution", "About", "Contact"].map((l) => (
                   <li key={l}>
