@@ -139,7 +139,7 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
             <div className="w-full border-t border-white/10" />
           </div>
           <div className="relative flex justify-center text-[11px] uppercase tracking-[0.25em]">
-            <span className="px-4 bg-[#070707] text-white/40">
+            <span className="px-4 bg-black text-white/40">
               {isRTL ? 'أو تابع باستخدام' : 'or continue with'}
             </span>
           </div>

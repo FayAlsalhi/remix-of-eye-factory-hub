@@ -146,7 +146,7 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
             <div className="w-full border-t border-white/10"></div>
           </div>
           <div className="relative flex justify-center text-xs uppercase tracking-[0.25em]">
-            <span className="px-4 bg-[#070707] text-white/40">{t.orContinueWith}</span>
+            <span className="px-4 bg-black text-white/40">{t.orContinueWith}</span>
           </div>
         </div>
 
