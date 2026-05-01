@@ -9,7 +9,7 @@ interface LandingPageProps {
   onLogin: () => void;
 }
 
-const navItems = ["Product", "Solutions", "Resources", "Pricing", "Company"];
+const navItems = ["Home", "Solution", "About", "Contact"];
 
 const heroFeatures = [
   { icon: ScanLine, title: "AI-Powered Accuracy", desc: "Deep learning models for high precision" },
