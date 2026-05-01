@@ -70,85 +70,93 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
       </header>
 
       {/* Hero */}
-      <section className="relative max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 lg:pt-8 pb-20">
-        <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-4 items-center min-h-[calc(100vh-5rem)]">
-          {/* Left content */}
-          <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 mb-7">
-              <Sparkles className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-medium tracking-wider uppercase text-primary">
-                AI Powered Inspection Platform
-              </span>
-            </div>
+      <section className="relative w-full overflow-hidden">
+        {/* Full-bleed background image */}
+        <img
+          src={heroComposition}
+          alt="Qiyaf AI drone inspecting solar panels with live dashboard analytics"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Dark gradient overlay — strongest on the left to highlight text */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(2,8,20,0.95) 0%, rgba(2,8,20,0.88) 30%, rgba(2,8,20,0.65) 50%, rgba(2,8,20,0.25) 75%, rgba(2,8,20,0.05) 100%)",
+          }}
+        />
+        {/* Bottom fade for smooth section transition */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-40"
+          style={{
+            background: "linear-gradient(180deg, rgba(2,8,20,0) 0%, hsl(var(--background)) 100%)",
+          }}
+        />
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-              AI Vision for{" "}
-              <span className="block">
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(90deg, hsl(184 75% 55%), hsl(28 95% 60%))" }}
-                >
-                  Smarter Solar
+        <div className="relative max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 pt-10 lg:pt-16 pb-24">
+          <div className="grid lg:grid-cols-2 gap-8 items-center min-h-[calc(100vh-5rem)]">
+            {/* Left content */}
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm px-4 py-1.5 mb-7">
+                <Sparkles className="w-3.5 h-3.5 text-primary" />
+                <span className="text-xs font-medium tracking-wider uppercase text-primary">
+                  AI Powered Inspection Platform
                 </span>
-              </span>
-              <span className="block">Operations</span>
-            </h1>
+              </div>
 
-            <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-md leading-relaxed">
-              Detect defects, reduce downtime, and maximize performance with real-time AI analysis of solar panel assets.
-            </p>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+                AI Vision for{" "}
+                <span className="block">
+                  <span
+                    className="bg-clip-text text-transparent"
+                    style={{ backgroundImage: "linear-gradient(90deg, hsl(184 75% 55%), hsl(28 95% 60%))" }}
+                  >
+                    Smarter Solar
+                  </span>
+                </span>
+                <span className="block">Operations</span>
+              </h1>
 
-            <div className="mt-9 flex flex-wrap gap-4">
-              <Button
-                onClick={onGetStarted}
-                className="h-12 px-7 rounded-lg text-primary-foreground font-semibold border-0 shadow-lg group"
-                style={{ background: "var(--gradient-brand)", boxShadow: "var(--shadow-brand)" }}
-              >
-                Get Started Free
-                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" />
-              </Button>
-              <Button
-                variant="outline"
-                className="h-12 px-7 rounded-lg bg-transparent border-border/80 hover:bg-secondary/50 text-foreground"
-              >
-                <Play className="w-4 h-4 mr-1 fill-current" />
-                Watch Demo
-              </Button>
-            </div>
+              <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-md leading-relaxed">
+                Detect defects, reduce downtime, and maximize performance with real-time AI analysis of solar panel assets.
+              </p>
 
-            {/* Feature highlights */}
-            <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6">
-              {heroFeatures.map((f) => (
-                <div key={f.title}>
-                  <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center mb-3">
-                    <f.icon className="w-4 h-4 text-primary" />
+              <div className="mt-9 flex flex-wrap gap-4">
+                <Button
+                  onClick={onGetStarted}
+                  className="h-12 px-7 rounded-lg text-primary-foreground font-semibold border-0 shadow-lg group"
+                  style={{ background: "var(--gradient-brand)", boxShadow: "var(--shadow-brand)" }}
+                >
+                  Get Started Free
+                  <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" />
+                </Button>
+                <Button
+                  variant="outline"
+                  className="h-12 px-7 rounded-lg bg-background/30 backdrop-blur-sm border-border/80 hover:bg-secondary/50 text-foreground"
+                >
+                  <Play className="w-4 h-4 mr-1 fill-current" />
+                  Watch Demo
+                </Button>
+              </div>
+
+              {/* Feature highlights */}
+              <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6">
+                {heroFeatures.map((f) => (
+                  <div key={f.title}>
+                    <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center mb-3">
+                      <f.icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <h4 className="text-sm font-semibold mb-1">{f.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
                   </div>
-                  <h4 className="text-sm font-semibold mb-1">{f.title}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Right visual — single combined hero composition */}
-          <div className="relative flex items-center justify-center lg:justify-end">
-            <div
-              className="relative"
-              style={{
-                width: "58vw",
-                maxWidth: "920px",
-                minWidth: "320px",
-                transform: "translate(30px, -20px) scale(1.2)",
-                transformOrigin: "center center",
-              }}
-            >
-              <img
-                src={heroComposition}
-                alt="Qiyaf AI drone inspecting solar panels with live dashboard analytics"
-                className="relative block w-full h-auto"
-                style={{ borderRadius: "24px" }}
-              />
-            </div>
+            {/* Right side intentionally empty — image is the background */}
+            <div aria-hidden />
           </div>
         </div>
       </section>
