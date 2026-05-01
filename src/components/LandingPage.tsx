@@ -1,7 +1,7 @@
 import { ChevronDown, Play, ArrowRight, Sparkles, Activity, BarChart3, Shield, Eye, Bell, FileText, ScanLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import qiyafLogo from "@/assets/qiyaf-logo-new.png";
-import heroComposition from "@/assets/hero-composition.png";
+import heroComposition from "@/assets/hero-composition.jpg";
 import dashboardPreview from "@/assets/dashboard-preview.png";
 
 interface LandingPageProps {
@@ -71,22 +71,6 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
 
       {/* Hero */}
       <section className="relative max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 lg:pt-8 pb-20">
-        {/* Center seam blend — cinematic dark bridge between text and hero image */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute hidden lg:block"
-          style={{
-            top: "8%",
-            bottom: "-8%",
-            left: "36%",
-            width: "24%",
-            zIndex: 2,
-            background:
-              "linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 12%, rgba(0,0,0,0.52) 28%, rgba(0,0,0,0.88) 48%, rgba(0,0,0,0.95) 58%, rgba(0,0,0,0.62) 76%, rgba(0,0,0,0.18) 90%, rgba(0,0,0,0) 100%)",
-            filter: "blur(55px)",
-            boxShadow: "0 0 160px rgba(0,0,0,0.95), 0 0 90px rgba(0,0,0,0.75)",
-          }}
-        />
         <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-4 items-center min-h-[calc(100vh-5rem)]">
           {/* Left content */}
           <div className="relative z-10">
@@ -158,27 +142,11 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
                 transformOrigin: "center center",
               }}
             >
-              {/* Large circular black radial shadow behind image */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -z-10"
-                style={{
-                  inset: "-80px",
-                  background:
-                    "radial-gradient(circle at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0) 72%)",
-                  filter: "blur(45px)",
-                }}
-              />
-
               <img
                 src={heroComposition}
                 alt="Qiyaf AI drone inspecting solar panels with live dashboard analytics"
                 className="relative block w-full h-auto"
-                style={{
-                  borderRadius: "24px",
-                  boxShadow:
-                    "0 50px 140px rgba(0,0,0,0.75), 0 0 80px rgba(0,220,220,0.08)",
-                }}
+                style={{ borderRadius: "24px" }}
               />
             </div>
           </div>
