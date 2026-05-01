@@ -193,32 +193,6 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
         </div>
       </section>
 
-      {/* Trusted by */}
-      <section className="border-y border-border/50 bg-secondary/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-6">
-            Trusted by solar leaders worldwide
-          </p>
-          <div className="flex flex-wrap items-center justify-between gap-x-10 gap-y-6">
-            <div className="flex flex-wrap items-center gap-x-12 gap-y-4">
-              {partners.map((p) => (
-                <span key={p} className="text-base md:text-lg font-semibold text-foreground/60 hover:text-foreground/90 transition-colors">
-                  {p}
-                </span>
-              ))}
-            </div>
-            <div className="flex flex-wrap items-center gap-x-10 gap-y-4">
-              {stats.map((s) => (
-                <div key={s.label} className="min-w-[110px]">
-                  <div className="text-2xl md:text-3xl font-bold text-foreground">{s.value}</div>
-                  <div className="text-[11px] text-muted-foreground whitespace-pre-line leading-tight mt-1">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Capabilities */}
       <section className="max-w-7xl mx-auto px-6 lg:px-10 py-24">
         <div className="mb-10">
