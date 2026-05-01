@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Upload, Loader2, Zap, Snowflake, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import solarPanelImg from '@/assets/solar-panel-physical-damage.jpg';
+import solarPanelImg from '@/assets/solar-panel-cracked.jpg';
 
 type Severity = 'critical' | 'warning' | 'normal';
 
@@ -49,7 +49,7 @@ interface RecentUpload {
   fileName: string;
   sector: string;
   uploadedAt: string;
-  result: 'Physical Damage' | 'Snow Coverage' | 'Clean' | 'Dust Accumulation';
+  result: 'Cracks' | 'Snow' | 'Clean' | 'Dust' | 'Bird Droppings';
 }
 
 const severityStyles: Record<Severity, { dot: string; pill: string; border: string; label: string }> = {
@@ -74,23 +74,23 @@ const severityStyles: Record<Severity, { dot: string; pill: string; border: stri
 };
 
 const detections: Detection[] = [
-  { label: 'Physical Damage', severity: 'critical', box: { left: 12, top: 18, width: 26, height: 22 } },
-  { label: 'Snow Coverage', severity: 'warning', box: { left: 55, top: 12, width: 32, height: 28 } },
-  { label: 'Dust Accumulation', severity: 'warning', box: { left: 30, top: 58, width: 38, height: 24 } },
+  { label: 'Cracks', severity: 'critical', box: { left: 12, top: 18, width: 26, height: 22 } },
+  { label: 'Snow', severity: 'warning', box: { left: 55, top: 12, width: 32, height: 28 } },
+  { label: 'Dust', severity: 'warning', box: { left: 30, top: 58, width: 38, height: 24 } },
 ];
 
 const recommendations: Recommendation[] = [
   {
-    title: 'Repair Cracked Cells',
-    description: 'Cracked cells can lead to hot spots and further damage. Immediate repair recommended.',
+    title: 'Repair Cracked Panels',
+    description: 'Surface cracks compromise the panel and should be inspected and replaced by a maintenance engineer.',
     priority: 'High Priority',
-    cta: 'Repair Now',
+    cta: 'Dispatch Engineer',
     icon: <Zap className="w-5 h-5" />,
     tone: 'red',
   },
   {
-    title: 'Clean Snow',
-    description: 'Clear snow from panels to restore optimal performance.',
+    title: 'Clear Snow',
+    description: 'Remove snow coverage from the panel surface to restore optimal sunlight exposure.',
     priority: 'Medium Priority',
     cta: 'Schedule Cleaning',
     icon: <Snowflake className="w-5 h-5" />,
@@ -98,7 +98,7 @@ const recommendations: Recommendation[] = [
   },
   {
     title: 'Clean Panels',
-    description: 'Remove dust accumulation to improve efficiency and performance.',
+    description: 'Remove dust or bird droppings from the surface to improve efficiency.',
     priority: 'Medium Priority',
     cta: 'Schedule Cleaning',
     icon: <Lightbulb className="w-5 h-5" />,
@@ -107,18 +107,19 @@ const recommendations: Recommendation[] = [
 ];
 
 const recentUploads: RecentUpload[] = [
-  { fileName: 'panel_A12.jpg', sector: 'Sector A', uploadedAt: '2026-04-28 09:14', result: 'Physical Damage' },
-  { fileName: 'panel_B07.jpg', sector: 'Sector B', uploadedAt: '2026-04-28 09:02', result: 'Snow Coverage' },
+  { fileName: 'panel_A12.jpg', sector: 'Sector A', uploadedAt: '2026-04-28 09:14', result: 'Cracks' },
+  { fileName: 'panel_B07.jpg', sector: 'Sector B', uploadedAt: '2026-04-28 09:02', result: 'Snow' },
   { fileName: 'panel_C21.jpg', sector: 'Sector C', uploadedAt: '2026-04-28 08:48', result: 'Clean' },
-  { fileName: 'panel_A05.jpg', sector: 'Sector A', uploadedAt: '2026-04-28 08:30', result: 'Dust Accumulation' },
-  { fileName: 'panel_D14.jpg', sector: 'Sector D', uploadedAt: '2026-04-28 08:11', result: 'Clean' },
+  { fileName: 'panel_A05.jpg', sector: 'Sector A', uploadedAt: '2026-04-28 08:30', result: 'Dust' },
+  { fileName: 'panel_D14.jpg', sector: 'Sector D', uploadedAt: '2026-04-28 08:11', result: 'Bird Droppings' },
 ];
 
 const resultStyles: Record<RecentUpload['result'], string> = {
-  'Physical Damage': 'bg-red-500/15 text-red-400 border-red-500/30',
-  'Snow Coverage': 'bg-blue-500/15 text-blue-400 border-blue-500/30',
+  'Cracks': 'bg-red-500/15 text-red-400 border-red-500/30',
+  'Snow': 'bg-blue-500/15 text-blue-400 border-blue-500/30',
   'Clean': 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
-  'Dust Accumulation': 'bg-amber-500/15 text-amber-400 border-amber-500/30',
+  'Dust': 'bg-amber-500/15 text-amber-400 border-amber-500/30',
+  'Bird Droppings': 'bg-yellow-500/15 text-yellow-400 border-yellow-500/30',
 };
 
 const priorityStyles: Record<Recommendation['priority'], string> = {
