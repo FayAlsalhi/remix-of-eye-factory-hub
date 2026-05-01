@@ -18,14 +18,6 @@ const heroFeatures = [
   { icon: Shield, title: "Enterprise Ready", desc: "Secure, scalable, and built for large-scale operations" },
 ];
 
-const partners = ["ACWA POWER", "MASDAR", "edf renewables", "TotalEnergies", "JinKO Solar"];
-
-const stats = [
-  { value: "99.2%", label: "Detection Accuracy" },
-  { value: "50%+", label: "Reduction in Manual\nInspection Time" },
-  { value: "24/7", label: "Real-time Monitoring" },
-  { value: "ROI", label: "Higher Energy Yield\n& Lower O&M Costs" },
-];
 
 const capabilities = [
   { icon: Eye, title: "Defect Detection", desc: "Identify cracks, hotspots, dirt, and micro-cracks with high precision." },
@@ -188,32 +180,6 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
                     "0 50px 140px rgba(0,0,0,0.75), 0 0 80px rgba(0,220,220,0.08)",
                 }}
               />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trusted by */}
-      <section className="border-y border-border/50 bg-secondary/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-6">
-            Trusted by solar leaders worldwide
-          </p>
-          <div className="flex flex-wrap items-center justify-between gap-x-10 gap-y-6">
-            <div className="flex flex-wrap items-center gap-x-12 gap-y-4">
-              {partners.map((p) => (
-                <span key={p} className="text-base md:text-lg font-semibold text-foreground/60 hover:text-foreground/90 transition-colors">
-                  {p}
-                </span>
-              ))}
-            </div>
-            <div className="flex flex-wrap items-center gap-x-10 gap-y-4">
-              {stats.map((s) => (
-                <div key={s.label} className="min-w-[110px]">
-                  <div className="text-2xl md:text-3xl font-bold text-foreground">{s.value}</div>
-                  <div className="text-[11px] text-muted-foreground whitespace-pre-line leading-tight mt-1">{s.label}</div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
