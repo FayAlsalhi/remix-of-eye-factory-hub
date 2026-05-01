@@ -1,6 +1,6 @@
 import { ChevronDown, Play, ArrowRight, Sparkles, Activity, BarChart3, Shield, Eye, Bell, FileText, ScanLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import qiyafLogo from "@/assets/qiyaf-logo-brand.png";
+import qiyafLogo from "@/assets/qiyaf-logo-new.png";
 import heroComposition from "@/assets/hero-composition.png";
 import videoPreviewImg from "@/assets/video-preview.png";
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Mail, Lock, Eye, EyeOff, KeyRound } from 'lucide-react';
-import qiyafLogo from '@/assets/qiyaf-logo-dark.png';
+import qiyafLogo from '@/assets/qiyaf-logo-new.png';
 
 interface LoginFormProps {
   onLogin: (name: string, email: string) => void;
