@@ -404,17 +404,7 @@ const DashboardTab = () => {
                     <td className="py-3 pr-4 text-foreground">{s.passed}</td>
                     <td className="py-3 pr-4 text-foreground">{s.defective}</td>
                     <td className="py-3 pr-4 text-foreground">{s.rate}</td>
-                    <td className="py-3 pr-4 text-muted-foreground">{s.score}</td>
-                    <td className="py-3">
-                      <svg width="80" height="22" viewBox="0 0 80 22">
-                        <polyline
-                          fill="none"
-                          stroke={s.trend}
-                          strokeWidth="1.5"
-                          points="0,14 10,10 20,12 30,8 40,11 50,6 60,9 70,5 80,8"
-                        />
-                      </svg>
-                    </td>
+                    <td className="py-3 text-muted-foreground">{s.score}</td>
                   </tr>
                 ))}
               </tbody>
