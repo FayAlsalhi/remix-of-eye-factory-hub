@@ -388,8 +388,7 @@ const DashboardTab = () => {
                   <th className="text-left font-normal py-3 pr-4">Passed</th>
                   <th className="text-left font-normal py-3 pr-4">Defective</th>
                   <th className="text-left font-normal py-3 pr-4">Conformance Rate</th>
-                  <th className="text-left font-normal py-3 pr-4">Avg. Health Score</th>
-                  <th className="text-left font-normal py-3">Trend</th>
+                  <th className="text-left font-normal py-3">Avg. Health Score</th>
                 </tr>
               </thead>
               <tbody>
