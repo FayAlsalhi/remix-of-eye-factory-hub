@@ -44,65 +44,75 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
 
   return (
     <div className="w-full" dir={isRTL ? 'rtl' : 'ltr'}>
-      {/* 1. Project logo */}
-      <div className="mb-6 flex justify-center">
+      {/* 1. Logo — centered, compact */}
+      <div className="mb-5 flex justify-center">
         <img
           src={qiyafLogo}
           alt="Qiyaf"
-          className="h-28 md:h-36 w-auto object-contain"
+          className="h-14 md:h-16 w-auto object-contain"
         />
       </div>
 
-      {/* 2. Welcome title */}
-      <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.05]">
+      {/* 2. Welcome title — centered */}
+      <h1 className="text-center text-3xl md:text-4xl font-bold tracking-tight leading-[1.1]">
         <span className="text-white">{isRTL ? 'مرحباً' : 'Welcome'}</span>{' '}
         <span className="text-gradient-orange">{isRTL ? 'بعودتك!' : 'back!'}</span>
       </h1>
 
-      {/* 3. Subtitle */}
-      <p className="mt-3 text-sm text-[#B5B5B5]">
+      {/* 3. Subtitle — centered, two lines */}
+      <p className="mt-3 text-center text-sm text-[#B5B5B5] leading-relaxed">
         {isRTL
-          ? 'سجّل الدخول لمتابعة مراقبة محطاتك الشمسية'
-          : 'Sign in to continue monitoring your solar fleet'}
+          ? 'سجّل الدخول لمتابعة مراقبة محطاتك الشمسية والوصول إلى رؤى الذكاء الاصطناعي.'
+          : 'Sign in to continue monitoring your solar assets and accessing real-time AI insights.'}
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-        {/* 4. Email */}
-        <div className="relative">
-          <Mail className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 ${isRTL ? 'right-4' : 'left-4'}`} />
-          <Input
-            type="email"
-            placeholder={t.email}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={`input-premium h-14 rounded-xl text-white placeholder:text-white/35 ${isRTL ? 'pr-12' : 'pl-12'}`}
-            required
-          />
+      <form onSubmit={handleSubmit} className="mt-7 space-y-4">
+        {/* 4. Email with label */}
+        <div>
+          <label className="block text-sm font-medium text-white/85 mb-2">
+            {isRTL ? 'البريد الإلكتروني' : 'Email Address'}
+          </label>
+          <div className="relative">
+            <Mail className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 ${isRTL ? 'right-4' : 'left-4'}`} />
+            <Input
+              type="email"
+              placeholder={isRTL ? 'أدخل بريدك الإلكتروني' : 'Enter your email'}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={`input-premium h-12 rounded-xl text-white placeholder:text-white/35 ${isRTL ? 'pr-12' : 'pl-12'}`}
+              required
+            />
+          </div>
         </div>
 
-        {/* 5. Password */}
-        <div className="relative">
-          <Lock className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 ${isRTL ? 'right-4' : 'left-4'}`} />
-          <Input
-            type={showPassword ? 'text' : 'password'}
-            placeholder={t.password}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={`input-premium h-14 rounded-xl text-white placeholder:text-white/35 ${isRTL ? 'pr-12 pl-12' : 'pl-12 pr-12'}`}
-            required
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className={`absolute top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors ${isRTL ? 'left-4' : 'right-4'}`}
-          >
-            {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-          </button>
+        {/* 5. Password with label */}
+        <div>
+          <label className="block text-sm font-medium text-white/85 mb-2">
+            {isRTL ? 'كلمة المرور' : 'Password'}
+          </label>
+          <div className="relative">
+            <Lock className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 ${isRTL ? 'right-4' : 'left-4'}`} />
+            <Input
+              type={showPassword ? 'text' : 'password'}
+              placeholder={isRTL ? 'أدخل كلمة المرور' : 'Enter your password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={`input-premium h-12 rounded-xl text-white placeholder:text-white/35 ${isRTL ? 'pr-12 pl-12' : 'pl-12 pr-12'}`}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className={`absolute top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors ${isRTL ? 'left-4' : 'right-4'}`}
+            >
+              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
 
         {error && <p className="text-red-400 text-sm text-center">{error}</p>}
 
-        {/* 6. Forgot password (teal) */}
+        {/* 6. Forgot password */}
         <div className={`flex ${isRTL ? 'justify-start' : 'justify-end'}`}>
           <button
             type="button"
@@ -116,7 +126,7 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
         {/* 7. Sign in button */}
         <button
           type="submit"
-          className="btn-qiyaf-gradient relative overflow-hidden w-full h-[58px] rounded-xl font-semibold text-white text-base tracking-wide"
+          className="btn-qiyaf-gradient relative overflow-hidden w-full h-[54px] rounded-xl font-semibold text-white text-base tracking-wide"
         >
           {isRTL ? 'تسجيل الدخول' : 'Sign In'}
         </button>
@@ -129,7 +139,7 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
             <div className="w-full border-t border-white/10" />
           </div>
           <div className="relative flex justify-center text-[11px] uppercase tracking-[0.25em]">
-            <span className="px-4 bg-[#070707] text-white/40">
+            <span className="px-4 bg-black text-white/40">
               {isRTL ? 'أو تابع باستخدام' : 'or continue with'}
             </span>
           </div>
