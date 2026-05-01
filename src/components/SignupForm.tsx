@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import qiyafLogo from '@/assets/qiyaf-logo-dark.png';
 
 interface SignupFormProps {
   onSignup: (name: string, email: string) => void;
