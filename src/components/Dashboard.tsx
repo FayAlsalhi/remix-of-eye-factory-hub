@@ -76,7 +76,7 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
   return (
     <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Top Header with Logo + Actions */}
-      <header className="h-16 bg-card border-b border-border flex items-center justify-between px-6 gap-4">
+      <header className="h-20 bg-card border-b border-border flex items-center justify-between px-6 gap-4">
         {/* Logo + small LIVE badge top-right */}
         <div className="relative shrink-0">
           <img
