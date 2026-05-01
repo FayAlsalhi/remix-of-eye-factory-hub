@@ -2,7 +2,7 @@ import { ChevronDown, Play, ArrowRight, Sparkles, Activity, BarChart3, Shield, E
 import { Button } from "@/components/ui/button";
 import qiyafLogo from "@/assets/qiyaf-logo-new.png";
 import heroComposition from "@/assets/hero-composition.png";
-import videoPreviewImg from "@/assets/video-preview.png";
+import dashboardPreview from "@/assets/dashboard-preview.png";
 
 interface LandingPageProps {
   onGetStarted: () => void;
