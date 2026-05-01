@@ -51,9 +51,8 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
             <ul className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => (
                 <li key={item}>
-                  <button className="flex items-center gap-1 text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <button className="text-sm text-foreground/80 hover:text-foreground transition-colors">
                     {item}
-                    {item !== "Pricing" && <ChevronDown className="w-3.5 h-3.5 opacity-60" />}
                   </button>
                 </li>
               ))}
