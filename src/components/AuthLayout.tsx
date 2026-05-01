@@ -52,12 +52,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       <div className="relative z-10 grid min-h-screen lg:grid-cols-[2fr_3fr]">
         {/* ============== LEFT (40%) — FORM ============== */}
         <div className="relative flex flex-col justify-center px-6 sm:px-12 lg:px-16 py-12">
-          {/* Top brand */}
-          <div className="absolute top-8 left-6 sm:left-12 lg:left-16 flex items-center gap-3">
-            <img src={qiyafLogo} alt="Qiyaf" className="h-9 w-auto object-contain opacity-90" />
-          </div>
-
-          {/* Form wrapper — slightly above center */}
+          {/* Form wrapper — slightly above center; logo lives inside the form */}
           <div className="w-full max-w-md mx-auto -mt-6">
             {children}
           </div>
