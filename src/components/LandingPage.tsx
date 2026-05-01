@@ -26,7 +26,7 @@ const heroFeatures = [
 
 
 const capabilities = [
-  { icon: Eye, title: "Defect Detection", desc: "Identify cracks, hotspots, dirt, and micro-cracks with high precision." },
+  { icon: Eye, title: "Surface Defect Detection", desc: "Identify cracks, dust, snow, and bird droppings on panel surfaces with high precision." },
   { icon: Activity, title: "Live Feed Analysis", desc: "Monitor your sites in real-time with low-latency video streams." },
   { icon: Bell, title: "Smart Alerts", desc: "Get instant notifications for critical issues that matter." },
   { icon: FileText, title: "Reports & Analytics", desc: "Detailed insights and trends to drive better decisions." },
@@ -131,7 +131,7 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
               </h1>
 
               <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-md leading-relaxed">
-                Detect defects, reduce downtime, and maximize performance with real-time AI analysis of solar panel assets.
+                AI-powered RGB surface inspection for solar panels — UAVs capture imagery, our model detects visible surface defects, and reports guide engineers to act.
               </p>
 
               <div className="mt-9 flex flex-wrap gap-4">

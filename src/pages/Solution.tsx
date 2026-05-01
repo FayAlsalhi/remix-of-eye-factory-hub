@@ -21,8 +21,8 @@ import { Button } from "@/components/ui/button";
 const useCases = [
   {
     icon: Eye,
-    title: "Defect Detection",
-    desc: "Identify hotspots, dirt, micro-cracks, and bird droppings on every panel with computer-vision precision.",
+    title: "Surface Defect Detection",
+    desc: "Identify cracks, dust, snow, and bird droppings on panel surfaces with computer-vision precision — five supported visible classes.",
   },
   {
     icon: Activity,
@@ -42,18 +42,18 @@ const useCases = [
 ];
 
 const techStack = [
-  { icon: Cpu, title: "Deep Learning Models", desc: "Custom YOLO-based detectors fine-tuned for thermal and RGB solar imagery." },
+  { icon: Cpu, title: "Deep Learning Models", desc: "Custom YOLO-based detectors fine-tuned exclusively on RGB imagery for visible surface conditions." },
   { icon: Plane, title: "Autonomous Drones", desc: "Pre-planned flight paths covering hectares of solar fields without manual piloting." },
   { icon: Cloud, title: "Cloud Pipeline", desc: "Edge ingest, GPU inference, and storage scale elastically with mission size." },
   { icon: Database, title: "Asset Registry", desc: "Every panel mapped, indexed, and history-tracked across inspection cycles." },
-  { icon: LineChart, title: "Performance Analytics", desc: "Live KPIs link defects to power loss so teams act on what matters most." },
+  { icon: LineChart, title: "Maintenance Reports", desc: "Each detection generates a report with the defect class and panel location for the maintenance crew." },
   { icon: ShieldCheck, title: "Enterprise Security", desc: "Role-based access, encrypted transport, and audit-ready logging by default." },
 ];
 
 const workflow = [
   { step: "01", title: "Plan the Mission", desc: "Define the site, panels, and inspection cadence inside Qiyaf." },
-  { step: "02", title: "Capture in Flight", desc: "Drones autonomously scan rows and stream RGB + thermal frames to the cloud." },
-  { step: "03", title: "AI Inference", desc: "Models classify cracks, dust, hotspots, and bird droppings with bounding boxes." },
+  { step: "02", title: "Capture in Flight", desc: "UAVs autonomously scan rows and stream RGB images of the panel surface to the cloud." },
+  { step: "03", title: "AI Inference", desc: "The model classifies each panel into one of five surface classes: bird droppings, clean, cracks, dust, or snow — with bounding boxes." },
   { step: "04", title: "Act & Report", desc: "Operators receive alerts, dispatch crews, and download executive reports." },
 ];
 
