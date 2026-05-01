@@ -82,7 +82,7 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
           <img
             src={qiyafLogo}
             alt="Qiyaf"
-            className="h-10 w-auto object-contain"
+            className="h-12 w-auto object-contain"
           />
           <span className="absolute -top-1 -right-3 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-red-500 text-white text-[8px] font-bold tracking-wider shadow-md leading-none">
             <span className="w-1 h-1 bg-white rounded-full animate-pulse"></span>

@@ -49,7 +49,7 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
         <img
           src={qiyafLogo}
           alt="Qiyaf"
-          className="h-20 md:h-24 w-auto object-contain"
+          className="h-28 md:h-36 w-auto object-contain"
         />
       </div>
 
