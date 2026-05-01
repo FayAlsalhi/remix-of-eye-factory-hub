@@ -54,56 +54,58 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
     >
       {/* Header */}
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-primary mb-3">
-          <span className="w-6 h-px bg-primary" />
+        <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] text-white/60 mb-3">
+          <span className="w-6 h-px bg-gradient-to-r from-[#11C5D9] to-[#FF9800]" />
           {isRTL ? 'انضم إلينا' : 'Join Qiyaf'}
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">{t.createAccount}</h2>
-        <p className="text-muted-foreground mt-2">{t.joinEyeFactory}</p>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+          <span className="text-gradient-warm">{t.createAccount}</span>
+        </h2>
+        <p className="text-white/55 mt-2">{t.joinEyeFactory}</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Full Name Input */}
         <div className="relative">
-          <User className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground ${isRTL ? 'right-3' : 'left-3'}`} />
+          <User className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 ${isRTL ? 'right-4' : 'left-4'}`} />
           <Input
             type="text"
             placeholder={t.fullName}
             value={fullname}
             onChange={(e) => setFullname(e.target.value)}
-            className={`${isRTL ? 'pr-10' : 'pl-10'} bg-white/5 border-white/10 backdrop-blur-sm placeholder:text-muted-foreground/70`}
+            className={`input-premium h-14 rounded-xl text-white placeholder:text-white/35 ${isRTL ? 'pr-12' : 'pl-12'}`}
             required
           />
         </div>
 
         {/* Email Input */}
         <div className="relative">
-          <Mail className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground ${isRTL ? 'right-3' : 'left-3'}`} />
+          <Mail className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 ${isRTL ? 'right-4' : 'left-4'}`} />
           <Input
             type="email"
             placeholder={t.email}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={`${isRTL ? 'pr-10' : 'pl-10'} bg-white/5 border-white/10 backdrop-blur-sm placeholder:text-muted-foreground/70`}
+            className={`input-premium h-14 rounded-xl text-white placeholder:text-white/35 ${isRTL ? 'pr-12' : 'pl-12'}`}
             required
           />
         </div>
 
         {/* Password Input */}
         <div className="relative">
-          <Lock className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground ${isRTL ? 'right-3' : 'left-3'}`} />
+          <Lock className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 ${isRTL ? 'right-4' : 'left-4'}`} />
           <Input
             type={showPassword ? 'text' : 'password'}
             placeholder={t.password}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className={`${isRTL ? 'pr-10 pl-10' : 'pl-10 pr-10'} bg-white/5 border-white/10 backdrop-blur-sm placeholder:text-muted-foreground/70`}
+            className={`input-premium h-14 rounded-xl text-white placeholder:text-white/35 ${isRTL ? 'pr-12 pl-12' : 'pl-12 pr-12'}`}
             required
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground hover:text-foreground transition-colors ${isRTL ? 'left-3' : 'right-3'}`}
+            className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 hover:text-white transition-colors ${isRTL ? 'left-4' : 'right-4'}`}
           >
             {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
           </button>
@@ -111,22 +113,25 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
 
         {/* Error Message */}
         {error && (
-          <p className="text-red-500 text-sm text-center">{error}</p>
+          <p className="text-red-400 text-sm text-center">{error}</p>
         )}
 
         {/* Forgot Password Link */}
         <div className={`flex ${isRTL ? 'justify-start' : 'justify-end'}`}>
           <button
             type="button"
-            className="text-sm text-primary hover:underline"
+            className="text-sm text-white/60 hover:text-white transition-colors"
           >
             {t.forgotPassword}
           </button>
         </div>
 
-        <Button type="submit" className="w-full">
+        <button
+          type="submit"
+          className="btn-qiyaf-gradient relative overflow-hidden w-full h-[58px] rounded-xl font-semibold text-white text-base tracking-wide"
+        >
           {t.signUp}
-        </Button>
+        </button>
       </form>
 
       <div className="mt-6">
