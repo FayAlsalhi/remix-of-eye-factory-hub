@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import SignupForm from '@/components/SignupForm';
@@ -16,6 +17,17 @@ const Index = () => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [authView, setAuthView] = useState<AuthView>('intro');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const auth = searchParams.get('auth');
+    if (auth === 'login' || auth === 'signup') {
+      setAuthView(auth);
+      const next = new URLSearchParams(searchParams);
+      next.delete('auth');
+      setSearchParams(next, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
 
   const handleSignup = (name: string, email: string) => {
     setUserName(name);
