@@ -42,9 +42,9 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
   ];
 
   const notifications = [
-    { id: 'SP-001', type: 'Physical Damage', time: '10:32 AM' },
-    { id: 'SP-002', type: 'Electrical Damage', time: '10:28 AM' },
-    { id: 'SP-003', type: 'Snow Coverage', time: '10:25 AM' },
+    { id: 'SP-001', type: 'Cracks', time: '10:32 AM' },
+    { id: 'SP-002', type: 'Dust', time: '10:28 AM' },
+    { id: 'SP-003', type: 'Snow', time: '10:25 AM' },
     { id: 'SP-004', type: 'Bird Droppings', time: '10:20 AM' },
   ];
 

@@ -12,7 +12,7 @@ const pillars = [
   {
     icon: Lightbulb,
     title: "Our Vision",
-    desc: "A future where every solar asset in the region is monitored continuously — defects detected before they cost a single kilowatt.",
+    desc: "A future where every solar asset in the region is monitored continuously — surface defects detected early before they cost a single kilowatt.",
   },
   {
     icon: Sun,

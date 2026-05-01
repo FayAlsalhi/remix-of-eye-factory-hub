@@ -4,8 +4,6 @@ import { AlertTriangle, CheckCircle, Video, Clock, Filter, X, Sparkles, FileText
 import solarDusty from '@/assets/solar-panel-dusty.jpg';
 import solarCracked from '@/assets/solar-panel-cracked.jpg';
 import solarClean from '@/assets/solar-panel-clean.jpg';
-import solarPhysicalDamage from '@/assets/solar-panel-physical-damage.jpg';
-import solarElectricalDamage from '@/assets/solar-panel-electrical-damage.jpg';
 import solarSnow from '@/assets/solar-panel-snow.jpg';
 import solarBirdDroppings from '@/assets/solar-panel-bird-droppings.jpg';
 
@@ -16,12 +14,12 @@ const LiveFeedTab = () => {
   const alerts = [
     {
       id: 'SP-001',
-      type: 'physicalDamage',
-      image: solarPhysicalDamage,
+      type: 'cracks',
+      image: solarCracked,
       time: '10:32 AM',
       healthScore: 35,
-      label: t.physicalDamage,
-      description: 'Cracks or fractures caused by pressure, weather, or material aging.',
+      label: t.cracks,
+      description: 'Visible surface cracks or fractures detected on the panel glass.',
       color: 'bg-red-500/20 text-red-400 border-red-500/30',
       boxColor: 'border-red-500',
       isDefective: true,
@@ -34,7 +32,7 @@ const LiveFeedTab = () => {
       time: '10:25 AM',
       healthScore: 40,
       label: t.snowCoverage,
-      description: 'Accumulation of snow blocking sunlight from reaching the cells.',
+      description: 'Accumulation of snow on the panel surface blocking sunlight.',
       color: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
       boxColor: 'border-blue-500',
       isDefective: true,
@@ -47,7 +45,7 @@ const LiveFeedTab = () => {
       time: '10:20 AM',
       healthScore: 60,
       label: t.birdDroppings,
-      description: 'Environmental residues reducing light absorption and energy output.',
+      description: 'Bird droppings on the panel surface reducing light absorption.',
       color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
       boxColor: 'border-yellow-500',
       isDefective: true,
@@ -60,7 +58,7 @@ const LiveFeedTab = () => {
       time: '10:15 AM',
       healthScore: 72,
       label: t.dust,
-      description: 'Dust accumulation reducing panel efficiency.',
+      description: 'Dust accumulation on the panel surface reducing efficiency.',
       color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
       boxColor: 'border-yellow-500',
       isDefective: true,
@@ -73,7 +71,7 @@ const LiveFeedTab = () => {
       time: '10:05 AM',
       healthScore: 98,
       label: t.clean,
-      description: 'Panel is in optimal condition.',
+      description: 'Panel surface is clean and in optimal condition.',
       color: 'bg-green-500/20 text-green-400 border-green-500/30',
       boxColor: 'border-green-500',
       isDefective: false,
@@ -82,11 +80,11 @@ const LiveFeedTab = () => {
   ];
 
   const detectionTypes = [
-    { key: 'physicalDamage', label: 'Physical Damage', dot: 'bg-red-500' },
-    { key: 'snowCoverage', label: 'Snow Coverage', dot: 'bg-blue-400' },
-    { key: 'dust', label: 'Dust Accumulation', dot: 'bg-yellow-400' },
+    { key: 'cracks', label: 'Cracks', dot: 'bg-red-500' },
+    { key: 'snowCoverage', label: 'Snow', dot: 'bg-blue-400' },
+    { key: 'dust', label: 'Dust', dot: 'bg-yellow-400' },
     { key: 'birdDroppings', label: 'Bird Droppings', dot: 'bg-amber-500' },
-    { key: 'other', label: 'Other', dot: 'bg-slate-400' },
+    { key: 'clean', label: 'Clean', dot: 'bg-emerald-400' },
   ];
 
   const [selectedAlert, setSelectedAlert] = useState(alerts[0]);
@@ -94,22 +92,13 @@ const LiveFeedTab = () => {
 
   const filteredAlerts = useMemo(() => {
     if (!filterType) return alerts;
-    if (filterType === 'other') {
-      const known = ['physicalDamage', 'snowCoverage', 'dust', 'birdDroppings'];
-      return alerts.filter((a) => !known.includes(a.type));
-    }
     return alerts.filter((a) => a.type === filterType);
   }, [filterType]);
 
   const typeCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     detectionTypes.forEach((dt) => {
-      if (dt.key === 'other') {
-        const known = ['physicalDamage', 'snowCoverage', 'dust', 'birdDroppings'];
-        counts[dt.key] = alerts.filter((a) => !known.includes(a.type)).length;
-      } else {
-        counts[dt.key] = alerts.filter((a) => a.type === dt.key).length;
-      }
+      counts[dt.key] = alerts.filter((a) => a.type === dt.key).length;
     });
     return counts;
   }, []);

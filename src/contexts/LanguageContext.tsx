@@ -39,11 +39,10 @@ interface Translations {
   inspectionTime: string;
   healthScore: string;
   defectiveType: string;
+  // Supported defect classes (5 total)
   dust: string;
-  crack: string;
+  cracks: string;
   clean: string;
-  physicalDamage: string;
-  electricalDamage: string;
   snowCoverage: string;
   birdDroppings: string;
   passedPanel: string;
@@ -72,7 +71,7 @@ interface Translations {
 const translations: Record<Language, Translations> = {
   en: {
     createAccount: 'Create an Account',
-    joinEyeFactory: 'Join Eye Factory to monitor your UAV',
+    joinEyeFactory: 'Join Qiyaf to monitor your UAV',
     fullName: 'Enter your full name',
     email: 'Enter your email',
     password: 'Create a password',
@@ -83,7 +82,7 @@ const translations: Record<Language, Translations> = {
     alreadyHaveAccount: 'Already have an account?',
     logIn: 'Log In',
     forgotPassword: 'Forgot Password?',
-    welcomeBack: 'Welcome back to Eye Factory',
+    welcomeBack: 'Welcome back to Qiyaf',
     dontHaveAccount: "Don't have an account?",
     // Dashboard
     dashboard: 'Dashboard',
@@ -91,7 +90,7 @@ const translations: Record<Language, Translations> = {
     uploadSolarPanel: 'Upload Solar Panel Image',
     settings: 'Settings',
     projectName: 'Qiyaf',
-    category: 'Solar Panel Monitoring',
+    category: 'Solar Panel Surface Inspection',
     // Dashboard Tab
     overview: 'Overview',
     totalInspected: 'Total Inspected',
@@ -107,12 +106,10 @@ const translations: Record<Language, Translations> = {
     inspectionTime: 'Inspection Time',
     healthScore: 'Health Score',
     defectiveType: 'Defective Type',
-    dust: 'Dust Accumulation',
-    crack: 'Crack',
+    dust: 'Dust',
+    cracks: 'Cracks',
     clean: 'Clean',
-    physicalDamage: 'Physical Damage',
-    electricalDamage: 'Electrical Damage',
-    snowCoverage: 'Snow Coverage',
+    snowCoverage: 'Snow',
     birdDroppings: 'Bird Droppings',
     passedPanel: 'Passed Panel',
     defectivePanel: 'Defective Panel',
@@ -137,7 +134,7 @@ const translations: Record<Language, Translations> = {
   },
   ar: {
     createAccount: 'إنشاء حساب',
-    joinEyeFactory: 'انضم إلى Eye Factory لمراقبة طائرتك',
+    joinEyeFactory: 'انضم إلى Qiyaf لمراقبة طائرتك',
     fullName: 'أدخل اسمك الكامل',
     email: 'أدخل بريدك الإلكتروني',
     password: 'أنشئ كلمة مرور',
@@ -148,7 +145,7 @@ const translations: Record<Language, Translations> = {
     alreadyHaveAccount: 'لديك حساب بالفعل؟',
     logIn: 'تسجيل الدخول',
     forgotPassword: 'نسيت كلمة المرور؟',
-    welcomeBack: 'مرحباً بعودتك إلى Eye Factory',
+    welcomeBack: 'مرحباً بعودتك إلى Qiyaf',
     dontHaveAccount: 'ليس لديك حساب؟',
     // Dashboard
     dashboard: 'لوحة التحكم',
@@ -156,7 +153,7 @@ const translations: Record<Language, Translations> = {
     uploadSolarPanel: 'رفع صورة لوحة شمسية',
     settings: 'الإعدادات',
     projectName: 'Qiyaf',
-    category: 'مراقبة الألواح الشمسية',
+    category: 'فحص سطح الألواح الشمسية',
     // Dashboard Tab
     overview: 'نظرة عامة',
     totalInspected: 'إجمالي المفحوص',
@@ -172,12 +169,10 @@ const translations: Record<Language, Translations> = {
     inspectionTime: 'وقت الفحص',
     healthScore: 'درجة الصحة',
     defectiveType: 'نوع العيب',
-    dust: 'تراكم الغبار',
-    crack: 'تشقق',
+    dust: 'غبار',
+    cracks: 'تشققات',
     clean: 'نظيف',
-    physicalDamage: 'ضرر مادي',
-    electricalDamage: 'ضرر كهربائي',
-    snowCoverage: 'تغطية ثلجية',
+    snowCoverage: 'ثلج',
     birdDroppings: 'فضلات الطيور',
     passedPanel: 'لوحة سليمة',
     defectivePanel: 'لوحة معيبة',
