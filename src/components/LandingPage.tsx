@@ -228,7 +228,7 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
               </p>
             </div>
             <div className="md:col-span-3">
-              <h4 className="text-sm font-semibold mb-4">Navigation</h4>
+              <h4 className="text-sm font-semibold mb-4">Quick Links</h4>
               <ul className="flex flex-wrap gap-x-8 gap-y-2.5">
                 {["Home", "Solution", "About", "Contact"].map((l) => (
                   <li key={l}>
