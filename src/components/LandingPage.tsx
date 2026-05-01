@@ -45,20 +45,20 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
 
       {/* Navbar */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/50">
-        <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-20 grid grid-cols-[1fr_auto_1fr] items-center">
-          <div className="flex items-center justify-self-start">
+        <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-12">
             <img src={qiyafLogo} alt="Qiyaf" className="h-44 w-auto object-contain" />
+            <ul className="hidden lg:flex items-center gap-8">
+              {navItems.map((item) => (
+                <li key={item}>
+                  <button className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                    {item}
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="hidden lg:flex items-center gap-8 justify-self-center">
-            {navItems.map((item) => (
-              <li key={item}>
-                <button className="text-sm text-foreground/80 hover:text-foreground transition-colors">
-                  {item}
-                </button>
-              </li>
-            ))}
-          </ul>
-          <div className="flex items-center gap-3 justify-self-end">
+          <div className="flex items-center gap-3">
             <Button
               variant="outline"
               onClick={onLogin}
