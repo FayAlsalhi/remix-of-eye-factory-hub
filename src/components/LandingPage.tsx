@@ -253,28 +253,13 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
             </div>
           </div>
 
-          {/* Video preview card */}
-          <div className="relative rounded-2xl overflow-hidden border border-border/60 group cursor-pointer h-full min-h-[400px]">
+          {/* Dashboard preview */}
+          <div className="relative rounded-2xl overflow-hidden border border-border/60 h-full min-h-[400px] bg-background">
             <img
-              src={videoPreviewImg}
-              alt="See it in action"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src={dashboardPreview}
+              alt="Qiyaf dashboard preview"
+              className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-16 h-16 rounded-full bg-background/40 backdrop-blur-md border border-foreground/30 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Play className="w-6 h-6 text-foreground fill-foreground ml-1" />
-              </div>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <h3 className="text-xl font-semibold mb-1">See it in Action</h3>
-              <p className="text-sm text-muted-foreground mb-3">
-                Watch how Qiyaf AI transforms solar operations
-              </p>
-              <span className="text-sm font-medium text-primary inline-flex items-center gap-1">
-                Play Video <ArrowRight className="w-3.5 h-3.5" />
-              </span>
-            </div>
           </div>
         </div>
       </section>
