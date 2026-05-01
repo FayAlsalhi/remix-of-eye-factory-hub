@@ -1,4 +1,5 @@
-import { ChevronDown, Play, ArrowRight, Sparkles, Activity, BarChart3, Shield, Eye, Bell, FileText, ScanLine } from "lucide-react";
+import { Play, ArrowRight, Sparkles, Activity, BarChart3, Shield, Eye, Bell, FileText, ScanLine } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import qiyafLogo from "@/assets/qiyaf-logo-new.png";
 import heroComposition from "@/assets/hero-composition.jpg";
@@ -9,7 +10,12 @@ interface LandingPageProps {
   onLogin: () => void;
 }
 
-const navItems = ["Home", "Solution", "About", "Contact"];
+const navItems = [
+  { label: "Home", to: "/" },
+  { label: "Solution", to: "/solution" },
+  { label: "About", to: "/about" },
+  { label: "Contact", to: "/contact" },
+];
 
 const heroFeatures = [
   { icon: ScanLine, title: "AI-Powered Accuracy", desc: "Deep learning models for high precision" },
