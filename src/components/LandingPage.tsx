@@ -45,13 +45,18 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/85 border-b border-border/50 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
         <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
           <div className="flex items-center gap-12">
-            <img src={qiyafLogo} alt="Qiyaf" className="h-44 w-auto object-contain" />
+            <Link to="/" aria-label="Qiyaf home">
+              <img src={qiyafLogo} alt="Qiyaf" className="h-44 w-auto object-contain" />
+            </Link>
             <ul className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => (
-                <li key={item}>
-                  <button className="text-sm text-foreground/80 hover:text-foreground transition-colors">
-                    {item}
-                  </button>
+                <li key={item.label}>
+                  <Link
+                    to={item.to}
+                    className="text-sm text-foreground/80 hover:text-foreground transition-colors"
+                  >
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
