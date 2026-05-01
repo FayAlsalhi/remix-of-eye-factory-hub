@@ -185,4 +185,12 @@
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
+
+  .text-gradient-orange {
+    background: linear-gradient(90deg, #F59E0B 0%, #FF8A00 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
 }
