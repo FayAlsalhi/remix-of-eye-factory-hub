@@ -45,8 +45,12 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
   return (
     <div className="w-full" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* 1. Project logo */}
-      <div className="mb-8">
-        <img src={qiyafLogo} alt="Qiyaf" className="h-10 w-auto object-contain" />
+      <div className="mb-6 flex justify-center">
+        <img
+          src={qiyafLogo}
+          alt="Qiyaf"
+          className="h-20 md:h-24 w-auto object-contain"
+        />
       </div>
 
       {/* 2. Welcome title */}
