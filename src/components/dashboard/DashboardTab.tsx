@@ -251,10 +251,10 @@ const DashboardTab = () => {
           </div>
           <div className="space-y-3">
             {[
-              { sev: 'Critical', color: 'rose', dot: 'bg-rose-500', ring: 'border-rose-500/30 bg-rose-500/10 text-rose-300', title: 'Severe defect detected', loc: 'SP-001 · Sector A-12', time: '2m ago' },
-              { sev: 'Warning', color: 'amber', dot: 'bg-amber-400', ring: 'border-amber-400/30 bg-amber-400/10 text-amber-300', title: 'Soiling above threshold', loc: 'SP-047 · Sector B-08', time: '14m ago' },
+              { sev: 'Critical', color: 'rose', dot: 'bg-rose-500', ring: 'border-rose-500/30 bg-rose-500/10 text-rose-300', title: 'Cracks detected on panel surface', loc: 'SP-001 · Sector A-12', time: '2m ago' },
+              { sev: 'Warning', color: 'amber', dot: 'bg-amber-400', ring: 'border-amber-400/30 bg-amber-400/10 text-amber-300', title: 'Heavy dust accumulation', loc: 'SP-047 · Sector B-08', time: '14m ago' },
               { sev: 'Info', color: 'sky', dot: 'bg-sky-400', ring: 'border-sky-400/30 bg-sky-400/10 text-sky-300', title: 'Inspection completed', loc: 'Sector C-15', time: '38m ago' },
-              { sev: 'Critical', color: 'rose', dot: 'bg-rose-500', ring: 'border-rose-500/30 bg-rose-500/10 text-rose-300', title: 'Hot-spot anomaly', loc: 'SP-112 · Sector D-20', time: '1h ago' },
+              { sev: 'Warning', color: 'amber', dot: 'bg-amber-400', ring: 'border-amber-400/30 bg-amber-400/10 text-amber-300', title: 'Bird droppings detected', loc: 'SP-112 · Sector D-20', time: '1h ago' },
             ].map((a, i) => (
               <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition">
                 <span className={`mt-1.5 w-2 h-2 rounded-full ${a.dot} shadow-[0_0_8px_currentColor]`} />
@@ -301,7 +301,7 @@ const DashboardTab = () => {
           <div className="mt-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
-              <span className="text-xs text-foreground">Soiling — heavy</span>
+              <span className="text-xs text-foreground">Cracks — heavy</span>
             </div>
             <span className="text-[10px] px-2 py-0.5 rounded-full border border-rose-500/30 bg-rose-500/10 text-rose-300">98% confidence</span>
           </div>
@@ -310,11 +310,11 @@ const DashboardTab = () => {
         {/* Defect Distribution */}
         {(() => {
           const defects = [
-            { label: 'Soiling', value: 42, color: '#F59E0B' },
-            { label: 'Hot-spot', value: 24, color: '#FBBF24' },
-            { label: 'Micro-crack', value: 18, color: '#22D3EE' },
-            { label: 'Discoloration', value: 10, color: '#14B8A6' },
-            { label: 'Other', value: 6, color: '#E5E7EB' },
+            { label: 'Dust', value: 38, color: '#F59E0B' },
+            { label: 'Bird Droppings', value: 24, color: '#FBBF24' },
+            { label: 'Cracks', value: 18, color: '#F43F5E' },
+            { label: 'Snow', value: 12, color: '#22D3EE' },
+            { label: 'Clean', value: 8, color: '#10B981' },
           ];
           const total = defects.reduce((a, b) => a + b.value, 0);
           const r = 56;
