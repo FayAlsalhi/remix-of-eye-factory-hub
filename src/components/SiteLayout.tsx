@@ -35,7 +35,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
         <nav className="max-w-7xl mx-auto pl-2 pr-6 lg:pl-4 lg:pr-10 h-20 flex items-center justify-between">
           <div className="flex items-center gap-12">
             <Link to="/" aria-label="Qiyaf home">
-              <img src={qiyafLogo} alt="Qiyaf" className="h-16 w-auto object-contain" />
+              <img src={qiyafLogo} alt="Qiyaf" className="h-32 w-auto object-contain" />
             </Link>
             <ul className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => {
