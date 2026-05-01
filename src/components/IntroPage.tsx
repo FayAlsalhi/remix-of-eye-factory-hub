@@ -28,7 +28,7 @@ const IntroPage = ({ onStart }: IntroPageProps) => {
         <img
           src={qiyafLogo}
           alt="Qiyaf"
-          className="h-[640px] md:h-[800px] w-auto object-contain drop-shadow-2xl"
+          className="h-96 md:h-[28rem] w-auto object-contain drop-shadow-2xl"
         />
       </div>
 

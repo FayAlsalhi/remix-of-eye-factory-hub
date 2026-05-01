@@ -46,7 +46,7 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
     <div className="w-full" dir={isRTL ? "rtl" : "ltr"}>
       {/* 1. Logo — centered, compact */}
       <div className="mb-5 flex justify-center">
-        <img src={qiyafLogo} alt="Qiyaf" className="h-[480px] md:h-[560px] w-auto object-contain" />
+        <img src={qiyafLogo} alt="Qiyaf" className="h-72 md:h-80 w-auto object-contain" />
       </div>
 
       {/* 2. Welcome title — centered */}
