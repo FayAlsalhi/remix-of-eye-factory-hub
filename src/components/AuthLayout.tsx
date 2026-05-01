@@ -14,23 +14,21 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       className="relative min-h-screen w-full overflow-hidden bg-black text-white"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      {/* Solid black background — no gradients, no noise */}
-
-      {/* Uploaded artwork — bottom-right emblem with sweeping curves */}
+      {/* Uploaded artwork — large bottom-right emblem with sweeping curves */}
       <img
         src={authBgEmblem}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 bottom-0 w-[60%] max-w-[900px] object-contain select-none opacity-90"
+        className="pointer-events-none absolute right-0 top-0 h-full w-[55%] object-cover object-right select-none opacity-95"
         style={{
           filter:
             'drop-shadow(0 20px 60px rgba(255,152,0,0.18)) drop-shadow(0 10px 40px rgba(17,197,217,0.18))',
         }}
       />
 
-      {/* Centered single-card layout */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
-        <div className="w-full max-w-md -mt-6">
+      {/* Left-column form layout (matches reference) */}
+      <div className="relative z-10 flex min-h-screen items-center px-6 sm:px-12 lg:px-20 py-12">
+        <div className="w-full max-w-[440px]">
           {children}
         </div>
       </div>
