@@ -1,6 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import heroVideo from '@/assets/hero-intro.mp4';
-import qiyafLogo from '@/assets/qiyaf-logo-dark.png';
+import qiyafLogo from '@/assets/qiyaf-logo-new.png';
 
 interface IntroPageProps {
   onStart: () => void;

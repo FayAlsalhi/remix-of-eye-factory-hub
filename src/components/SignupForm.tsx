@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import qiyafLogo from '@/assets/qiyaf-logo-dark.png';
+import qiyafLogo from '@/assets/qiyaf-logo-new.png';
 
 interface SignupFormProps {
   onSignup: (name: string, email: string) => void;
@@ -58,7 +58,7 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
         <img
           src={qiyafLogo}
           alt="Qiyaf"
-          className="h-20 md:h-24 w-auto object-contain"
+          className="h-28 md:h-36 w-auto object-contain"
         />
       </div>
 

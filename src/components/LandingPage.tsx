@@ -1,6 +1,6 @@
 import { ChevronDown, Play, ArrowRight, Sparkles, Activity, BarChart3, Shield, Eye, Bell, FileText, ScanLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import qiyafLogo from "@/assets/qiyaf-logo-brand.png";
+import qiyafLogo from "@/assets/qiyaf-logo-new.png";
 import heroComposition from "@/assets/hero-composition.png";
 import videoPreviewImg from "@/assets/video-preview.png";
 
@@ -47,7 +47,7 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/50">
         <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
           <div className="flex items-center gap-12">
-            <img src={qiyafLogo} alt="Qiyaf" className="h-10 w-auto object-contain" />
+            <img src={qiyafLogo} alt="Qiyaf" className="h-12 w-auto object-contain" />
             <ul className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => (
                 <li key={item}>
@@ -284,7 +284,7 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
           <div className="grid md:grid-cols-5 gap-10">
             <div className="md:col-span-2">
-              <img src={qiyafLogo} alt="Qiyaf" className="h-10 w-auto object-contain mb-4" />
+              <img src={qiyafLogo} alt="Qiyaf" className="h-12 w-auto object-contain mb-4" />
               <p className="text-sm text-muted-foreground max-w-xs">
                 AI-powered solar panel inspection platform built for enterprise scale.
               </p>

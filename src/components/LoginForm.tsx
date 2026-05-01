@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Mail, Lock, Eye, EyeOff, KeyRound } from 'lucide-react';
-import qiyafLogo from '@/assets/qiyaf-logo-dark.png';
+import qiyafLogo from '@/assets/qiyaf-logo-new.png';
 
 interface LoginFormProps {
   onLogin: (name: string, email: string) => void;
@@ -49,7 +49,7 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
         <img
           src={qiyafLogo}
           alt="Qiyaf"
-          className="h-20 md:h-24 w-auto object-contain"
+          className="h-28 md:h-36 w-auto object-contain"
         />
       </div>
 
