@@ -32,7 +32,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
 
       {/* Navbar */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/85 border-b border-border/50 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
-        <nav className="max-w-7xl mx-auto pl-2 pr-6 lg:pl-4 lg:pr-10 h-20 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto pl-0 pr-6 lg:pl-2 lg:pr-10 h-20 flex items-center justify-between">
           <div className="flex items-center gap-12">
             <Link to="/" aria-label="Qiyaf home">
               <img src={qiyafLogo} alt="Qiyaf" className="h-32 w-auto object-contain" />
