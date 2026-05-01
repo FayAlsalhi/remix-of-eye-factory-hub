@@ -229,11 +229,11 @@ const DashboardTab = () => {
         </div>
 
         {/* Insight card */}
-        <div className="rounded-2xl border border-white/10 overflow-hidden relative shadow-[0_0_30px_rgba(0,108,158,0.1)]">
+        <div className="rounded-2xl border border-white/10 overflow-hidden relative shadow-[0_0_30px_rgba(0,108,158,0.1)] w-full h-full min-h-[260px]">
           <img
             src={insightCard}
             alt="Your model is in the top 15% performing models"
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
       </div>
