@@ -222,39 +222,40 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
 
       {/* Capabilities */}
       <section className="max-w-7xl mx-auto px-6 lg:px-10 py-24">
-        <div className="grid lg:grid-cols-3 gap-10 items-start">
-          <div className="lg:col-span-2">
-            <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-4">
-              Advanced AI for every panel
-            </p>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-              Powerful Capabilities Built for Solar Excellence
-            </h2>
-            <p className="mt-4 text-muted-foreground max-w-2xl">
-              Our platform combines computer vision, machine learning, and analytics to help you operate at peak efficiency.
-            </p>
+        <div className="mb-10">
+          <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-4">
+            Advanced AI for every panel
+          </p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+            Powerful Capabilities Built for Solar Excellence
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-2xl">
+            Our platform combines computer vision, machine learning, and analytics to help you operate at peak efficiency.
+          </p>
+        </div>
 
-            <div className="mt-10 grid sm:grid-cols-2 gap-4">
-              {capabilities.map((c) => (
-                <div
-                  key={c.title}
-                  className="group rounded-xl border border-border/60 bg-card/40 backdrop-blur-sm p-5 hover:border-primary/40 transition-colors"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
-                    <c.icon className="w-4 h-4 text-primary" />
-                  </div>
-                  <h3 className="text-base font-semibold mb-1.5">{c.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">{c.desc}</p>
-                  <button className="text-xs font-medium text-primary inline-flex items-center gap-1 hover:gap-2 transition-all">
-                    Learn more <ArrowRight className="w-3 h-3" />
-                  </button>
+        <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+          {/* Left: capability cards */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {capabilities.map((c) => (
+              <div
+                key={c.title}
+                className="group rounded-xl border border-border/60 bg-card/40 backdrop-blur-sm p-5 hover:border-primary/40 transition-colors"
+              >
+                <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
+                  <c.icon className="w-4 h-4 text-primary" />
                 </div>
-              ))}
-            </div>
+                <h3 className="text-base font-semibold mb-1.5">{c.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-3">{c.desc}</p>
+                <button className="text-xs font-medium text-primary inline-flex items-center gap-1 hover:gap-2 transition-all">
+                  Learn more <ArrowRight className="w-3 h-3" />
+                </button>
+              </div>
+            ))}
           </div>
 
-          {/* Dashboard preview */}
-          <div className="relative rounded-2xl overflow-hidden border border-border/60 h-full min-h-[400px] bg-background">
+          {/* Right: dashboard preview */}
+          <div className="relative rounded-2xl overflow-hidden border border-border/60 min-h-[400px] bg-background">
             <img
               src={dashboardPreview}
               alt="Qiyaf dashboard preview"
