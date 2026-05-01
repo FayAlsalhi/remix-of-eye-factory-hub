@@ -53,12 +53,17 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
       className="w-full"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
+      {/* Logo */}
+      <div className="mb-6 flex justify-center">
+        <img
+          src={qiyafLogo}
+          alt="Qiyaf"
+          className="h-20 md:h-24 w-auto object-contain"
+        />
+      </div>
+
       {/* Header */}
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] text-white/60 mb-3">
-          <span className="w-6 h-px bg-gradient-to-r from-[#11C5D9] to-[#FF9800]" />
-          {isRTL ? 'انضم إلينا' : 'Join Qiyaf'}
-        </div>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
           <span className="text-gradient-warm">{t.createAccount}</span>
         </h2>
