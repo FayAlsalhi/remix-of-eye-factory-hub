@@ -287,11 +287,6 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
           </div>
           <div className="mt-12 pt-6 border-t border-border/50 flex flex-wrap items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Qiyaf. All rights reserved.</p>
-            <div className="flex items-center gap-6 text-xs text-muted-foreground">
-              <a className="hover:text-foreground transition-colors cursor-pointer">Privacy</a>
-              <a className="hover:text-foreground transition-colors cursor-pointer">Terms</a>
-              <a className="hover:text-foreground transition-colors cursor-pointer">Security</a>
-            </div>
           </div>
         </div>
       </footer>
