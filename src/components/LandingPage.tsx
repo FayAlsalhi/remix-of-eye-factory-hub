@@ -274,22 +274,16 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
                 AI-powered solar panel inspection platform built for enterprise scale.
               </p>
             </div>
-            {[
-              { title: "Product", links: ["Features", "Solutions", "Pricing", "Demo"] },
-              { title: "Company", links: ["About", "Careers", "Press", "Contact"] },
-              { title: "Resources", links: ["Docs", "Blog", "Support", "Status"] },
-            ].map((col) => (
-              <div key={col.title}>
-                <h4 className="text-sm font-semibold mb-4">{col.title}</h4>
-                <ul className="space-y-2.5">
-                  {col.links.map((l) => (
-                    <li key={l}>
-                      <a className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">{l}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            <div className="md:col-span-3">
+              <h4 className="text-sm font-semibold mb-4">Navigation</h4>
+              <ul className="flex flex-wrap gap-x-8 gap-y-2.5">
+                {["Home", "Solution", "About", "Contact"].map((l) => (
+                  <li key={l}>
+                    <a className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">{l}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div className="mt-12 pt-6 border-t border-border/50 flex flex-wrap items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Qiyaf. All rights reserved.</p>
