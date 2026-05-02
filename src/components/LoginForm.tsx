@@ -43,15 +43,15 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
 
   return (
     <div className="w-full" dir={isRTL ? "rtl" : "ltr"}>
-      {/* 1. Logo — left aligned, large */}
+      {/* 1. Logo — left aligned */}
       <div className={`mb-5 flex ${isRTL ? "justify-end" : "justify-start"}`}>
-        <img src={qiyafLogo} alt="Qiyaf" className="h-48 md:h-56 w-auto object-contain -ml-2" />
+        <img src={qiyafLogo} alt="Qiyaf" className="h-24 md:h-28 w-auto object-contain -ml-2" />
       </div>
 
-      {/* 2. Welcome title — left aligned */}
-      <h1 className={`${isRTL ? "text-right" : "text-left"} text-3xl md:text-4xl font-bold tracking-tight leading-[1.1]`}>
-        <span className="text-white">{isRTL ? "مرحباً بعودتك إلى " : "Welcome back to "}</span>
-        <span className="text-gradient-orange">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
+      {/* 2. Welcome title — left aligned, two lines */}
+      <h1 className={`${isRTL ? "text-right" : "text-left"} text-3xl md:text-4xl font-bold tracking-tight leading-[1.15]`}>
+        <span className="block text-white">{isRTL ? "مرحباً بعودتك إلى" : "Welcome back to"}</span>
+        <span className="block text-gradient-orange">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
       </h1>
 
       {/* 3. Subtitle — left aligned */}

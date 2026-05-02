@@ -58,16 +58,15 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
         <img
           src={qiyafLogo}
           alt="Qiyaf"
-          className="h-48 md:h-56 w-auto object-contain -ml-2"
+          className="h-24 md:h-28 w-auto object-contain -ml-2"
         />
       </div>
 
       {/* Header */}
       <div className={`mb-8 ${isRTL ? 'text-right' : 'text-left'}`}>
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1]">
-          <span className="text-white">{isRTL ? "أنشئ حساب " : "Create your "}</span>
-          <span className="text-gradient-orange">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
-          <span className="text-white">{isRTL ? "" : " account"}</span>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.15]">
+          <span className="block text-white">{isRTL ? "أنشئ حسابك في" : "Create your account on"}</span>
+          <span className="block text-gradient-orange">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
         </h2>
         <p className="text-white/55 mt-2">{t.joinEyeFactory}</p>
       </div>
