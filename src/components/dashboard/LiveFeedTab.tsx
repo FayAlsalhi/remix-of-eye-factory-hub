@@ -279,6 +279,7 @@ const LiveFeedTab = () => {
             </div>
           </div>
         </div>
+      </div>
 
       {/* FILTER BAR + Real-time Alerts */}
       <div ref={alertsSectionRef} className="space-y-5 scroll-mt-6">
