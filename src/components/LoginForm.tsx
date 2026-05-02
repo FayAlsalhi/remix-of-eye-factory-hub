@@ -43,19 +43,19 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
 
   return (
     <div className="w-full" dir={isRTL ? "rtl" : "ltr"}>
-      {/* 1. Logo — centered, compact */}
-      <div className="mb-5 flex justify-center">
-        <img src={qiyafLogo} alt="Qiyaf" className="h-24 md:h-28 w-auto object-contain" />
+      {/* 1. Logo — left-aligned, large */}
+      <div className="mb-8 flex justify-start">
+        <img src={qiyafLogo} alt="Qiyaf" className="h-32 md:h-40 w-auto object-contain" />
       </div>
 
-      {/* 2. Welcome title — centered */}
-      <h1 className="text-center text-3xl md:text-4xl font-bold tracking-tight leading-[1.1]">
-        <span className="text-white">{isRTL ? "مرحباً بعودتك إلى " : "Welcome back to "}</span>
-        <span className="text-gradient-orange">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
+      {/* 2. Welcome title — left-aligned, two lines, thin weight */}
+      <h1 className="text-left text-3xl md:text-4xl font-light tracking-tight leading-[1.15]">
+        <span className="block text-white">{isRTL ? "مرحباً بعودتك إلى" : "Welcome back to"}</span>
+        <span className="block text-gradient-orange font-light">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
       </h1>
 
-      {/* 3. Subtitle — centered, two lines */}
-      <p className="mt-3 text-center text-sm text-[#B5B5B5] leading-relaxed">
+      {/* 3. Subtitle — left-aligned */}
+      <p className="mt-3 text-left text-sm text-[#B5B5B5] leading-relaxed font-light">
         {isRTL
           ? "سجّل الدخول لمتابعة مراقبة محطاتك الشمسية والوصول إلى رؤى الذكاء الاصطناعي."
           : "Sign in to continue monitoring your solar assets and accessing real-time AI insights."}
