@@ -284,33 +284,31 @@ const LiveFeedTab = () => {
 
       {/* FILTER BAR + Real-time Alerts */}
       <div ref={alertsSectionRef} className="space-y-5 scroll-mt-6">
-        <div className={`${cardBase} px-6 py-4 flex items-center justify-between flex-wrap gap-3`}>
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#1DEBFF]/10 border border-[#1DEBFF]/20">
-              <Filter className="w-4 h-4 text-[#1DEBFF]" />
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-wider text-white/40">Filter by Defect Type</p>
-              <p className="text-sm font-semibold text-white flex items-center gap-1.5">
-                {currentFilterLabel}
-                <ChevronDown className="w-3.5 h-3.5 text-white/40" />
-              </p>
-            </div>
+        <div className="flex items-center justify-between gap-3 flex-wrap px-1">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#FF5B5B] animate-pulse shadow-[0_0_8px_rgba(255,91,91,0.8)]" />
+            <h2 className="text-base font-semibold text-white tracking-wide">{t.realTimeAlerts}</h2>
           </div>
-          {filterType && (
-            <button
-              onClick={() => setFilterType(null)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white/85 transition-colors"
-            >
-              <X className="w-3.5 h-3.5" />
-              Clear Filter
-            </button>
-          )}
-        </div>
-
-        <div className="flex items-center gap-2 px-1">
-          <span className="w-2 h-2 rounded-full bg-[#FF5B5B] animate-pulse shadow-[0_0_8px_rgba(255,91,91,0.8)]" />
-          <h2 className="text-base font-semibold text-white tracking-wide">{t.realTimeAlerts}</h2>
+          <Select
+            value={filterType ?? 'all'}
+            onValueChange={(v) => setFilterType(v === 'all' ? null : v)}
+          >
+            <SelectTrigger className="w-[220px] h-10 rounded-xl border border-[rgba(120,150,180,0.18)] bg-[linear-gradient(180deg,#0D1521_0%,#080E17_100%)] text-white/85 text-sm focus:ring-0 focus:ring-offset-0 hover:border-[#1DEBFF]/30">
+              <div className="flex items-center gap-2">
+                <Filter className="w-3.5 h-3.5 text-[#1DEBFF]" />
+                <SelectValue placeholder="Filter by Defect Type" />
+              </div>
+            </SelectTrigger>
+            <SelectContent className="bg-[#0B111C] border border-[rgba(120,150,180,0.18)] text-white/85">
+              <SelectItem value="all">All Defect Types</SelectItem>
+              <SelectItem value="cracks">Crack</SelectItem>
+              <SelectItem value="snowCoverage">Snow</SelectItem>
+              <SelectItem value="dust">Dust</SelectItem>
+              <SelectItem value="birdDroppings">Bird Droppings</SelectItem>
+              <SelectItem value="clean">Clean</SelectItem>
+              <SelectItem value="others">Others</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {filteredAlerts.length === 0 ? (
