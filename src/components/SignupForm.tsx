@@ -54,16 +54,16 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       {/* Logo */}
-      <div className="mb-6 flex justify-center">
+      <div className={`mb-6 flex ${isRTL ? 'justify-end' : 'justify-start'}`}>
         <img
           src={qiyafLogo}
           alt="Qiyaf"
-          className="h-24 md:h-28 w-auto object-contain"
+          className="h-48 md:h-56 w-auto object-contain -ml-2"
         />
       </div>
 
       {/* Header */}
-      <div className="mb-8 text-center">
+      <div className={`mb-8 ${isRTL ? 'text-right' : 'text-left'}`}>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1]">
           <span className="text-white">{isRTL ? "أنشئ حساب " : "Create your "}</span>
           <span className="text-gradient-orange">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
