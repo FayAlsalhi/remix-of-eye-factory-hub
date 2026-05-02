@@ -58,14 +58,16 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
         <img
           src={qiyafLogo}
           alt="Qiyaf"
-          className="h-72 md:h-80 w-auto object-contain"
+          className="h-24 md:h-28 w-auto object-contain"
         />
       </div>
 
       {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-          <span className="text-gradient-warm">{t.createAccount}</span>
+      <div className="mb-8 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1]">
+          <span className="text-white">{isRTL ? "أنشئ حساب " : "Create your "}</span>
+          <span className="text-gradient-orange">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
+          <span className="text-white">{isRTL ? "" : " account"}</span>
         </h2>
         <p className="text-white/55 mt-2">{t.joinEyeFactory}</p>
       </div>
@@ -122,11 +124,14 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
           <p className="text-red-400 text-sm text-center">{error}</p>
         )}
 
-        {/* Forgot Password Link */}
+        {/* Forgot Password Link (disabled, matches login color) */}
         <div className={`flex ${isRTL ? 'justify-start' : 'justify-end'}`}>
           <button
             type="button"
-            className="text-sm text-white/60 hover:text-white transition-colors"
+            disabled
+            aria-disabled="true"
+            onClick={(e) => e.preventDefault()}
+            className="text-sm text-[#11C5D9] opacity-60 cursor-not-allowed pointer-events-none"
           >
             {t.forgotPassword}
           </button>
@@ -136,7 +141,7 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
           type="submit"
           className="btn-qiyaf-gradient relative overflow-hidden w-full h-[58px] rounded-xl font-semibold text-white text-base tracking-wide"
         >
-          {t.signUp}
+          {isRTL ? "إنشاء حساب جديد" : "Create New Account"}
         </button>
       </form>
 
