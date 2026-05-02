@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Mail, Lock, Eye, EyeOff, KeyRound } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import qiyafLogo from "@/assets/qiyaf-logo-new.png";
 
 interface LoginFormProps {
@@ -39,20 +39,19 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
   };
 
   const handleGoogle = () => window.open("https://accounts.google.com", "_blank");
-  const handleMicrosoft = () => window.open("https://login.microsoftonline.com", "_blank");
-  const handleSSO = () => window.open("https://accounts.google.com", "_blank");
+  const handleFacebook = () => window.open("https://www.facebook.com/login", "_blank");
 
   return (
     <div className="w-full" dir={isRTL ? "rtl" : "ltr"}>
       {/* 1. Logo — centered, compact */}
       <div className="mb-5 flex justify-center">
-        <img src={qiyafLogo} alt="Qiyaf" className="h-72 md:h-80 w-auto object-contain" />
+        <img src={qiyafLogo} alt="Qiyaf" className="h-24 md:h-28 w-auto object-contain" />
       </div>
 
       {/* 2. Welcome title — centered */}
       <h1 className="text-center text-3xl md:text-4xl font-bold tracking-tight leading-[1.1]">
-        <span className="text-white">{isRTL ? "مرحباً" : "Welcome"}</span>{" "}
-        <span className="text-gradient-orange">{isRTL ? "بعودتك!" : "back!"}</span>
+        <span className="text-white">{isRTL ? "مرحباً بعودتك إلى " : "Welcome back to "}</span>
+        <span className="text-gradient-orange">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
       </h1>
 
       {/* 3. Subtitle — centered, two lines */}
@@ -110,12 +109,14 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
 
         {error && <p className="text-red-400 text-sm text-center">{error}</p>}
 
-        {/* 6. Forgot password */}
+        {/* 6. Forgot password (disabled) */}
         <div className={`flex ${isRTL ? "justify-start" : "justify-end"}`}>
           <button
             type="button"
-            onClick={onForgotPassword}
-            className="text-sm text-[#11C5D9] hover:text-[#5fdfee] transition-colors"
+            disabled
+            aria-disabled="true"
+            onClick={(e) => e.preventDefault()}
+            className="text-sm text-[#11C5D9] opacity-60 cursor-not-allowed pointer-events-none"
           >
             {t.forgotPassword}
           </button>
@@ -141,8 +142,8 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
           </div>
         </div>
 
-        {/* 9. Three social buttons */}
-        <div className="grid grid-cols-3 gap-3 mt-5">
+        {/* 9. Social buttons: Google + Facebook */}
+        <div className="grid grid-cols-2 gap-3 mt-5">
           <button
             type="button"
             onClick={handleGoogle}
@@ -166,28 +167,17 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
                 d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
               />
             </svg>
-            <span className="hidden sm:inline">Google</span>
+            <span>Google</span>
           </button>
           <button
             type="button"
-            onClick={handleMicrosoft}
+            onClick={handleFacebook}
             className="h-12 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 transition-all flex items-center justify-center gap-2 text-white/85 text-sm font-medium backdrop-blur-sm"
           >
-            <svg className="w-5 h-5" viewBox="0 0 24 24">
-              <path fill="#F25022" d="M1 1h10v10H1z" />
-              <path fill="#7FBA00" d="M13 1h10v10H13z" />
-              <path fill="#00A4EF" d="M1 13h10v10H1z" />
-              <path fill="#FFB900" d="M13 13h10v10H13z" />
+            <svg className="w-5 h-5" fill="#1877F2" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
             </svg>
-            <span className="hidden sm:inline">Microsoft</span>
-          </button>
-          <button
-            type="button"
-            onClick={handleSSO}
-            className="h-12 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 transition-all flex items-center justify-center gap-2 text-white/85 text-sm font-medium backdrop-blur-sm"
-          >
-            <KeyRound className="w-5 h-5 text-white/70" />
-            <span className="hidden sm:inline">SSO</span>
+            <span>Facebook</span>
           </button>
         </div>
       </div>
