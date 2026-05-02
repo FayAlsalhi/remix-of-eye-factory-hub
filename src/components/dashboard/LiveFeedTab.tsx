@@ -183,8 +183,9 @@ const LiveFeedTab = () => {
 
         {/* RIGHT COLUMN — Camera Online → Detection Summary → AI Assistant */}
         <div className="space-y-[18px] flex flex-col">
-          {/* Camera Online card */}
+          {/* Combined: Camera Online + Detection Summary in one card */}
           <div className={`${cardBase} p-7`}>
+            {/* Camera Online section */}
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2.5">
                 <div className="relative">
@@ -210,10 +211,11 @@ const LiveFeedTab = () => {
                 <p className="text-2xl font-semibold text-white mt-1 leading-none">2h 34m</p>
               </div>
             </div>
-          </div>
 
-          {/* Detection Summary card — single horizontal row */}
-          <div className={`${cardBase} p-6`}>
+            {/* Divider */}
+            <div className="my-6 h-px bg-[rgba(120,150,180,0.12)]" />
+
+            {/* Detection Summary section */}
             <div className="flex items-center gap-2.5 mb-4">
               <div className="w-7 h-7 rounded-lg flex items-center justify-center border border-[#1DEBFF]/30 bg-[#1DEBFF]/[0.06]">
                 <Filter className="w-3.5 h-3.5 text-[#1DEBFF]" />
