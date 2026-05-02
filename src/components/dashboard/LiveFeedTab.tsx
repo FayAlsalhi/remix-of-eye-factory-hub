@@ -1,11 +1,15 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { AlertTriangle, CheckCircle, Video, Clock, Filter, X, Sparkles, FileText, Brain, Zap, MessageSquare } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Video, Clock, Filter, X, Sparkles, FileText, MessageSquare, ChevronDown } from 'lucide-react';
 import solarDusty from '@/assets/solar-panel-dusty.jpg';
 import solarCracked from '@/assets/solar-panel-cracked.jpg';
 import solarClean from '@/assets/solar-panel-clean.jpg';
 import solarSnow from '@/assets/solar-panel-snow.jpg';
 import solarBirdDroppings from '@/assets/solar-panel-bird-droppings.jpg';
+
+// Premium card styles — reusable
+const cardBase =
+  'relative rounded-[22px] border border-[rgba(120,150,180,0.14)] bg-[linear-gradient(180deg,#0D1521_0%,#080E17_100%)] shadow-[0_18px_45px_rgba(0,0,0,0.35),0_0_60px_rgba(0,180,255,0.04)]';
 
 const LiveFeedTab = () => {
   const { t } = useLanguage();
@@ -20,8 +24,9 @@ const LiveFeedTab = () => {
       healthScore: 35,
       label: t.cracks,
       description: 'Visible surface cracks or fractures detected on the panel glass.',
-      color: 'bg-red-500/20 text-red-400 border-red-500/30',
-      boxColor: 'border-red-500',
+      tagBg: 'bg-[#FF5B5B]/12 text-[#FF5B5B] border-[#FF5B5B]/30',
+      boxColor: 'border-[#FF5B5B]',
+      glow: 'shadow-[0_0_18px_rgba(255,91,91,0.35)]',
       isDefective: true,
       boxPosition: { top: '35%', left: '30%', width: '40%', height: '30%' },
     },
@@ -33,8 +38,9 @@ const LiveFeedTab = () => {
       healthScore: 40,
       label: t.snowCoverage,
       description: 'Accumulation of snow on the panel surface blocking sunlight.',
-      color: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-      boxColor: 'border-blue-500',
+      tagBg: 'bg-[#1DEBFF]/10 text-[#1DEBFF] border-[#1DEBFF]/30',
+      boxColor: 'border-[#1DEBFF]',
+      glow: 'shadow-[0_0_18px_rgba(29,235,255,0.3)]',
       isDefective: true,
       boxPosition: { top: '60%', left: '20%', width: '60%', height: '30%' },
     },
@@ -46,8 +52,9 @@ const LiveFeedTab = () => {
       healthScore: 60,
       label: t.birdDroppings,
       description: 'Bird droppings on the panel surface reducing light absorption.',
-      color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-      boxColor: 'border-yellow-500',
+      tagBg: 'bg-[#F7B52C]/12 text-[#F7B52C] border-[#F7B52C]/30',
+      boxColor: 'border-[#F7B52C]',
+      glow: 'shadow-[0_0_18px_rgba(247,181,44,0.3)]',
       isDefective: true,
       boxPosition: { top: '35%', left: '35%', width: '35%', height: '35%' },
     },
@@ -59,8 +66,9 @@ const LiveFeedTab = () => {
       healthScore: 72,
       label: t.dust,
       description: 'Dust accumulation on the panel surface reducing efficiency.',
-      color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-      boxColor: 'border-yellow-500',
+      tagBg: 'bg-[#F7B52C]/12 text-[#F7B52C] border-[#F7B52C]/30',
+      boxColor: 'border-[#F7B52C]',
+      glow: 'shadow-[0_0_18px_rgba(247,181,44,0.3)]',
       isDefective: true,
       boxPosition: { top: '20%', left: '25%', width: '50%', height: '40%' },
     },
@@ -72,19 +80,20 @@ const LiveFeedTab = () => {
       healthScore: 98,
       label: t.clean,
       description: 'Panel surface is clean and in optimal condition.',
-      color: 'bg-green-500/20 text-green-400 border-green-500/30',
-      boxColor: 'border-green-500',
+      tagBg: 'bg-[#2CE5A7]/12 text-[#2CE5A7] border-[#2CE5A7]/30',
+      boxColor: 'border-[#2CE5A7]',
+      glow: 'shadow-[0_0_18px_rgba(44,229,167,0.3)]',
       isDefective: false,
       boxPosition: null,
     },
   ];
 
   const detectionTypes = [
-    { key: 'cracks', label: 'Cracks', dot: 'bg-red-500' },
-    { key: 'snowCoverage', label: 'Snow', dot: 'bg-blue-400' },
-    { key: 'dust', label: 'Dust', dot: 'bg-yellow-400' },
-    { key: 'birdDroppings', label: 'Bird Droppings', dot: 'bg-amber-500' },
-    { key: 'clean', label: 'Clean', dot: 'bg-emerald-400' },
+    { key: 'cracks', label: 'Cracks', dot: 'bg-[#FF5B5B] shadow-[0_0_8px_rgba(255,91,91,0.7)]' },
+    { key: 'snowCoverage', label: 'Snow', dot: 'bg-[#1DEBFF] shadow-[0_0_8px_rgba(29,235,255,0.7)]' },
+    { key: 'dust', label: 'Dust', dot: 'bg-[#F7B52C] shadow-[0_0_8px_rgba(247,181,44,0.7)]' },
+    { key: 'birdDroppings', label: 'Bird Droppings', dot: 'bg-[#D4A857] shadow-[0_0_8px_rgba(212,168,87,0.7)]' },
+    { key: 'clean', label: 'Clean', dot: 'bg-[#2CE5A7] shadow-[0_0_8px_rgba(44,229,167,0.7)]' },
   ];
 
   const [selectedAlert, setSelectedAlert] = useState(alerts[0]);
@@ -115,172 +124,167 @@ const LiveFeedTab = () => {
     : 'All types';
 
   return (
-    <div className="space-y-6">
-      {/* Top: Image preview + Detection Summary */}
+    <div
+      className="space-y-8 p-1 -m-1"
+      style={{
+        // Subtle ambient background — radial vignette + soft cyan bloom
+        backgroundImage:
+          'radial-gradient(1200px 600px at 12% -10%, rgba(0,180,255,0.06), transparent 60%), radial-gradient(900px 500px at 95% 110%, rgba(29,235,255,0.04), transparent 60%), radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.45) 100%)',
+      }}
+    >
+      {/* Top: Image preview + Right column */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Selected Image Preview */}
+        {/* LIVE CAMERA PANEL */}
         <div className="lg:col-span-2">
-          <div className="bg-card border border-border rounded-2xl overflow-hidden backdrop-blur-sm">
-            <div className="relative">
+          <div className={`${cardBase} overflow-hidden`}>
+            {/* Header strip */}
+            <div className="flex items-center justify-between px-7 pt-5 pb-3">
+              <div className="flex items-center gap-2.5">
+                <Video className="w-4 h-4 text-[#1DEBFF]" />
+                <h3 className="text-sm font-semibold text-white tracking-wide">Live Camera Feed</h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-1 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-[#FF5B5B]/12 text-[#FF5B5B] border border-[#FF5B5B]/30">
+                  {selectedAlert.isDefective ? 'Defective Panel' : 'Passed Panel'}
+                </span>
+                <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-[#2CE5A7]/10 text-[#2CE5A7] border border-[#2CE5A7]/25">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2CE5A7] animate-pulse shadow-[0_0_6px_rgba(44,229,167,0.9)]" />
+                  Live
+                </span>
+              </div>
+            </div>
+
+            {/* Image with cinematic darken */}
+            <div className="relative mx-5 rounded-[18px] overflow-hidden border border-[rgba(29,235,255,0.10)] shadow-[inset_0_0_60px_rgba(0,0,0,0.55)]">
               <img
                 src={selectedAlert.image}
                 alt={`Solar Panel ${selectedAlert.id}`}
-                className="w-full h-72 object-cover"
+                className="w-full h-80 object-cover"
+                style={{ filter: 'brightness(0.78) contrast(1.08) saturate(0.95)' }}
               />
+              {/* vignette overlay */}
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.55)_100%)]" />
+
               {selectedAlert.isDefective && selectedAlert.boxPosition && (
                 <div
-                  className={`absolute border-3 ${selectedAlert.boxColor} rounded pointer-events-none`}
+                  className={`absolute ${selectedAlert.boxColor} ${selectedAlert.glow} rounded-md pointer-events-none`}
                   style={{
                     top: selectedAlert.boxPosition.top,
                     left: selectedAlert.boxPosition.left,
                     width: selectedAlert.boxPosition.width,
                     height: selectedAlert.boxPosition.height,
-                    borderWidth: '3px',
-                    boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+                    borderWidth: '2px',
                   }}
                 >
-                  <div className={`absolute -top-5 left-0 px-2 py-0.5 text-xs font-bold rounded ${selectedAlert.color}`}>
+                  <div className={`absolute -top-6 left-0 px-2 py-0.5 text-[10px] font-bold rounded ${selectedAlert.tagBg} border`}>
                     {selectedAlert.label}
                   </div>
                 </div>
               )}
-              <div
-                className={`absolute top-2 right-2 px-3 py-1 rounded-full text-sm font-medium ${
-                  selectedAlert.isDefective ? 'bg-red-500/90 text-white' : 'bg-green-500/90 text-white'
-                }`}
-              >
-                {selectedAlert.isDefective ? t.defectivePanel : t.passedPanel}
+
+              <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-medium bg-black/55 text-white/85 border border-white/10 backdrop-blur-sm">
+                Camera: Front · RGB
               </div>
             </div>
 
-            <div className="p-4">
-              <p className="text-sm text-muted-foreground mb-4">{selectedAlert.description}</p>
-              <div className="grid grid-cols-4 gap-4 text-center">
-                <div className="bg-secondary/50 rounded-lg p-3">
-                  <p className="text-xs text-muted-foreground">{t.serialNumber}</p>
-                  <p className="font-semibold text-foreground">{selectedAlert.id}</p>
-                </div>
-                <div className="bg-secondary/50 rounded-lg p-3">
-                  <p className="text-xs text-muted-foreground">{t.inspectionTime}</p>
-                  <p className="font-semibold text-foreground">{selectedAlert.time}</p>
-                </div>
-                <div className="bg-secondary/50 rounded-lg p-3">
-                  <p className="text-xs text-muted-foreground">{t.healthScore}</p>
-                  <p
-                    className={`font-semibold ${
+            {/* Description + Detection summary stat row */}
+            <div className="p-7 pt-5">
+              <p className="text-[13px] text-white/55 mb-5 leading-relaxed">{selectedAlert.description}</p>
+              <div className="grid grid-cols-4 gap-3">
+                {[
+                  { label: t.serialNumber, value: selectedAlert.id, color: 'text-white' },
+                  { label: t.inspectionTime, value: selectedAlert.time, color: 'text-white' },
+                  {
+                    label: t.healthScore,
+                    value: `${selectedAlert.healthScore}%`,
+                    color:
                       selectedAlert.healthScore > 70
-                        ? 'text-green-400'
+                        ? 'text-[#2CE5A7]'
                         : selectedAlert.healthScore > 50
-                        ? 'text-yellow-400'
-                        : 'text-red-400'
-                    }`}
+                        ? 'text-[#F7B52C]'
+                        : 'text-[#FF5B5B]',
+                  },
+                  {
+                    label: t.defectiveType,
+                    value: selectedAlert.label,
+                    color: selectedAlert.isDefective ? 'text-[#FF5B5B]' : 'text-[#2CE5A7]',
+                  },
+                ].map((s) => (
+                  <div
+                    key={s.label}
+                    className="rounded-xl border border-[rgba(120,150,180,0.10)] bg-[#0B111C]/70 px-3 py-3 text-center"
                   >
-                    {selectedAlert.healthScore}%
-                  </p>
-                </div>
-                <div className="bg-secondary/50 rounded-lg p-3">
-                  <p className="text-xs text-muted-foreground">{t.defectiveType}</p>
-                  <p className="font-semibold text-foreground">{selectedAlert.label}</p>
-                </div>
+                    <p className="text-[10px] uppercase tracking-wider text-white/40 mb-1">{s.label}</p>
+                    <p className={`text-sm font-semibold ${s.color}`}>{s.value}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right column: Detection Summary (with embedded AI Copilot) */}
-        <div className="space-y-6">
-        {/* Detection Summary */}
-        <div className="bg-gradient-to-br from-card to-card/60 border border-border rounded-2xl p-5 backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)]">
-          {/* Camera status header */}
-          <div className="space-y-3 pb-4 border-b border-border/60">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+        {/* RIGHT COLUMN — Camera status + Qiya AI Insight + Detection Summary */}
+        <div className="space-y-5 flex flex-col">
+          {/* Camera Online card */}
+          <div className={`${cardBase} p-7`}>
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-2.5">
                 <div className="relative">
-                  <Video className="w-4 h-4 text-cyan-400" />
-                  <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-green-500 ring-2 ring-card animate-pulse" />
+                  <Video className="w-4 h-4 text-[#1DEBFF]" />
+                  <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#2CE5A7] ring-2 ring-[#0B111C] animate-pulse" />
                 </div>
-                <span className="text-sm font-semibold text-foreground">Camera Online</span>
+                <span className="text-sm font-semibold text-white">Camera Online</span>
               </div>
-              <span className="text-[10px] uppercase tracking-wider text-green-400 font-medium">Live</span>
+              <span className="text-[10px] uppercase tracking-wider text-[#2CE5A7] font-semibold">Live</span>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-secondary/40 rounded-lg p-2.5">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Active</p>
-                <p className="text-sm font-semibold text-foreground mt-0.5">
-                  28 <span className="text-muted-foreground font-normal">/ 32</span>
+              <div className="rounded-xl border border-[rgba(120,150,180,0.10)] bg-[#0B111C]/70 px-4 py-3">
+                <p className="text-[10px] uppercase tracking-wider text-white/40">Active</p>
+                <p className="text-2xl font-semibold text-white mt-1 leading-none">
+                  28 <span className="text-sm text-white/40 font-normal">/ 32</span>
                 </p>
               </div>
-              <div className="bg-secondary/40 rounded-lg p-2.5">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+              <div className="rounded-xl border border-[rgba(120,150,180,0.10)] bg-[#0B111C]/70 px-4 py-3">
+                <p className="text-[10px] uppercase tracking-wider text-white/40 flex items-center gap-1">
                   <Clock className="w-3 h-3" /> Uptime
                 </p>
-                <p className="text-sm font-semibold text-foreground mt-0.5">2h 34m</p>
+                <p className="text-2xl font-semibold text-white mt-1 leading-none">2h 34m</p>
               </div>
             </div>
           </div>
 
-          {/* AI Copilot — embedded smart strip */}
-          <div className="relative mt-4 overflow-hidden rounded-xl p-[1px] bg-[linear-gradient(120deg,#39DDFD_0%,#6EE7B7_50%,#F6C453_100%)]/60">
-            <div
-              className="absolute inset-0 opacity-40 pointer-events-none"
-              style={{
-                background:
-                  'linear-gradient(120deg, rgba(57,221,253,0.18) 0%, rgba(110,231,183,0.14) 50%, rgba(246,196,83,0.18) 100%)',
-              }}
-            />
-            <div className="relative rounded-[11px] bg-gradient-to-br from-[#0a1620] via-card to-[#0a1410] backdrop-blur-sm px-3 py-2.5">
-              {/* glass reflection */}
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-[11px] bg-gradient-to-b from-white/[0.06] to-transparent" />
-
-              <div className="relative flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2 min-w-0">
-                  <div className="relative shrink-0">
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-[linear-gradient(135deg,rgba(57,221,253,0.25),rgba(110,231,183,0.2),rgba(246,196,83,0.25))] border border-white/10 shadow-[0_0_12px_rgba(110,231,183,0.25)]">
-                      <Sparkles className="w-3.5 h-3.5 text-[#6EE7B7]" />
-                    </div>
-                    <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#39DDFD] animate-pulse shadow-[0_0_6px_rgba(57,221,253,0.9)]" />
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="text-[12px] font-semibold leading-tight bg-[linear-gradient(90deg,#39DDFD,#6EE7B7,#F6C453)] bg-clip-text text-transparent">
-                      AI Copilot
-                    </h4>
-                    <p className="text-[9.5px] text-muted-foreground/80 leading-tight truncate">
-                      Smart analysis & instant reporting
-                    </p>
-                  </div>
-                </div>
-                <span className="text-[8.5px] uppercase tracking-wider font-medium px-1.5 py-0.5 rounded border border-white/10 bg-white/[0.03] text-[#6EE7B7]">
-                  AI
-                </span>
+          {/* Qiya AI Insight card */}
+          <div className={`${cardBase} p-7`}>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-[linear-gradient(135deg,rgba(29,235,255,0.18),rgba(44,229,167,0.16),rgba(247,181,44,0.18))] border border-white/10 shadow-[0_0_18px_rgba(29,235,255,0.18)]">
+                <Sparkles className="w-4 h-4 text-[#1DEBFF]" />
               </div>
-
-              {/* Quick actions row */}
-              <div className="relative grid grid-cols-4 gap-1.5 mt-2.5">
-                {[
-                  { icon: FileText, label: 'Report', tone: '#39DDFD' },
-                  { icon: Brain, label: 'Summary', tone: '#6EE7B7' },
-                  { icon: Zap, label: 'Analyze', tone: '#F6C453' },
-                ].map(({ icon: Icon, label, tone }) => (
-                  <button
-                    key={label}
-                    className="group/btn flex flex-col items-center justify-center gap-0.5 py-1.5 rounded-md bg-white/[0.025] border border-white/[0.06] hover:border-white/20 hover:bg-white/[0.05] transition-all"
-                  >
-                    <Icon className="w-3 h-3 transition-colors" style={{ color: tone }} />
-                    <span className="text-[9px] text-foreground/80 font-medium leading-none">{label}</span>
-                  </button>
-                ))}
-                <button className="group/ask relative flex items-center justify-center gap-1 py-1.5 rounded-md text-[10px] font-semibold text-[#06141c] bg-[linear-gradient(90deg,#39DDFD,#6EE7B7,#F6C453)] shadow-[0_0_14px_rgba(110,231,183,0.35)] hover:shadow-[0_0_22px_rgba(110,231,183,0.55)] hover:brightness-110 transition-all">
-                  <MessageSquare className="w-3 h-3" />
-                  Ask AI
-                </button>
+              <div>
+                <h4 className="text-sm font-semibold bg-[linear-gradient(90deg,#1DEBFF,#2CE5A7,#F7B52C)] bg-clip-text text-transparent leading-tight">
+                  Qiya AI Insight
+                </h4>
+                <p className="text-[11px] text-white/50 leading-tight mt-0.5">
+                  Smart reporting and solar defect analysis
+                </p>
               </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2.5">
+              <button className="flex items-center justify-center gap-2 h-11 rounded-[14px] border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-[#1DEBFF]/30 transition-all text-sm font-medium text-white/85">
+                <FileText className="w-4 h-4" />
+                Report
+              </button>
+              <button className="flex items-center justify-center gap-2 h-11 rounded-[14px] text-sm font-semibold text-[#06141c] bg-[linear-gradient(90deg,#1DEBFF_0%,#2CE5A7_50%,#F7B52C_100%)] shadow-[0_0_22px_rgba(29,235,255,0.35)] hover:shadow-[0_0_30px_rgba(44,229,167,0.5)] hover:brightness-110 transition-all">
+                <MessageSquare className="w-4 h-4" />
+                Ask AI
+              </button>
             </div>
           </div>
 
           {/* Detection Summary list */}
-          <div className="pt-4">
-            <h3 className="text-sm font-semibold text-foreground mb-3">Detection Summary</h3>
+          <div className={`${cardBase} p-7 flex-1`}>
+            <h3 className="text-sm font-semibold text-white mb-4">Detection Summary</h3>
             <div className="space-y-2">
               {detectionTypes.map((dt) => {
                 const active = filterType === dt.key;
@@ -288,17 +292,17 @@ const LiveFeedTab = () => {
                   <button
                     key={dt.key}
                     onClick={() => handleTypeClick(dt.key)}
-                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg border transition-all text-left group ${
+                    className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all text-left group ${
                       active
-                        ? 'border-cyan-500/50 bg-cyan-500/10'
-                        : 'border-border/60 bg-secondary/30 hover:border-cyan-500/40 hover:bg-secondary/60'
+                        ? 'border-[#1DEBFF]/50 bg-[#1DEBFF]/[0.06] shadow-[0_0_18px_rgba(29,235,255,0.15)]'
+                        : 'border-[rgba(120,150,180,0.10)] bg-[#0B111C]/70 hover:border-[#1DEBFF]/35 hover:bg-[#1DEBFF]/[0.04]'
                     }`}
                   >
-                    <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-3">
                       <span className={`w-2 h-2 rounded-full ${dt.dot}`} />
-                      <span className="text-sm text-foreground">{dt.label}</span>
+                      <span className="text-sm text-white/85">{dt.label}</span>
                     </div>
-                    <span className="text-xs font-medium text-muted-foreground group-hover:text-cyan-400">
+                    <span className="text-xs font-semibold text-white/50 group-hover:text-[#1DEBFF] tabular-nums">
                       {typeCounts[dt.key]}
                     </span>
                   </button>
@@ -307,65 +311,76 @@ const LiveFeedTab = () => {
             </div>
           </div>
         </div>
-        </div>
       </div>
 
-      {/* Real-time Alerts section */}
-      <div ref={alertsSectionRef} className="space-y-4 scroll-mt-6">
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <h2 className="text-xl font-semibold text-foreground">{t.realTimeAlerts}</h2>
+      {/* FILTER BAR + Real-time Alerts */}
+      <div ref={alertsSectionRef} className="space-y-5 scroll-mt-6">
+        <div className={`${cardBase} px-6 py-4 flex items-center justify-between flex-wrap gap-3`}>
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Filter className="w-4 h-4 text-cyan-400" />
-              <span>
-                Showing alerts for:{' '}
-                <span className="text-foreground font-medium">{currentFilterLabel}</span>
-              </span>
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#1DEBFF]/10 border border-[#1DEBFF]/20">
+              <Filter className="w-4 h-4 text-[#1DEBFF]" />
             </div>
-            {filterType && (
-              <button
-                onClick={() => setFilterType(null)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium bg-secondary/60 hover:bg-secondary border border-border text-foreground transition-colors"
-              >
-                <X className="w-3.5 h-3.5" />
-                Clear Filter
-              </button>
-            )}
+            <div>
+              <p className="text-[10px] uppercase tracking-wider text-white/40">Filter by Defect Type</p>
+              <p className="text-sm font-semibold text-white flex items-center gap-1.5">
+                {currentFilterLabel}
+                <ChevronDown className="w-3.5 h-3.5 text-white/40" />
+              </p>
+            </div>
           </div>
+          {filterType && (
+            <button
+              onClick={() => setFilterType(null)}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white/85 transition-colors"
+            >
+              <X className="w-3.5 h-3.5" />
+              Clear Filter
+            </button>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2 px-1">
+          <span className="w-2 h-2 rounded-full bg-[#FF5B5B] animate-pulse shadow-[0_0_8px_rgba(255,91,91,0.8)]" />
+          <h2 className="text-base font-semibold text-white tracking-wide">{t.realTimeAlerts}</h2>
         </div>
 
         {filteredAlerts.length === 0 ? (
-          <div className="bg-card border border-border rounded-2xl p-8 text-center text-muted-foreground">
+          <div className={`${cardBase} p-10 text-center text-white/50`}>
             No alerts found for this category.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {filteredAlerts.map((alert) => (
-              <div
-                key={alert.id}
-                onClick={() => setSelectedAlert(alert)}
-                className={`bg-card border rounded-xl p-4 cursor-pointer transition-all hover:border-primary ${
-                  selectedAlert.id === alert.id ? 'border-primary' : 'border-border'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg ${alert.color}`}>
-                    {alert.isDefective ? (
-                      <AlertTriangle className="w-5 h-5" />
-                    ) : (
-                      <CheckCircle className="w-5 h-5" />
-                    )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filteredAlerts.map((alert) => {
+              const isSelected = selectedAlert.id === alert.id;
+              return (
+                <div
+                  key={alert.id}
+                  onClick={() => setSelectedAlert(alert)}
+                  className={`${cardBase} p-4 cursor-pointer transition-all hover:-translate-y-0.5 ${
+                    isSelected
+                      ? 'border-[#1DEBFF]/40 shadow-[0_18px_45px_rgba(0,0,0,0.35),0_0_30px_rgba(29,235,255,0.18)]'
+                      : 'hover:border-[#1DEBFF]/25'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`p-2 rounded-lg border ${alert.tagBg}`}>
+                      {alert.isDefective ? (
+                        <AlertTriangle className="w-4 h-4" />
+                      ) : (
+                        <CheckCircle className="w-4 h-4" />
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-white">{alert.id}</p>
+                      <p className="text-[11px] text-white/45">{alert.time}</p>
+                    </div>
+                    <span className={`px-2.5 py-1 rounded-md text-[10px] font-semibold border ${alert.tagBg} whitespace-nowrap`}>
+                      {alert.label}
+                    </span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground">{alert.id}</p>
-                    <p className="text-xs text-muted-foreground">{alert.time}</p>
-                  </div>
-                  <span className={`px-2 py-1 rounded text-xs border ${alert.color} whitespace-nowrap`}>
-                    {alert.label}
-                  </span>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
