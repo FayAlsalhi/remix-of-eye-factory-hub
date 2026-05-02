@@ -190,7 +190,7 @@ const LiveFeedTab = () => {
           </div>
         </div>
 
-        {/* RIGHT COLUMN — Camera status + Qiya AI Insight + Detection Summary */}
+        {/* RIGHT COLUMN — Camera Online → Detection Summary → AI Assistant */}
         <div className="space-y-5 flex flex-col">
           {/* Camera Online card */}
           <div className={`${cardBase} p-7`}>
@@ -221,18 +221,48 @@ const LiveFeedTab = () => {
             </div>
           </div>
 
-          {/* Qiya AI Insight card */}
-          <div className={`${cardBase} p-7`}>
+          {/* Detection Summary card — single horizontal row */}
+          <div className={`${cardBase} p-6`}>
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center border border-[#1DEBFF]/30 bg-[#1DEBFF]/[0.06]">
+                <Filter className="w-3.5 h-3.5 text-[#1DEBFF]" />
+              </div>
+              <h3 className="text-sm font-semibold text-white">Detection Summary</h3>
+            </div>
+
+            <div className="grid grid-cols-4 divide-x divide-[rgba(120,150,180,0.12)] rounded-xl border border-[rgba(120,150,180,0.10)] bg-[#0B111C]/70">
+              {[
+                { label: t.serialNumber, value: selectedAlert.id, color: 'text-white' },
+                { label: t.inspectionTime, value: selectedAlert.time, color: 'text-white' },
+                {
+                  label: t.healthScore,
+                  value: `${selectedAlert.healthScore}%`,
+                  color: 'text-[#FF5B5B]',
+                },
+                {
+                  label: t.defectiveType,
+                  value: selectedAlert.label,
+                  color: selectedAlert.isDefective ? 'text-[#FF5B5B]' : 'text-[#2CE5A7]',
+                },
+              ].map((s) => (
+                <div key={s.label} className="px-2 py-2 text-center flex flex-col items-center justify-center gap-1">
+                  <p className="text-[9px] uppercase tracking-wider text-white/40 leading-tight">{s.label}</p>
+                  <p className={`text-xs font-semibold ${s.color} leading-tight`}>{s.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* AI Assistant card */}
+          <div className={`${cardBase} p-7 flex-1`}>
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-[linear-gradient(135deg,rgba(29,235,255,0.18),rgba(44,229,167,0.16),rgba(247,181,44,0.18))] border border-white/10 shadow-[0_0_18px_rgba(29,235,255,0.18)]">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-[#1DEBFF]/10 border border-[#1DEBFF]/25 shadow-[0_0_18px_rgba(29,235,255,0.18)]">
                 <Sparkles className="w-4 h-4 text-[#1DEBFF]" />
               </div>
               <div>
-                <h4 className="text-sm font-semibold bg-[linear-gradient(90deg,#1DEBFF,#2CE5A7,#F7B52C)] bg-clip-text text-transparent leading-tight">
-                  Qiya AI Insight
-                </h4>
+                <h4 className="text-sm font-semibold text-white leading-tight">AI Assistant</h4>
                 <p className="text-[11px] text-white/50 leading-tight mt-0.5">
-                  Smart reporting and solar defect analysis
+                  Ask AI for insights and reporting
                 </p>
               </div>
             </div>
@@ -242,43 +272,13 @@ const LiveFeedTab = () => {
                 <FileText className="w-4 h-4" />
                 Report
               </button>
-              <button className="flex items-center justify-center gap-2 h-11 rounded-[14px] text-sm font-semibold text-[#06141c] bg-[linear-gradient(90deg,#1DEBFF_0%,#2CE5A7_50%,#F7B52C_100%)] shadow-[0_0_22px_rgba(29,235,255,0.35)] hover:shadow-[0_0_30px_rgba(44,229,167,0.5)] hover:brightness-110 transition-all">
+              <button className="flex items-center justify-center gap-2 h-11 rounded-[14px] text-sm font-semibold text-[#06141c] bg-[linear-gradient(90deg,#2BE4FF_0%,#42E7B8_50%,#F6B326_100%)] shadow-[0_0_22px_rgba(29,235,255,0.35)] hover:shadow-[0_0_30px_rgba(44,229,167,0.5)] hover:brightness-110 transition-all">
                 <MessageSquare className="w-4 h-4" />
                 Ask AI
               </button>
             </div>
           </div>
-
-          {/* Detection Summary list */}
-          <div className={`${cardBase} p-7 flex-1`}>
-            <h3 className="text-sm font-semibold text-white mb-4">Detection Summary</h3>
-            <div className="space-y-2">
-              {detectionTypes.map((dt) => {
-                const active = filterType === dt.key;
-                return (
-                  <button
-                    key={dt.key}
-                    onClick={() => handleTypeClick(dt.key)}
-                    className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all text-left group ${
-                      active
-                        ? 'border-[#1DEBFF]/50 bg-[#1DEBFF]/[0.06] shadow-[0_0_18px_rgba(29,235,255,0.15)]'
-                        : 'border-[rgba(120,150,180,0.10)] bg-[#0B111C]/70 hover:border-[#1DEBFF]/35 hover:bg-[#1DEBFF]/[0.04]'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className={`w-2 h-2 rounded-full ${dt.dot}`} />
-                      <span className="text-sm text-white/85">{dt.label}</span>
-                    </div>
-                    <span className="text-xs font-semibold text-white/50 group-hover:text-[#1DEBFF] tabular-nums">
-                      {typeCounts[dt.key]}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
         </div>
-      </div>
 
       {/* FILTER BAR + Real-time Alerts */}
       <div ref={alertsSectionRef} className="space-y-5 scroll-mt-6">
