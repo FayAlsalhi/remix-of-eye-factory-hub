@@ -186,40 +186,7 @@ const LiveFeedTab = () => {
                 Camera: Front · RGB
               </div>
             </div>
-
-            {/* Description + Detection summary stat row */}
-            <div className="p-7 pt-5">
-              <p className="text-[13px] text-white/55 mb-5 leading-relaxed">{selectedAlert.description}</p>
-              <div className="grid grid-cols-4 gap-3">
-                {[
-                  { label: t.serialNumber, value: selectedAlert.id, color: 'text-white' },
-                  { label: t.inspectionTime, value: selectedAlert.time, color: 'text-white' },
-                  {
-                    label: t.healthScore,
-                    value: `${selectedAlert.healthScore}%`,
-                    color:
-                      selectedAlert.healthScore > 70
-                        ? 'text-[#2CE5A7]'
-                        : selectedAlert.healthScore > 50
-                        ? 'text-[#F7B52C]'
-                        : 'text-[#FF5B5B]',
-                  },
-                  {
-                    label: t.defectiveType,
-                    value: selectedAlert.label,
-                    color: selectedAlert.isDefective ? 'text-[#FF5B5B]' : 'text-[#2CE5A7]',
-                  },
-                ].map((s) => (
-                  <div
-                    key={s.label}
-                    className="rounded-xl border border-[rgba(120,150,180,0.10)] bg-[#0B111C]/70 px-3 py-3 text-center"
-                  >
-                    <p className="text-[10px] uppercase tracking-wider text-white/40 mb-1">{s.label}</p>
-                    <p className={`text-sm font-semibold ${s.color}`}>{s.value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <div className="h-7" />
           </div>
         </div>
 
