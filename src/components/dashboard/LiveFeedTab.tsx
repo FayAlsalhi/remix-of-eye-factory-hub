@@ -192,7 +192,7 @@ const LiveFeedTab = () => {
         </div>
 
         {/* RIGHT COLUMN — Camera Online → Detection Summary → AI Assistant */}
-        <div className="space-y-5 flex flex-col">
+        <div className="space-y-[18px] flex flex-col">
           {/* Camera Online card */}
           <div className={`${cardBase} p-7`}>
             <div className="flex items-center justify-between mb-5">
