@@ -51,11 +51,13 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
       {/* 2. Welcome title — left aligned, two lines */}
       <h1 className={`${isRTL ? "text-right" : "text-left"} text-3xl md:text-4xl font-bold tracking-tight leading-[1.15]`}>
         <span className="block text-white">{isRTL ? "مرحباً بعودتك إلى" : "Welcome back to"}</span>
-        <span
-          className="block bg-clip-text text-transparent"
-          style={{ backgroundImage: "linear-gradient(90deg, #11C5D9 0%, #4FB37A 50%, #FF9800 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
-        >
-          {isRTL ? "منصة قياف" : "Qiyaf Platform"}
+        <span className="block">
+          <span
+            className="inline-block bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(90deg, #11C5D9 0%, #4FB37A 50%, #FF9800 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+          >
+            {isRTL ? "منصة قياف" : "Qiyaf Platform"}
+          </span>
         </span>
       </h1>
 
