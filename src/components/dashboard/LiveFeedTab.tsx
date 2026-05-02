@@ -113,16 +113,6 @@ const LiveFeedTab = () => {
     return counts;
   }, []);
 
-  const handleTypeClick = (key: string) => {
-    setFilterType(key);
-    setTimeout(() => {
-      alertsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 50);
-  };
-
-  const currentFilterLabel = filterType
-    ? detectionTypes.find((d) => d.key === filterType)?.label
-    : 'All types';
 
   return (
     <div
