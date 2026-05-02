@@ -58,7 +58,7 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
         <img
           src={qiyafLogo}
           alt="Qiyaf"
-          className="h-24 md:h-28 w-auto object-contain -ml-2"
+          className="h-48 md:h-56 w-auto object-contain -ml-2"
         />
       </div>
 
