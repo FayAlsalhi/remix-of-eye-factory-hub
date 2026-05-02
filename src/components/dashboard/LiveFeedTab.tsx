@@ -276,7 +276,7 @@ const LiveFeedTab = () => {
 
       {/* FILTER BAR + Real-time Alerts */}
       <div ref={alertsSectionRef} className="space-y-5 scroll-mt-6">
-        <div className="flex items-center justify-between gap-3 flex-wrap px-1">
+        <div className="flex items-center gap-4 flex-wrap px-1">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#FF5B5B] animate-pulse shadow-[0_0_8px_rgba(255,91,91,0.8)]" />
             <h2 className="text-base font-semibold text-white tracking-wide">{t.realTimeAlerts}</h2>
