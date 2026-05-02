@@ -53,25 +53,23 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
       className="w-full"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      {/* Logo — left-aligned, large */}
-      <div className="mb-8 flex justify-start">
+      {/* Logo */}
+      <div className="mb-6 flex justify-center">
         <img
           src={qiyafLogo}
           alt="Qiyaf"
-          className="h-32 md:h-40 w-auto object-contain"
+          className="h-24 md:h-28 w-auto object-contain"
         />
       </div>
 
-      {/* Header — left-aligned, two lines, thin weight */}
-      <div className="mb-8 text-left">
-        <h2 className="text-3xl md:text-4xl font-light tracking-tight leading-[1.15]">
-          <span className="block text-white">{isRTL ? "أنشئ حساب" : "Create your"}</span>
-          <span className="block">
-            <span className="text-gradient-orange font-light">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
-            <span className="text-white font-light">{isRTL ? "" : " account"}</span>
-          </span>
+      {/* Header */}
+      <div className="mb-8 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1]">
+          <span className="text-white">{isRTL ? "أنشئ حساب " : "Create your "}</span>
+          <span className="text-gradient-orange">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
+          <span className="text-white">{isRTL ? "" : " account"}</span>
         </h2>
-        <p className="text-white/55 mt-3 font-light">{t.joinEyeFactory}</p>
+        <p className="text-white/55 mt-2">{t.joinEyeFactory}</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
