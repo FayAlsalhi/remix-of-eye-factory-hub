@@ -66,7 +66,12 @@ const SignupForm = ({ onSignup, onSwitchToLogin }: SignupFormProps) => {
       <div className={`mb-8 ${isRTL ? 'text-right' : 'text-left'}`}>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.15]">
           <span className="block text-white">{isRTL ? "أنشئ حسابك في" : "Create your account on"}</span>
-          <span className="block text-gradient-orange">{isRTL ? "منصة قياف" : "Qiyaf Platform"}</span>
+          <span
+            className="block bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(90deg, #11C5D9 0%, #4FB37A 50%, #FF9800 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+          >
+            {isRTL ? "منصة قياف" : "Qiyaf Platform"}
+          </span>
         </h2>
         <p className="text-white/55 mt-2">{t.joinEyeFactory}</p>
       </div>
