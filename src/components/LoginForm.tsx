@@ -45,7 +45,7 @@ const LoginForm = ({ onLogin, onSwitchToSignup, onForgotPassword }: LoginFormPro
     <div className="w-full" dir={isRTL ? "rtl" : "ltr"}>
       {/* 1. Logo — left aligned */}
       <div className={`mb-5 flex ${isRTL ? "justify-end" : "justify-start"}`}>
-        <img src={qiyafLogo} alt="Qiyaf" className="h-24 md:h-28 w-auto object-contain -ml-2" />
+        <img src={qiyafLogo} alt="Qiyaf" className="h-48 md:h-56 w-auto object-contain -ml-2" />
       </div>
 
       {/* 2. Welcome title — left aligned, two lines */}
