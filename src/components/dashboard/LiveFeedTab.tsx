@@ -255,7 +255,7 @@ const LiveFeedTab = () => {
           </div>
 
           {/* AI Assistant card */}
-          <div className={`${cardBase} p-7 flex-1`}>
+          <div className={`${cardBase} p-7`}>
             <div className="flex items-center gap-3 mb-5">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-[#1DEBFF]/10 border border-[#1DEBFF]/25 shadow-[0_0_18px_rgba(29,235,255,0.18)]">
                 <Sparkles className="w-4 h-4 text-[#1DEBFF]" />
