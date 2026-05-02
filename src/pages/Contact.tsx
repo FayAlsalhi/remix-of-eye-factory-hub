@@ -1,12 +1,12 @@
-import { Mail, MapPin, GraduationCap, Linkedin, Twitter, Github, Sparkles } from "lucide-react";
+import { Mail, MapPin, GraduationCap, Linkedin, Sparkles } from "lucide-react";
 import SiteLayout from "@/components/SiteLayout";
 
 const contactItems = [
   {
     icon: Mail,
     label: "Email",
-    value: "team@qiyaf.app",
-    href: "mailto:team@qiyaf.app",
+    value: "solarvision.dev26@gmail.com",
+    href: "mailto:solarvision.dev26@gmail.com",
   },
   {
     icon: MapPin,
@@ -24,8 +24,6 @@ const contactItems = [
 
 const socials = [
   { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Twitter, label: "Twitter / X", href: "#" },
-  { icon: Github, label: "GitHub", href: "#" },
 ];
 
 const Contact = () => {

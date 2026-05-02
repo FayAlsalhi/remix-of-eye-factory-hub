@@ -26,7 +26,7 @@ const heroFeatures = [
 
 
 const capabilities = [
-  { icon: Eye, title: "Surface Defect Detection", desc: "Identify cracks, dust, snow, and bird droppings on panel surfaces with high precision." },
+  { icon: Eye, title: "Surface Defect Detection", desc: "Identify cracks, dust, snow, bird droppings, and clean panels with high computer-vision precision — five visible classes supported." },
   { icon: Activity, title: "Live Feed Analysis", desc: "Monitor your sites in real-time with low-latency video streams." },
   { icon: Bell, title: "Smart Alerts", desc: "Get instant notifications for critical issues that matter." },
   { icon: FileText, title: "Reports & Analytics", desc: "Detailed insights and trends to drive better decisions." },
@@ -199,9 +199,9 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
                 </div>
                 <h3 className="text-base font-semibold mb-1.5">{c.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">{c.desc}</p>
-                <button className="text-xs font-medium text-primary inline-flex items-center gap-1 hover:gap-2 transition-all">
+                <Link to="/solution" className="text-xs font-medium text-primary inline-flex items-center gap-1 hover:gap-2 transition-all">
                   Learn more <ArrowRight className="w-3 h-3" />
-                </button>
+                </Link>
               </div>
             ))}
           </div>

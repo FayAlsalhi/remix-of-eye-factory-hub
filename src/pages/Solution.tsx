@@ -22,7 +22,7 @@ const useCases = [
   {
     icon: Eye,
     title: "Surface Defect Detection",
-    desc: "Identify cracks, dust, snow, and bird droppings on panel surfaces with computer-vision precision — five supported visible classes.",
+    desc: "Identify cracks, dust, snow, bird droppings, and clean panels with high computer-vision precision — five visible classes supported.",
   },
   {
     icon: Activity,
@@ -43,7 +43,7 @@ const useCases = [
 
 const techStack = [
   { icon: Cpu, title: "Deep Learning Models", desc: "Custom YOLO-based detectors fine-tuned exclusively on RGB imagery for visible surface conditions." },
-  { icon: Plane, title: "Autonomous Drones", desc: "Pre-planned flight paths covering hectares of solar fields without manual piloting." },
+  { icon: Plane, title: "Autonomous UAVs", desc: "Pre-planned flight paths covering hectares of solar fields without manual piloting." },
   { icon: Cloud, title: "Cloud Pipeline", desc: "Edge ingest, GPU inference, and storage scale elastically with mission size." },
   { icon: Database, title: "Asset Registry", desc: "Every panel mapped, indexed, and history-tracked across inspection cycles." },
   { icon: LineChart, title: "Maintenance Reports", desc: "Each detection generates a report with the defect class and panel location for the maintenance crew." },
@@ -67,7 +67,7 @@ const Solution = () => {
           <span className="text-xs font-medium tracking-wider uppercase text-primary">The Qiyaf Solution</span>
         </div>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-4xl mx-auto leading-[1.1]">
-          From Drone Flight to{" "}
+          From UAV Flight to{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(90deg, hsl(184 75% 55%), hsl(28 95% 60%))" }}
