@@ -31,11 +31,11 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
       </div>
 
       {/* Navbar */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/85 border-b border-border/50 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
-        <nav className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <header className="sticky top-0 z-50 backdrop-blur-xl bg-background border-b border-border/50 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
+        <nav className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-12">
-            <Link to="/" aria-label="Qiyaf home">
-              <img src={qiyafLogo} alt="Qiyaf" className="h-32 w-auto object-contain" />
+            <Link to="/" aria-label="Qiyaf home" className="block overflow-hidden h-16 flex items-center">
+              <img src={qiyafLogo} alt="Qiyaf" className="h-32 w-auto object-contain scale-150 origin-center" />
             </Link>
             <ul className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => {
