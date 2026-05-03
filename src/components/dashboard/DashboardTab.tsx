@@ -1,5 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Eye, CheckCircle, XCircle, TrendingUp, TrendingDown, Filter, AlertTriangle, Bell, Radio, MapPin, Clock } from 'lucide-react';
+import { Eye, CheckCircle, XCircle, TrendingUp, TrendingDown, Filter, AlertTriangle, Bell, Radio, MapPin, Clock, Zap } from 'lucide-react';
 import liveFeedImg from '@/assets/live-feed-solar-panel.jpg';
 import {
   LineChart,
