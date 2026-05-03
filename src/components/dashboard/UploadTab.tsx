@@ -214,8 +214,8 @@ const UploadTab = () => {
             </div>
           </div>
         ) : hasResult ? (
-          <div className="relative rounded-xl overflow-hidden border border-white/10 flex-1">
-            <img src={solarPanelImg} alt="Analyzed solar panel" className="w-full h-full min-h-[420px] object-cover" />
+          <div className="relative rounded-xl overflow-hidden border border-white/10 mx-auto w-full max-w-[640px]">
+            <img src={solarPanelImg} alt="Analyzed solar panel" className="w-full h-[320px] object-cover" />
             <div className="absolute inset-0">
               {detections.map((d, i) => {
                 const s = severityStyles[d.severity];
