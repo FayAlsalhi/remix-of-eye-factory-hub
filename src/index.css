@@ -240,3 +240,7 @@
 .qiya-box:hover {
   box-shadow: 0 0 40px rgba(34, 211, 238, 0.12);
 }
+
+/* Hide scrollbar utility for horizontal nav scrollers */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }

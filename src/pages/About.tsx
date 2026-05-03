@@ -34,12 +34,12 @@ const About = () => {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-20 pb-20 text-center">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 pt-12 sm:pt-20 pb-12 sm:pb-14 sm:pb-20 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 mb-6">
           <Sparkles className="w-3.5 h-3.5 text-primary" />
           <span className="text-xs font-medium tracking-wider uppercase text-primary">About Qiyaf</span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-4xl mx-auto leading-[1.1]">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight max-w-4xl mx-auto leading-[1.1]">
           A Student-Built Platform for{" "}
           <span
             className="bg-clip-text text-transparent"
@@ -55,7 +55,7 @@ const About = () => {
       </section>
 
       {/* University card */}
-      <section className="max-w-5xl mx-auto px-6 lg:px-10 pb-20">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 pb-14 sm:pb-20">
         <div
           className="rounded-2xl border border-primary/30 p-8 md:p-10"
           style={{ background: "radial-gradient(ellipse at top left, hsl(184 75% 48% / 0.15), transparent 70%)" }}
@@ -80,7 +80,7 @@ const About = () => {
       </section>
 
       {/* Pillars */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-10 pb-24">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 pb-16 sm:pb-24">
         <div className="grid md:grid-cols-3 gap-5">
           {pillars.map((p) => (
             <div
@@ -99,7 +99,7 @@ const About = () => {
 
       {/* Team */}
       <section className="border-y border-border/50 bg-secondary/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-20">
           <div className="mb-12 text-center">
             <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-3">The team</p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Meet the Builders</h2>
@@ -149,7 +149,7 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <section className="max-w-4xl mx-auto px-6 lg:px-10 py-20 text-center">
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-20 text-center">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Want to know more?</h2>
         <p className="text-muted-foreground max-w-xl mx-auto mb-7">
           Get in touch with the team — we’re always happy to discuss the project, the technology, or potential

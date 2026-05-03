@@ -30,12 +30,12 @@ const Contact = () => {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-20 pb-16 text-center">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 pt-12 sm:pt-20 pb-10 sm:pb-16 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 mb-6">
           <Sparkles className="w-3.5 h-3.5 text-primary" />
           <span className="text-xs font-medium tracking-wider uppercase text-primary">Get in Touch</span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl mx-auto leading-[1.1]">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight max-w-3xl mx-auto leading-[1.1]">
           Let’s{" "}
           <span
             className="bg-clip-text text-transparent"
@@ -51,7 +51,7 @@ const Contact = () => {
       </section>
 
       {/* Contact info cards */}
-      <section className="max-w-5xl mx-auto px-6 lg:px-10 pb-12">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 pb-12">
         <div className="grid md:grid-cols-3 gap-5">
           {contactItems.map((item) => (
             <a
@@ -72,7 +72,7 @@ const Contact = () => {
       </section>
 
       {/* Socials */}
-      <section className="max-w-3xl mx-auto px-6 lg:px-10 pb-24">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10 pb-16 sm:pb-24">
         <div
           className="rounded-2xl border border-border/60 p-8 md:p-10 text-center"
           style={{ background: "radial-gradient(ellipse at top, hsl(28 95% 58% / 0.12), transparent 70%)" }}

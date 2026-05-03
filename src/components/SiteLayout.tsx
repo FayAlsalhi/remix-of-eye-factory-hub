@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import qiyafLogo from "@/assets/qiyaf-logo-new.png";
 
@@ -17,6 +18,7 @@ interface SiteLayoutProps {
 const SiteLayout = ({ children }: SiteLayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const goToAuth = (view: "login" | "signup") => {
     navigate(`/?auth=${view}`);
@@ -32,10 +34,10 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
 
       {/* Navbar */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background border-b border-border/50 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
-        <nav className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-12">
-            <Link to="/" aria-label="Qiyaf home" className="flex items-center h-16 overflow-hidden">
-              <img src={qiyafLogo} alt="Qiyaf" className="h-32 w-auto object-contain scale-150 origin-center" />
+        <nav className="max-w-[1480px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-6 lg:gap-12 min-w-0">
+            <Link to="/" aria-label="Qiyaf home" className="flex items-center h-12 sm:h-14 md:h-16 overflow-hidden shrink-0">
+              <img src={qiyafLogo} alt="Qiyaf" className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain scale-150 origin-center" />
             </Link>
             <ul className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => {
@@ -55,23 +57,62 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
               })}
             </ul>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2 sm:gap-3">
             <Button
               variant="outline"
               onClick={() => goToAuth("login")}
-              className="h-10 px-5 bg-transparent border-border hover:bg-secondary/50 text-foreground rounded-lg"
+              className="h-9 sm:h-10 px-3 sm:px-5 bg-transparent border-border hover:bg-secondary/50 text-foreground rounded-lg text-sm"
             >
               Login
             </Button>
             <Button
               onClick={() => goToAuth("signup")}
-              className="h-10 px-5 rounded-lg text-primary-foreground font-medium border-0"
+              className="h-9 sm:h-10 px-3 sm:px-5 rounded-lg text-primary-foreground font-medium border-0 text-sm"
               style={{ background: "var(--gradient-brand)" }}
             >
               Get Started
             </Button>
           </div>
+          <button
+            className="md:hidden p-2 text-foreground rounded-md hover:bg-secondary/50"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </nav>
+        {mobileOpen && (
+          <div className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-xl px-4 py-3 flex flex-col gap-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                onClick={() => setMobileOpen(false)}
+                className={`text-sm py-2 ${
+                  location.pathname === item.to ? "text-foreground font-medium" : "text-foreground/70"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="flex gap-2 pt-2 border-t border-border/40">
+              <Button
+                variant="outline"
+                onClick={() => { setMobileOpen(false); goToAuth("login"); }}
+                className="flex-1 h-10 bg-transparent border-border text-foreground rounded-lg"
+              >
+                Login
+              </Button>
+              <Button
+                onClick={() => { setMobileOpen(false); goToAuth("signup"); }}
+                className="flex-1 h-10 rounded-lg text-primary-foreground font-medium border-0"
+                style={{ background: "var(--gradient-brand)" }}
+              >
+                Get Started
+              </Button>
+            </div>
+          </div>
+        )}
       </header>
 
       <main className="flex-1">{children}</main>

@@ -76,13 +76,13 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
   return (
     <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Top Header with Logo + Actions */}
-      <header className="h-44 bg-card border-b border-border flex items-center justify-between px-6 gap-4">
+      <header className="min-h-[64px] sm:min-h-[88px] md:min-h-[120px] lg:h-44 bg-card border-b border-border flex items-center justify-between px-3 sm:px-4 md:px-6 gap-2 sm:gap-4 py-2">
         {/* Logo + small LIVE badge top-right */}
         <div className="relative shrink-0">
           <img
             src={qiyafLogo}
             alt="Qiyaf"
-            className="h-40 w-auto object-contain"
+            className="h-12 sm:h-20 md:h-28 lg:h-40 w-auto object-contain"
           />
           <span className="absolute -top-1 -right-3 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-red-500 text-white text-[8px] font-bold tracking-wider shadow-md leading-none">
             <span className="w-1 h-1 bg-white rounded-full animate-pulse"></span>
@@ -91,7 +91,7 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
         </div>
 
         {/* Right side actions */}
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           <LanguageSwitcher isInHeader={true} />
 
 
@@ -111,7 +111,7 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
 
             {/* Notifications Dropdown */}
             {showNotifications && (
-              <div className={`absolute top-full mt-2 w-80 bg-card border border-border rounded-lg shadow-lg z-50 ${isRTL ? 'left-0' : 'right-0'}`}>
+              <div className={`absolute top-full mt-2 w-72 sm:w-80 max-w-[calc(100vw-1rem)] bg-card border border-border rounded-lg shadow-lg z-50 ${isRTL ? 'left-0' : 'right-0'}`}>
                 <div className="p-3 border-b border-border">
                   <h3 className="font-semibold text-foreground">{t.notifications}</h3>
                 </div>
@@ -144,12 +144,12 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
               <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                 <User className="w-4 h-4 text-primary-foreground" />
               </div>
-              <ChevronDown className="w-4 h-4 text-muted-foreground" />
+              <ChevronDown className="w-4 h-4 text-muted-foreground hidden sm:block" />
             </button>
 
             {/* Profile Dropdown Menu */}
             {showProfileDropdown && (
-              <div className={`absolute top-full mt-2 w-64 bg-card border border-border rounded-lg shadow-lg z-50 ${isRTL ? 'left-0' : 'right-0'}`}>
+              <div className={`absolute top-full mt-2 w-64 max-w-[calc(100vw-1rem)] bg-card border border-border rounded-lg shadow-lg z-50 ${isRTL ? 'left-0' : 'right-0'}`}>
                 <div className="p-4 border-b border-border">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
@@ -177,33 +177,33 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
       </header>
 
       {/* Greeting bar with centered tabs */}
-      <div className="bg-card/40 border-b border-border px-6 py-3 flex items-center gap-4 text-sm">
-        <div className="text-foreground shrink-0">
+      <div className="bg-card/40 border-b border-border px-3 sm:px-4 md:px-6 py-2 sm:py-3 flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-sm">
+        <div className="text-foreground shrink-0 truncate">
           {greeting}, <span className="text-primary font-semibold">{firstName}!</span>
         </div>
 
-        <nav className="flex-1 flex items-center justify-center gap-2">
+        <nav className="flex-1 flex items-center md:justify-center gap-1 sm:gap-2 overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0 scrollbar-none">
           {allTabs.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors border-b-2 ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-colors border-b-2 shrink-0 ${
                 activeTab === item.id
                   ? 'text-primary border-primary'
                   : 'text-muted-foreground border-transparent hover:text-foreground'
               }`}
             >
-              <item.icon className="w-4 h-4" />
-              <span>{item.label}</span>
+              <item.icon className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">{item.label}</span>
             </button>
           ))}
         </nav>
 
-        <div className="text-muted-foreground text-xs shrink-0">{dateString}</div>
+        <div className="text-muted-foreground text-xs shrink-0 hidden md:block">{dateString}</div>
       </div>
 
       {/* Content Area */}
-      <main className="flex-1 p-6 bg-background overflow-auto">
+      <main className="flex-1 p-3 sm:p-4 md:p-6 bg-background overflow-auto">
         {renderContent()}
       </main>
 
