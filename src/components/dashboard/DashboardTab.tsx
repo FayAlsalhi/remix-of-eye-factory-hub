@@ -1,4 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useState } from 'react';
 import { Eye, CheckCircle, XCircle, TrendingUp, TrendingDown, Filter, AlertTriangle, Bell, Radio, MapPin, Clock, Zap, ChevronDown, Sun, Bird, Zap as Crack, Snowflake, Sparkles, PieChart } from 'lucide-react';
 import liveFeedImg from '@/assets/live-feed-solar-panel.jpg';
 import {
