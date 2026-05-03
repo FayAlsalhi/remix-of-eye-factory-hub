@@ -16,6 +16,7 @@ import insightCard from '@/assets/insight-card.jpg';
 
 const DashboardTab = () => {
   const { t } = useLanguage();
+  const [showAllSectors, setShowAllSectors] = useState(false);
 
   // Sparkline datasets
   const spark = (vals: number[]) => vals.map((v, i) => ({ i, v }));
