@@ -7,9 +7,9 @@ import solarPanelImg from '@/assets/solar-panel-cracked.jpg';
 type Severity = 'critical' | 'warning' | 'normal';
 
 interface Detection {
-  label: string;
+  id: string;
+  label: 'Cracks' | 'Snow' | 'Dust' | 'Bird Droppings' | 'Clean';
   severity: Severity;
-  // bounding box in % (left, top, width, height)
   box: { left: number; top: number; width: number; height: number };
 }
 
@@ -74,9 +74,9 @@ const severityStyles: Record<Severity, { dot: string; pill: string; border: stri
 };
 
 const detections: Detection[] = [
-  { label: 'Cracks', severity: 'critical', box: { left: 12, top: 18, width: 26, height: 22 } },
-  { label: 'Snow', severity: 'warning', box: { left: 55, top: 12, width: 32, height: 28 } },
-  { label: 'Dust', severity: 'warning', box: { left: 30, top: 58, width: 38, height: 24 } },
+  { id: 'C-102', label: 'Cracks', severity: 'critical', box: { left: 12, top: 18, width: 26, height: 22 } },
+  { id: 'S-205', label: 'Snow', severity: 'warning', box: { left: 55, top: 12, width: 32, height: 28 } },
+  { id: 'D-309', label: 'Dust', severity: 'warning', box: { left: 30, top: 58, width: 38, height: 24 } },
 ];
 
 const recommendations: Recommendation[] = [
@@ -167,114 +167,93 @@ const UploadTab = () => {
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Upload Section */}
-        <div className="bg-card border border-border rounded-2xl p-6 shadow-[0_0_30px_rgba(0,108,158,0.05)]">
-          <h3 className="text-lg font-semibold text-foreground mb-4">{t.uploadFiles || 'Upload File'}</h3>
+      {/* Upload Section */}
+      <div className="bg-card border border-border rounded-2xl p-6 shadow-[0_0_30px_rgba(0,108,158,0.05)]">
+        <h3 className="text-lg font-semibold text-foreground mb-4">{t.uploadFiles || 'Upload File'}</h3>
 
-          <div
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors ${
-              isDragging ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-            }`}
-          >
-            <Upload className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-            <p className="text-foreground font-medium mb-2">{t.dropFilesHere}</p>
-            <p className="text-sm text-muted-foreground mb-4">{t.supportedFormat}</p>
-            <p className="text-muted-foreground mb-4">{t.or}</p>
-            <button onClick={handleBrowse} className="text-primary hover:underline font-medium">
-              {t.browseFiles}
-            </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/png,image/jpeg"
-              multiple
-              onChange={handleFileSelect}
-              className="hidden"
-            />
-          </div>
-
-          <Button className="w-full mt-4" disabled={isAnalyzing} onClick={handleBrowse}>
-            {isAnalyzing ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Analyzing...
-              </>
-            ) : (
-              'Analyze File'
-            )}
-          </Button>
+        <div
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors ${
+            isDragging ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
+          }`}
+        >
+          <Upload className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+          <p className="text-foreground font-medium mb-2">{t.dropFilesHere}</p>
+          <p className="text-sm text-muted-foreground mb-4">{t.supportedFormat}</p>
+          <p className="text-muted-foreground mb-4">{t.or}</p>
+          <button onClick={handleBrowse} className="text-primary hover:underline font-medium">
+            {t.browseFiles}
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/png,image/jpeg"
+            multiple
+            onChange={handleFileSelect}
+            className="hidden"
+          />
         </div>
 
-        {/* Analysis Result */}
-        <div className="bg-card border border-border rounded-2xl p-6 shadow-[0_0_30px_rgba(0,108,158,0.05)]">
-          <h3 className="text-lg font-semibold text-foreground mb-4">
+        <Button className="w-full mt-4" disabled={isAnalyzing} onClick={handleBrowse}>
+          {isAnalyzing ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Analyzing...
+            </>
+          ) : (
+            'Analyze File'
+          )}
+        </Button>
+      </div>
+
+      {/* Analysis Result */}
+      {(isAnalyzing || hasResult) && (
+        <div className="space-y-5">
+          <h3 className="text-lg font-semibold text-foreground">
             {t.analysisResults || 'Analysis Result'}
           </h3>
 
           {isAnalyzing ? (
-            <div className="flex items-center justify-center h-72">
+            <div className="bg-card border border-border rounded-2xl p-6 flex items-center justify-center h-72">
               <div className="text-center">
                 <Loader2 className="w-16 h-16 mx-auto text-primary animate-spin mb-4" />
                 <p className="text-muted-foreground">Analyzing image...</p>
               </div>
             </div>
-          ) : hasResult ? (
-            <div className="space-y-5">
-              {/* Issue Map Card */}
-              <div className="rounded-xl border border-border bg-gradient-to-br from-[#0a1620] to-[#050B16] p-4">
-                <div className="flex items-center justify-between mb-3">
+          ) : (
+            <>
+              {/* 1) Issue Map - full width */}
+              <div
+                className="rounded-[18px] border bg-gradient-to-br from-[#071426] to-[#0A1B33] p-5 shadow-[0_0_30px_rgba(0,255,220,0.06)]"
+                style={{ borderColor: 'rgba(0,255,220,0.12)' }}
+              >
+                <div className="flex items-center justify-between mb-4">
                   <p className="text-sm font-semibold text-foreground">Issue Map</p>
                   <span className="text-[10px] uppercase tracking-wider text-cyan-400/80 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-2 py-0.5">
                     AI Detected
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                  {/* Image with overlays */}
-                  <div className="md:col-span-3 relative rounded-lg overflow-hidden border border-border/70">
-                    <img src={solarPanelImg} alt="Analyzed solar panel" className="w-full h-56 object-cover" />
-                    <div className="absolute inset-0">
-                      {detections.map((d, i) => {
-                        const s = severityStyles[d.severity];
-                        return (
-                          <div
-                            key={i}
-                            className={`absolute border-2 ${s.border} rounded-md`}
-                            style={{
-                              left: `${d.box.left}%`,
-                              top: `${d.box.top}%`,
-                              width: `${d.box.width}%`,
-                              height: `${d.box.height}%`,
-                            }}
-                          >
-                            <span className={`absolute -top-5 left-0 text-[10px] px-1.5 py-0.5 rounded ${s.pill} border whitespace-nowrap`}>
-                              {d.label}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Defects list */}
-                  <div className="md:col-span-2 space-y-2">
+                <div className="relative rounded-xl overflow-hidden border border-white/10">
+                  <img src={solarPanelImg} alt="Analyzed solar panel" className="w-full h-[420px] object-cover" />
+                  <div className="absolute inset-0">
                     {detections.map((d, i) => {
                       const s = severityStyles[d.severity];
                       return (
                         <div
                           key={i}
-                          className="flex items-center justify-between rounded-lg border border-border bg-secondary/30 px-3 py-2"
+                          className={`absolute border-2 ${s.border} rounded-md`}
+                          style={{
+                            left: `${d.box.left}%`,
+                            top: `${d.box.top}%`,
+                            width: `${d.box.width}%`,
+                            height: `${d.box.height}%`,
+                          }}
                         >
-                          <div className="flex items-center gap-2">
-                            <span className={`w-2 h-2 rounded-full ${s.dot}`} />
-                            <span className="text-sm text-foreground">{d.label}</span>
-                          </div>
-                          <span className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border ${s.pill}`}>
-                            {s.label}
+                          <span className={`absolute -top-6 left-0 text-[10px] px-2 py-0.5 rounded ${s.pill} border whitespace-nowrap font-medium`}>
+                            {d.label} • {d.id}
                           </span>
                         </div>
                       );
@@ -283,32 +262,31 @@ const UploadTab = () => {
                 </div>
               </div>
 
-              {/* Recommendations */}
+              {/* 2) Recommendations */}
               <div>
                 <p className="text-sm font-semibold text-foreground mb-3">Recommendations</p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {recommendations.map((r, i) => {
-                    const t = recTones[r.tone];
+                    const tn = recTones[r.tone];
                     return (
                       <div
                         key={i}
-                        className={`rounded-xl border p-4 transition-all duration-300 backdrop-blur-sm flex flex-col ${t.card}`}
+                        className={`rounded-xl border p-4 transition-all duration-300 backdrop-blur-sm flex flex-col ${tn.card}`}
                       >
                         <div className="flex items-center gap-2 mb-2 flex-wrap">
-                          <span className={t.iconWrap}>{r.icon}</span>
+                          <span className={tn.iconWrap}>{r.icon}</span>
                           <p className="text-sm font-semibold text-foreground">{r.title}</p>
-                          <span className="text-muted-foreground/60 text-xs">→</span>
-                          <span
-                            className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border ${t.pill}`}
-                          >
-                            {r.priority}
-                          </span>
                         </div>
+                        <span
+                          className={`self-start text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border mb-2 ${tn.pill}`}
+                        >
+                          {r.priority}
+                        </span>
                         <p className="text-xs text-muted-foreground leading-relaxed mb-4 flex-1">
                           {r.description}
                         </p>
                         <button
-                          className={`w-full h-9 rounded-md text-xs font-semibold transition-colors ${t.button}`}
+                          className={`w-full h-9 rounded-md text-xs font-semibold transition-colors ${tn.button}`}
                         >
                           {r.cta}
                         </button>
@@ -317,19 +295,57 @@ const UploadTab = () => {
                   })}
                 </div>
               </div>
-            </div>
-          ) : (
-            <div className="flex items-center justify-center h-72">
-              <div className="text-center text-muted-foreground">
-                <div className="w-24 h-24 mx-auto border-2 border-dashed border-border rounded-full flex items-center justify-center mb-4">
-                  <Upload className="w-10 h-10" />
+
+              {/* 3) Detection Summary Table */}
+              <div
+                className="rounded-[18px] border bg-gradient-to-br from-[#071426] to-[#0A1B33] p-5 shadow-[0_0_30px_rgba(0,255,220,0.06)]"
+                style={{ borderColor: 'rgba(0,255,220,0.12)' }}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-sm font-semibold text-foreground">Detection Summary</p>
+                  <span className="text-xs text-muted-foreground">{detections.length} detections</span>
                 </div>
-                <p>Upload an image to see analysis results</p>
+
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-left text-[11px] uppercase tracking-wider text-muted-foreground border-b border-white/5">
+                      <th className="py-2.5 px-3 font-medium">ID</th>
+                      <th className="py-2.5 px-3 font-medium">Type</th>
+                      <th className="py-2.5 px-3 font-medium">Severity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {detections.map((d, i) => {
+                      const s = severityStyles[d.severity];
+                      return (
+                        <tr
+                          key={i}
+                          className="border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors"
+                        >
+                          <td className="py-3 px-3 text-foreground font-mono text-xs">{d.id}</td>
+                          <td className="py-3 px-3">
+                            <div className="flex items-center gap-2">
+                              <span className={`w-2 h-2 rounded-full ${s.dot}`} />
+                              <span className="text-foreground">{d.label}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-3">
+                            <span
+                              className={`inline-block text-[11px] px-2.5 py-1 rounded-full border ${s.pill}`}
+                            >
+                              {s.label}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
-            </div>
+            </>
           )}
         </div>
-      </div>
+      )}
 
       {/* Recent Uploads Table */}
       <div className="bg-card border border-border rounded-2xl p-6 shadow-[0_0_30px_rgba(0,108,158,0.05)]">
