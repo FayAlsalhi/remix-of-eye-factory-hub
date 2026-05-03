@@ -264,7 +264,7 @@ const DashboardTab = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 relative">
+              <div className="flex flex-col sm:flex-row items-center gap-4 relative">
                 <div className="relative w-32 h-32 shrink-0">
                   <svg viewBox="0 0 160 160" className="w-full h-full -rotate-[135deg]">
                     <defs>
