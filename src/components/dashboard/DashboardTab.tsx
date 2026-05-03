@@ -79,7 +79,14 @@ const DashboardTab = () => {
     { name: 'Sector B-08', dot: 'bg-rose-500', total: '2,189', passed: '2,011', defective: '158', rate: '92.8%', score: '87/100', trend: 'hsl(0,75%,60%)' },
     { name: 'Sector C-15', dot: 'bg-amber-400', total: '1,987', passed: '1,834', defective: '153', rate: '92.3%', score: '86/100', trend: 'hsl(45,90%,55%)' },
     { name: 'Sector D-20', dot: 'bg-sky-400', total: '1,742', passed: '1,612', defective: '130', rate: '92.5%', score: '85/100', trend: 'hsl(190,90%,55%)' },
+    { name: 'Sector E-05', dot: 'bg-emerald-400', total: '1,623', passed: '1,498', defective: '125', rate: '92.3%', score: '84/100', trend: 'hsl(150,75%,55%)' },
+    { name: 'Sector F-18', dot: 'bg-amber-400', total: '1,512', passed: '1,389', defective: '123', rate: '91.9%', score: '83/100', trend: 'hsl(45,90%,55%)' },
+    { name: 'Sector G-22', dot: 'bg-sky-400', total: '1,401', passed: '1,290', defective: '111', rate: '92.1%', score: '85/100', trend: 'hsl(190,90%,55%)' },
+    { name: 'Sector H-09', dot: 'bg-rose-500', total: '1,298', passed: '1,184', defective: '114', rate: '91.2%', score: '82/100', trend: 'hsl(0,75%,60%)' },
+    { name: 'Sector I-31', dot: 'bg-emerald-400', total: '1,187', passed: '1,098', defective: '89', rate: '92.5%', score: '86/100', trend: 'hsl(150,75%,55%)' },
+    { name: 'Sector J-14', dot: 'bg-amber-400', total: '1,054', passed: '962', defective: '92', rate: '91.3%', score: '83/100', trend: 'hsl(45,90%,55%)' },
   ];
+
 
   // Health gauge values
   const healthScore = 87;
