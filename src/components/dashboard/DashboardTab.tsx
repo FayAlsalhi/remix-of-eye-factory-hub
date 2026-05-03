@@ -1,4 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useState } from 'react';
 import { Eye, CheckCircle, XCircle, TrendingUp, TrendingDown, Filter, AlertTriangle, Bell, Radio, MapPin, Clock, Zap, ChevronDown, Sun, Bird, Zap as Crack, Snowflake, Sparkles, PieChart } from 'lucide-react';
 import liveFeedImg from '@/assets/live-feed-solar-panel.jpg';
 import {
@@ -15,6 +16,7 @@ import insightCard from '@/assets/insight-card.jpg';
 
 const DashboardTab = () => {
   const { t } = useLanguage();
+  const [showAllSectors, setShowAllSectors] = useState(false);
 
   // Sparkline datasets
   const spark = (vals: number[]) => vals.map((v, i) => ({ i, v }));
@@ -79,7 +81,14 @@ const DashboardTab = () => {
     { name: 'Sector B-08', dot: 'bg-rose-500', total: '2,189', passed: '2,011', defective: '158', rate: '92.8%', score: '87/100', trend: 'hsl(0,75%,60%)' },
     { name: 'Sector C-15', dot: 'bg-amber-400', total: '1,987', passed: '1,834', defective: '153', rate: '92.3%', score: '86/100', trend: 'hsl(45,90%,55%)' },
     { name: 'Sector D-20', dot: 'bg-sky-400', total: '1,742', passed: '1,612', defective: '130', rate: '92.5%', score: '85/100', trend: 'hsl(190,90%,55%)' },
+    { name: 'Sector E-05', dot: 'bg-emerald-400', total: '1,623', passed: '1,498', defective: '125', rate: '92.3%', score: '84/100', trend: 'hsl(150,75%,55%)' },
+    { name: 'Sector F-18', dot: 'bg-amber-400', total: '1,512', passed: '1,389', defective: '123', rate: '91.9%', score: '83/100', trend: 'hsl(45,90%,55%)' },
+    { name: 'Sector G-22', dot: 'bg-sky-400', total: '1,401', passed: '1,290', defective: '111', rate: '92.1%', score: '85/100', trend: 'hsl(190,90%,55%)' },
+    { name: 'Sector H-09', dot: 'bg-rose-500', total: '1,298', passed: '1,184', defective: '114', rate: '91.2%', score: '82/100', trend: 'hsl(0,75%,60%)' },
+    { name: 'Sector I-31', dot: 'bg-emerald-400', total: '1,187', passed: '1,098', defective: '89', rate: '92.5%', score: '86/100', trend: 'hsl(150,75%,55%)' },
+    { name: 'Sector J-14', dot: 'bg-amber-400', total: '1,054', passed: '962', defective: '92', rate: '91.3%', score: '83/100', trend: 'hsl(45,90%,55%)' },
   ];
+
 
   // Health gauge values
   const healthScore = 87;
@@ -557,10 +566,17 @@ const DashboardTab = () => {
       {/* Sector performance + Health */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <div className="lg:col-span-2 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 backdrop-blur-sm">
-          <h3 className="text-base font-semibold text-foreground mb-4">Sector Performance</h3>
-          <div className="overflow-x-auto">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-base font-semibold text-foreground">Sector Performance</h3>
+            <span className="text-xs text-muted-foreground">{sectors.length} sectors</span>
+          </div>
+          <div
+            className={`overflow-x-auto overflow-y-auto pr-1 transition-all ${
+              showAllSectors ? 'max-h-[420px]' : 'max-h-[280px]'
+            }`}
+          >
             <table className="w-full text-sm">
-              <thead>
+              <thead className="sticky top-0 bg-[#0a1422]/95 backdrop-blur-sm z-10">
                 <tr className="text-xs text-muted-foreground border-b border-white/5">
                   <th className="text-left font-normal py-3 pr-4">Sector</th>
                   <th className="text-left font-normal py-3 pr-4">Total Inspected</th>
@@ -588,6 +604,15 @@ const DashboardTab = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="mt-3 flex justify-center border-t border-white/5 pt-3">
+            <button
+              onClick={() => setShowAllSectors((v) => !v)}
+              className="flex items-center gap-1.5 text-xs text-cyan-300 hover:text-cyan-200 transition px-3 py-1.5 rounded-md hover:bg-white/5"
+            >
+              {showAllSectors ? 'Show Less' : 'See More'}
+              <ChevronDown className={`w-3 h-3 transition-transform ${showAllSectors ? 'rotate-180' : ''}`} />
+            </button>
           </div>
         </div>
 
