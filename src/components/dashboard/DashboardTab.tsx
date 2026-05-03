@@ -247,7 +247,7 @@ const DashboardTab = () => {
           const arcLen = c * 0.75;
           const filled = arcLen * pct;
           return (
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#050B16] to-[#071426] backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.1)] w-full h-full min-h-[260px] p-6 relative overflow-hidden">
+            <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)] hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition w-full h-full min-h-[260px] p-6 relative overflow-hidden">
               <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[#28E7E0]/10 blur-3xl pointer-events-none" />
               <div className="absolute -bottom-20 -left-10 w-48 h-48 rounded-full bg-[#F5A623]/5 blur-3xl pointer-events-none" />
 
@@ -383,8 +383,8 @@ const DashboardTab = () => {
         const years = ['2026', '2025', '2024', '2023'];
         return (
           <div
-            className="rounded-[18px] border bg-gradient-to-br from-[#050B16] to-[#071426] backdrop-blur-sm shadow-[0_0_30px_rgba(0,255,220,0.08)]"
-            style={{ borderColor: 'rgba(0,255,220,0.12)', padding: 20 }}
+            className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)] hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition"
+            style={{ padding: 20 }}
           >
             <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
               <div className="flex items-center gap-2">
@@ -500,8 +500,8 @@ const DashboardTab = () => {
         const max = Math.max(...defects.map((d) => d.value));
         return (
           <div
-            className="rounded-[20px] border bg-gradient-to-br from-[#050B16] to-[#071426] backdrop-blur-sm shadow-[0_0_30px_rgba(0,255,220,0.08)] relative overflow-hidden"
-            style={{ borderColor: 'rgba(0,255,220,0.12)', padding: 24 }}
+            className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)] hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition relative overflow-hidden"
+            style={{ padding: 24 }}
           >
             <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-cyan-500/5 blur-3xl pointer-events-none" />
 

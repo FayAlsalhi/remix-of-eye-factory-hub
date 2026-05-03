@@ -227,3 +227,16 @@
   scrollbar-width: thin;
   scrollbar-color: rgba(34, 211, 238, 0.4) rgba(255, 255, 255, 0.02);
 }
+
+/* Unified Qiya KPI/box style — matches System Overview total-inspected card */
+.qiya-box {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 30px rgba(0, 108, 158, 0.06);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.qiya-box:hover {
+  box-shadow: 0 0 40px rgba(34, 211, 238, 0.12);
+}

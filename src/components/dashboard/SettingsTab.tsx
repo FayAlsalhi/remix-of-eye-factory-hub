@@ -156,7 +156,7 @@ const SettingsTab = ({ userName, userEmail, onUpdateProfile }: SettingsTabProps)
       <h1 className="text-2xl font-bold text-foreground">{t.settings}</h1>
       
       {/* Personal Data Section */}
-      <div className="bg-card border border-border rounded-lg p-6">
+      <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)] hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition p-6">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
             <User className="w-5 h-5 text-primary" />
@@ -203,7 +203,7 @@ const SettingsTab = ({ userName, userEmail, onUpdateProfile }: SettingsTabProps)
       </div>
 
       {/* Password Change Section */}
-      <div className="bg-card border border-border rounded-lg p-6">
+      <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)] hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition p-6">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
             <Lock className="w-5 h-5 text-primary" />
@@ -294,7 +294,7 @@ const SettingsTab = ({ userName, userEmail, onUpdateProfile }: SettingsTabProps)
       </div>
 
       {/* Notification Settings Section */}
-      <div className="bg-card border border-border rounded-lg p-6">
+      <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)] hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition p-6">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
             <Bell className="w-5 h-5 text-primary" />
