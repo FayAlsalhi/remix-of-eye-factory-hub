@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Upload, Loader2, Zap, Snowflake, Lightbulb } from 'lucide-react';
+import { Upload, Loader2, Zap, Snowflake, Lightbulb, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import solarPanelImg from '@/assets/solar-panel-cracked.jpg';
 
@@ -165,110 +165,111 @@ const UploadTab = () => {
 
   const handleBrowse = () => fileInputRef.current?.click();
 
+  const handleClear = () => {
+    setHasResult(false);
+    setIsAnalyzing(false);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
+  const showImageState = isAnalyzing || hasResult;
+
   return (
     <div className="space-y-6">
-      {/* Upload + Analysis Result side by side */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Upload Section */}
-        <div className="bg-card border border-border rounded-2xl p-6 shadow-[0_0_30px_rgba(0,108,158,0.05)] flex flex-col">
-          <h3 className="text-lg font-semibold text-foreground mb-4">{t.uploadFiles || 'Upload File'}</h3>
-
-          <div
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors flex-1 flex flex-col items-center justify-center ${
-              isDragging ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-            }`}
-          >
-            <Upload className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-            <p className="text-foreground font-medium mb-2">{t.dropFilesHere}</p>
-            <p className="text-sm text-muted-foreground mb-4">{t.supportedFormat}</p>
-            <p className="text-muted-foreground mb-4">{t.or}</p>
-            <button onClick={handleBrowse} className="text-primary hover:underline font-medium">
-              {t.browseFiles}
-            </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/png,image/jpeg"
-              multiple
-              onChange={handleFileSelect}
-              className="hidden"
-            />
-          </div>
-
-          <Button className="w-full mt-4" disabled={isAnalyzing} onClick={handleBrowse}>
-            {isAnalyzing ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Analyzing...
-              </>
-            ) : (
-              'Analyze File'
-            )}
-          </Button>
-        </div>
-
-        {/* Analysis Result - Issue Map */}
-        <div
-          className="rounded-2xl border bg-gradient-to-br from-[#071426] to-[#0A1B33] p-6 shadow-[0_0_30px_rgba(0,255,220,0.06)] flex flex-col"
-          style={{ borderColor: 'rgba(0,255,220,0.12)' }}
-        >
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-foreground">
-              {t.analysisResults || 'Analysis Result'}
-            </h3>
-            {hasResult && !isAnalyzing && (
+      {/* Unified Upload / Analysis Result card */}
+      <div
+        className={`rounded-2xl border p-6 shadow-[0_0_30px_rgba(0,108,158,0.05)] flex flex-col ${
+          showImageState
+            ? 'bg-gradient-to-br from-[#071426] to-[#0A1B33]'
+            : 'bg-card'
+        }`}
+        style={showImageState ? { borderColor: 'rgba(0,255,220,0.12)' } : undefined}
+      >
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-foreground">
+            {showImageState
+              ? (t.analysisResults || 'Analysis Result')
+              : (t.uploadFiles || 'Upload File')}
+          </h3>
+          {hasResult && !isAnalyzing && (
+            <div className="flex items-center gap-2">
               <span className="text-[10px] uppercase tracking-wider text-cyan-400/80 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-2 py-0.5">
                 AI Detected
               </span>
-            )}
-          </div>
-
-          {isAnalyzing ? (
-            <div className="flex-1 flex items-center justify-center min-h-[320px]">
-              <div className="text-center">
-                <Loader2 className="w-16 h-16 mx-auto text-primary animate-spin mb-4" />
-                <p className="text-muted-foreground">Analyzing image...</p>
-              </div>
-            </div>
-          ) : hasResult ? (
-            <div className="relative rounded-xl overflow-hidden border border-white/10 flex-1">
-              <img src={solarPanelImg} alt="Analyzed solar panel" className="w-full h-full min-h-[320px] object-cover" />
-              <div className="absolute inset-0">
-                {detections.map((d, i) => {
-                  const s = severityStyles[d.severity];
-                  return (
-                    <div
-                      key={i}
-                      className={`absolute border-2 ${s.border} rounded-md`}
-                      style={{
-                        left: `${d.box.left}%`,
-                        top: `${d.box.top}%`,
-                        width: `${d.box.width}%`,
-                        height: `${d.box.height}%`,
-                      }}
-                    >
-                      <span className={`absolute -top-6 left-0 text-[10px] px-2 py-0.5 rounded ${s.pill} border whitespace-nowrap font-medium`}>
-                        {d.label} • {d.id}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ) : (
-            <div className="flex-1 flex items-center justify-center min-h-[320px] text-muted-foreground">
-              <div className="text-center">
-                <div className="w-24 h-24 mx-auto border-2 border-dashed border-border rounded-full flex items-center justify-center mb-4">
-                  <Upload className="w-10 h-10" />
-                </div>
-                <p>Upload an image to see analysis results</p>
-              </div>
+              <button
+                onClick={handleClear}
+                aria-label="Remove image"
+                className="w-7 h-7 rounded-full bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-muted-foreground hover:text-red-400 flex items-center justify-center transition-colors"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
             </div>
           )}
         </div>
+
+        {isAnalyzing ? (
+          <div className="border-2 border-dashed border-cyan-500/20 rounded-xl flex-1 flex items-center justify-center min-h-[360px]">
+            <div className="text-center">
+              <Loader2 className="w-16 h-16 mx-auto text-primary animate-spin mb-4" />
+              <p className="text-muted-foreground">Analyzing image...</p>
+            </div>
+          </div>
+        ) : hasResult ? (
+          <div className="relative rounded-xl overflow-hidden border border-white/10 flex-1">
+            <img src={solarPanelImg} alt="Analyzed solar panel" className="w-full h-full min-h-[420px] object-cover" />
+            <div className="absolute inset-0">
+              {detections.map((d, i) => {
+                const s = severityStyles[d.severity];
+                return (
+                  <div
+                    key={i}
+                    className={`absolute border-2 ${s.border} rounded-md`}
+                    style={{
+                      left: `${d.box.left}%`,
+                      top: `${d.box.top}%`,
+                      width: `${d.box.width}%`,
+                      height: `${d.box.height}%`,
+                    }}
+                  >
+                    <span className={`absolute -top-6 left-0 text-[10px] px-2 py-0.5 rounded ${s.pill} border whitespace-nowrap font-medium`}>
+                      {d.label} • {d.id}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <>
+            <div
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors flex-1 flex flex-col items-center justify-center min-h-[360px] ${
+                isDragging ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
+              }`}
+            >
+              <Upload className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+              <p className="text-foreground font-medium mb-2">{t.dropFilesHere}</p>
+              <p className="text-sm text-muted-foreground mb-4">{t.supportedFormat}</p>
+              <p className="text-muted-foreground mb-4">{t.or}</p>
+              <button onClick={handleBrowse} className="text-primary hover:underline font-medium">
+                {t.browseFiles}
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/png,image/jpeg"
+                multiple
+                onChange={handleFileSelect}
+                className="hidden"
+              />
+            </div>
+
+            <Button className="w-full mt-4" disabled={isAnalyzing} onClick={handleBrowse}>
+              Analyze File
+            </Button>
+          </>
+        )}
       </div>
 
       {/* Recommendations + Detection Summary (below) */}
