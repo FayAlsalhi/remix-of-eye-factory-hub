@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Upload, Loader2, Zap, Snowflake, Lightbulb } from 'lucide-react';
+import { Upload, Loader2, Zap, Snowflake, Lightbulb, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import solarPanelImg from '@/assets/solar-panel-cracked.jpg';
 
