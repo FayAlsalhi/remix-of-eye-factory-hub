@@ -479,74 +479,78 @@ const DashboardTab = () => {
       })()}
 
       {/* Defect Distribution */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        {/* Defect Distribution */}
-        {(() => {
-          const defects = [
-            { label: 'Dust', value: 38, color: '#F59E0B' },
-            { label: 'Bird Droppings', value: 24, color: '#FBBF24' },
-            { label: 'Cracks', value: 18, color: '#F43F5E' },
-            { label: 'Snow', value: 12, color: '#22D3EE' },
-            { label: 'Clean', value: 8, color: '#10B981' },
-          ];
-          const total = defects.reduce((a, b) => a + b.value, 0);
-          const r = 56;
-          const c = 2 * Math.PI * r;
-          let acc = 0;
-          return (
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)]">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-base font-semibold text-foreground">Defect Distribution</h3>
-                <select className="bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-foreground">
-                  <option>7D</option>
-                </select>
-              </div>
-              <div className="flex items-center justify-center my-2">
-                <div className="relative w-40 h-40">
-                  <svg viewBox="0 0 160 160" className="w-full h-full -rotate-90">
-                    <circle cx="80" cy="80" r={r} fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="14" />
-                    {defects.map((d, i) => {
-                      const len = (d.value / total) * c;
-                      const seg = (
-                        <circle
-                          key={i}
-                          cx="80"
-                          cy="80"
-                          r={r}
-                          fill="none"
-                          stroke={d.color}
-                          strokeWidth="14"
-                          strokeDasharray={`${len} ${c - len}`}
-                          strokeDashoffset={-acc}
-                          strokeLinecap="butt"
-                          style={{ filter: 'drop-shadow(0 0 4px rgba(34,211,238,0.25))' }}
-                        />
-                      );
-                      acc += len;
-                      return seg;
-                    })}
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-2xl font-semibold text-foreground">{total}</span>
-                    <span className="text-[10px] text-muted-foreground uppercase tracking-wider">defects</span>
-                  </div>
+      {(() => {
+        const defects = [
+          { label: 'Dust', value: 38, color: '#F59E0B', Icon: Sun },
+          { label: 'Bird Droppings', value: 24, color: '#FBBF24', Icon: Bird },
+          { label: 'Cracks', value: 18, color: '#F43F5E', Icon: Crack },
+          { label: 'Snow', value: 12, color: '#22D3EE', Icon: Snowflake },
+          { label: 'Clean', value: 8, color: '#10B981', Icon: Sparkles },
+        ];
+        const max = Math.max(...defects.map((d) => d.value));
+        return (
+          <div
+            className="rounded-[20px] border bg-gradient-to-br from-[#050B16] to-[#071426] backdrop-blur-sm shadow-[0_0_30px_rgba(0,255,220,0.08)] relative overflow-hidden"
+            style={{ borderColor: 'rgba(0,255,220,0.12)', padding: 24 }}
+          >
+            <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-cyan-500/5 blur-3xl pointer-events-none" />
+
+            <div className="flex items-center justify-between mb-6 relative">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-cyan-500/15 border border-cyan-400/20 flex items-center justify-center shadow-[0_0_12px_rgba(34,211,238,0.25)]">
+                  <PieChart className="w-4 h-4 text-cyan-300" />
                 </div>
+                <h3 className="text-base font-semibold text-foreground tracking-tight">Defect Distribution</h3>
               </div>
-              <div className="mt-3 grid grid-cols-1 gap-1.5">
-                {defects.map((d, i) => (
-                  <div key={i} className="flex items-center justify-between text-xs">
-                    <span className="flex items-center gap-2 text-muted-foreground">
-                      <span className="w-2 h-2 rounded-full" style={{ background: d.color, boxShadow: `0 0 6px ${d.color}` }} />
-                      {d.label}
-                    </span>
-                    <span className="text-foreground font-medium">{d.value}%</span>
-                  </div>
-                ))}
-              </div>
+              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-muted-foreground hover:text-foreground transition shadow-[0_0_10px_rgba(0,255,220,0.05)]">
+                7D
+                <ChevronDown className="w-3 h-3" />
+              </button>
             </div>
-          );
-        })()}
-      </div>
+
+            <div className="grid grid-cols-5 relative">
+              {defects.map((d, i) => {
+                const Icon = d.Icon;
+                return (
+                  <div
+                    key={i}
+                    className={`flex flex-col items-center text-center px-4 py-2 ${
+                      i < defects.length - 1 ? 'border-r border-white/5' : ''
+                    }`}
+                  >
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center mb-3 border"
+                      style={{
+                        background: `${d.color}14`,
+                        borderColor: `${d.color}33`,
+                        boxShadow: `0 0 14px ${d.color}22`,
+                      }}
+                    >
+                      <Icon className="w-5 h-5" style={{ color: d.color }} />
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-1.5">{d.label}</p>
+                    <p className="text-3xl font-semibold text-foreground tracking-tight leading-none">
+                      {d.value}
+                      <span className="text-base text-muted-foreground font-normal ml-0.5">%</span>
+                    </p>
+                    <p className="text-[10px] text-muted-foreground mt-1.5 mb-3">{d.value} Defects</p>
+                    <div className="w-full h-1.5 rounded-full bg-white/[0.04] overflow-hidden">
+                      <div
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${(d.value / max) * 100}%`,
+                          background: `linear-gradient(90deg, ${d.color}99, ${d.color})`,
+                          boxShadow: `0 0 8px ${d.color}66`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* Sector performance + Health */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
