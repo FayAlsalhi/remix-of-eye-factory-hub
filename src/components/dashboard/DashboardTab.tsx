@@ -1,5 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Eye, CheckCircle, XCircle, TrendingUp, TrendingDown, Filter, AlertTriangle, Bell, Radio, MapPin, Clock } from 'lucide-react';
+import { Eye, CheckCircle, XCircle, TrendingUp, TrendingDown, Filter, AlertTriangle, Bell, Radio, MapPin, Clock, Zap } from 'lucide-react';
 import liveFeedImg from '@/assets/live-feed-solar-panel.jpg';
 import {
   LineChart,
@@ -228,14 +228,119 @@ const DashboardTab = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* Insight card */}
-        <div className="rounded-2xl border border-white/10 overflow-hidden relative shadow-[0_0_30px_rgba(0,108,158,0.1)] w-full h-full min-h-[260px]">
-          <img
-            src={insightCard}
-            alt="Your model is in the top 15% performing models"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </div>
+        {/* Energy Production card */}
+        {(() => {
+          const output = 740;
+          const max = 2000;
+          const pct = output / max;
+          const r = 56;
+          const c = 2 * Math.PI * r;
+          const arcLen = c * 0.75;
+          const filled = arcLen * pct;
+          return (
+            <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#050B16] to-[#071426] backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.1)] w-full h-full min-h-[260px] p-6 relative overflow-hidden">
+              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[#28E7E0]/10 blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-20 -left-10 w-48 h-48 rounded-full bg-[#F5A623]/5 blur-3xl pointer-events-none" />
+
+              <div className="flex items-center justify-between mb-4 relative">
+                <div className="flex items-center gap-2">
+                  <div className="p-1.5 rounded-lg bg-white/5 border border-white/10">
+                    <Zap className="w-4 h-4 text-[#28E7E0]" />
+                  </div>
+                  <h3 className="text-base font-semibold text-foreground">Energy Production</h3>
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] text-emerald-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_currentColor]" />
+                  Farm Online
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 relative">
+                <div className="relative w-32 h-32 shrink-0">
+                  <svg viewBox="0 0 160 160" className="w-full h-full -rotate-[135deg]">
+                    <defs>
+                      <linearGradient id="energyGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#28E7E0" />
+                        <stop offset="100%" stopColor="#F5A623" />
+                      </linearGradient>
+                    </defs>
+                    <circle cx="80" cy="80" r={r} fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="10" strokeDasharray={`${arcLen} ${c}`} strokeLinecap="round" />
+                    <circle cx="80" cy="80" r={r} fill="none" stroke="url(#energyGrad)" strokeWidth="10" strokeDasharray={`${filled} ${c}`} strokeLinecap="round" style={{ filter: 'drop-shadow(0 0 6px rgba(40,231,224,0.5))' }} />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-2xl font-semibold text-foreground tracking-tight">
+                      {output}<span className="text-sm text-[#28E7E0] ml-0.5">W</span>
+                    </span>
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Current Output</span>
+                  </div>
+                </div>
+
+                <div className="flex-1 flex items-center justify-center relative h-32">
+                  <svg viewBox="0 0 160 120" className="w-full h-full">
+                    <defs>
+                      <linearGradient id="panelGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#28E7E0" stopOpacity="0.5" />
+                        <stop offset="100%" stopColor="#0d2538" stopOpacity="0.9" />
+                      </linearGradient>
+                      <linearGradient id="battGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#28E7E0" />
+                        <stop offset="100%" stopColor="#F5A623" />
+                      </linearGradient>
+                    </defs>
+                    <circle cx="32" cy="28" r="10" fill="#F5A623" opacity="0.9" />
+                    <g stroke="#F5A623" strokeWidth="1.2" strokeLinecap="round" opacity="0.7">
+                      <line x1="32" y1="10" x2="32" y2="14" />
+                      <line x1="32" y1="42" x2="32" y2="46" />
+                      <line x1="14" y1="28" x2="18" y2="28" />
+                      <line x1="46" y1="28" x2="50" y2="28" />
+                      <line x1="19" y1="15" x2="22" y2="18" />
+                      <line x1="42" y1="38" x2="45" y2="41" />
+                      <line x1="45" y1="15" x2="42" y2="18" />
+                      <line x1="22" y1="38" x2="19" y2="41" />
+                    </g>
+                    <g transform="translate(70, 50)">
+                      <polygon points="0,30 60,30 70,55 -10,55" fill="url(#panelGrad)" stroke="#28E7E0" strokeWidth="0.6" opacity="0.9" />
+                      <line x1="20" y1="30" x2="13" y2="55" stroke="#28E7E0" strokeWidth="0.4" opacity="0.5" />
+                      <line x1="40" y1="30" x2="43" y2="55" stroke="#28E7E0" strokeWidth="0.4" opacity="0.5" />
+                      <line x1="-5" y1="42" x2="65" y2="42" stroke="#28E7E0" strokeWidth="0.4" opacity="0.5" />
+                    </g>
+                    <g transform="translate(15, 70)">
+                      <rect x="0" y="0" width="32" height="40" rx="4" fill="none" stroke="#28E7E0" strokeWidth="1" opacity="0.8" />
+                      <rect x="11" y="-3" width="10" height="3" rx="1" fill="#28E7E0" opacity="0.8" />
+                      <rect x="3" y="20" width="26" height="17" rx="2" fill="url(#battGrad)" opacity="0.85" />
+                      <rect x="3" y="10" width="26" height="8" rx="2" fill="#28E7E0" opacity="0.3" />
+                    </g>
+                    <g fill="#28E7E0">
+                      <circle cx="55" cy="78" r="1.2" opacity="0.8" />
+                      <circle cx="62" cy="80" r="1" opacity="0.5" />
+                      <circle cx="50" cy="76" r="1" opacity="0.5" />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs relative">
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Peak Today</p>
+                  <p className="text-sm font-semibold text-foreground mt-0.5">1.82 <span className="text-[#28E7E0]">kW</span></p>
+                </div>
+                <div className="h-8 w-px bg-white/5" />
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Efficiency</p>
+                  <p className="text-sm font-semibold text-foreground mt-0.5">86<span className="text-[#F5A623]">%</span></p>
+                </div>
+                <div className="h-8 w-px bg-white/5" />
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Status</p>
+                  <p className="text-sm font-semibold text-emerald-400 mt-0.5 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_currentColor]" />
+                    Active
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
       </div>
 
       {/* Active Inspections in Period (heatmap) */}
