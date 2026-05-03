@@ -43,10 +43,10 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
 
       {/* Navbar */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/85 border-b border-border/50 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
-        <nav className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-12">
-            <Link to="/" aria-label="Qiyaf home">
-              <img src={qiyafLogo} alt="Qiyaf" className="h-32 w-auto object-contain" />
+        <nav className="max-w-[1480px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 h-14 sm:h-16 lg:h-20 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-6 lg:gap-12 min-w-0">
+            <Link to="/" aria-label="Qiyaf home" className="shrink-0">
+              <img src={qiyafLogo} alt="Qiyaf" className="h-16 sm:h-20 md:h-28 lg:h-32 w-auto object-contain" />
             </Link>
             <ul className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => (
@@ -61,17 +61,17 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
               ))}
             </ul>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Button
               variant="outline"
               onClick={onLogin}
-              className="h-10 px-5 bg-transparent border-border hover:bg-secondary/50 text-foreground rounded-lg"
+              className="h-9 sm:h-10 px-3 sm:px-5 bg-transparent border-border hover:bg-secondary/50 text-foreground rounded-lg text-sm"
             >
               Login
             </Button>
             <Button
               onClick={onGetStarted}
-              className="h-10 px-5 rounded-lg text-primary-foreground font-medium border-0"
+              className="h-9 sm:h-10 px-3 sm:px-5 rounded-lg text-primary-foreground font-medium border-0 text-sm"
               style={{ background: "var(--gradient-brand)" }}
             >
               Get Started
