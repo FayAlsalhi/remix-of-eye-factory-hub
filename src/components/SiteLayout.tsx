@@ -18,6 +18,7 @@ interface SiteLayoutProps {
 const SiteLayout = ({ children }: SiteLayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const goToAuth = (view: "login" | "signup") => {
     navigate(`/?auth=${view}`);
