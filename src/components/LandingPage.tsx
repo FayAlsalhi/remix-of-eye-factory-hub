@@ -106,18 +106,18 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
           }}
         />
 
-        <div className="relative max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 pt-10 lg:pt-16 pb-24">
+        <div className="relative max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 pt-10 lg:pt-16 pb-16 sm:pb-24">
           <div className="grid lg:grid-cols-2 gap-8 items-center min-h-[calc(100vh-5rem)]">
             {/* Left content */}
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm px-4 py-1.5 mb-7">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm px-3 sm:px-4 py-1.5 mb-5 sm:mb-7">
                 <Sparkles className="w-3.5 h-3.5 text-primary" />
-                <span className="text-xs font-medium tracking-wider uppercase text-primary">
+                <span className="text-[10px] sm:text-xs font-medium tracking-wider uppercase text-primary">
                   AI Powered Inspection Platform
                 </span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
                 AI Vision for{" "}
                 <span className="block">
                   <span
