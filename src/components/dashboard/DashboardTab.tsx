@@ -518,7 +518,7 @@ const DashboardTab = () => {
               </button>
             </div>
 
-            <div className="grid grid-cols-5 gap-2 relative">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 relative">
               {defects.map((d, i) => {
                 const Icon = d.Icon;
                 return (
