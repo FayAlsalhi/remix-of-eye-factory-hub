@@ -76,13 +76,13 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
   return (
     <div className="min-h-screen flex flex-col" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Top Header with Logo + Actions */}
-      <header className="min-h-[64px] sm:min-h-[88px] md:min-h-[120px] lg:h-44 bg-card border-b border-border flex items-center justify-between px-3 sm:px-4 md:px-6 gap-2 sm:gap-4 py-2">
+      <header className="h-20 bg-card border-b border-border flex items-center justify-between px-3 sm:px-4 md:px-6 gap-2 sm:gap-4 py-2">
         {/* Logo + small LIVE badge top-right */}
-        <div className="relative shrink-0">
+        <div className="relative shrink-0 h-20 flex items-center overflow-hidden">
           <img
             src={qiyafLogo}
             alt="Qiyaf"
-            className="h-12 sm:h-20 md:h-28 lg:h-40 w-auto object-contain"
+            className="h-40 w-auto object-contain"
           />
           <span className="absolute -top-1 -right-3 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-red-500 text-white text-[8px] font-bold tracking-wider shadow-md leading-none">
             <span className="w-1 h-1 bg-white rounded-full animate-pulse"></span>
