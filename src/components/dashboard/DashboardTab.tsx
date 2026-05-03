@@ -185,10 +185,10 @@ const DashboardTab = () => {
 
       {/* Inspection trend + Insight */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        <div className="lg:col-span-2 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 backdrop-blur-sm">
-          <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+        <div className="lg:col-span-2 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-4 sm:p-6 backdrop-blur-sm">
+          <div className="flex items-start sm:items-center justify-between mb-5 flex-wrap gap-3">
             <h3 className="text-base font-semibold text-foreground">Inspection Trend</h3>
-            <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <div className="flex items-center gap-2 sm:gap-4 text-xs text-muted-foreground flex-wrap">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" /> Passed
               </span>
@@ -201,7 +201,7 @@ const DashboardTab = () => {
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-sky-400" /> Maintenance
               </span>
-              <select className="bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-foreground ml-2">
+              <select className="bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-foreground">
                 <option>Hourly</option>
               </select>
             </div>
