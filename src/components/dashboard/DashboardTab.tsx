@@ -604,7 +604,7 @@ const DashboardTab = () => {
                   cy="90"
                   r="70"
                   fill="none"
-                  stroke="rgba(255,255,255,0.06)"
+                  stroke="#1C2733"
                   strokeWidth="12"
                   strokeDasharray={`${gaugeCircumference * 0.75} ${gaugeCircumference}`}
                   strokeLinecap="round"
@@ -618,14 +618,18 @@ const DashboardTab = () => {
                   strokeWidth="12"
                   strokeDasharray={`${(healthScore / 100) * gaugeCircumference * 0.75} ${gaugeCircumference}`}
                   strokeLinecap="round"
-                  style={{ filter: 'drop-shadow(0 0 8px rgba(34,211,238,0.5))' }}
+                  style={{ filter: 'drop-shadow(0 0 22px rgba(24,214,200,0.35)) drop-shadow(0 0 30px rgba(255,138,31,0.22))' }}
                 />
                 <defs>
                   <linearGradient id="healthGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="hsl(190,90%,55%)" />
-                    <stop offset="100%" stopColor="hsl(160,75%,55%)" />
+                    <stop offset="0%" stopColor="#18D6C8" />
+                    <stop offset="28%" stopColor="#6FE7A5" />
+                    <stop offset="55%" stopColor="#B7E66B" />
+                    <stop offset="78%" stopColor="#F2B13A" />
+                    <stop offset="100%" stopColor="#FF8A1F" />
                   </linearGradient>
                 </defs>
+
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <span className="text-4xl font-semibold text-foreground">{healthScore}</span>
