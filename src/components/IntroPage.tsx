@@ -34,7 +34,7 @@ const IntroPage = ({ onStart }: IntroPageProps) => {
 
       {/* Content at the bottom */}
       <div className="relative z-10 flex flex-col items-center justify-end min-h-screen px-8 pb-24">
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight text-center drop-shadow-lg">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight text-center drop-shadow-lg px-4">
           Qiyaf
         </h1>
         <p className="text-white/95 text-lg md:text-xl mb-10 text-center max-w-xl drop-shadow-md">
