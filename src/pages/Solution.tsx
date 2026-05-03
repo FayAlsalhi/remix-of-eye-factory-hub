@@ -61,12 +61,12 @@ const Solution = () => {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-20 pb-24 text-center">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 pt-12 sm:pt-12 sm:pt-20 pb-10 sm:pb-16 sm:pb-16 sm:pb-24 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 mb-6">
           <Sparkles className="w-3.5 h-3.5 text-primary" />
           <span className="text-xs font-medium tracking-wider uppercase text-primary">The Qiyaf Solution</span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-4xl mx-auto leading-[1.1]">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight max-w-4xl mx-auto leading-[1.1]">
           From UAV Flight to{" "}
           <span
             className="bg-clip-text text-transparent"
@@ -82,7 +82,7 @@ const Solution = () => {
       </section>
 
       {/* Use cases */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-10 pb-24">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 pb-16 sm:pb-24">
         <div className="mb-10 text-center">
           <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-3">What it solves</p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Built for Real Solar Operations</h2>
@@ -105,7 +105,7 @@ const Solution = () => {
 
       {/* Workflow */}
       <section className="border-y border-border/50 bg-secondary/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-20">
           <div className="mb-12 text-center">
             <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-3">How it works</p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">A Four-Step Workflow</h2>
@@ -136,7 +136,7 @@ const Solution = () => {
       </section>
 
       {/* Tech stack */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-10 py-24">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-24">
         <div className="mb-10 text-center">
           <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-3">Under the hood</p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">The Technology Behind Qiyaf</h2>
@@ -158,7 +158,7 @@ const Solution = () => {
       </section>
 
       {/* CTA */}
-      <section className="max-w-5xl mx-auto px-6 lg:px-10 pb-24">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 pb-16 sm:pb-24">
         <div
           className="rounded-2xl border border-primary/30 p-10 md:p-14 text-center"
           style={{ background: "radial-gradient(ellipse at top, hsl(184 75% 48% / 0.18), transparent 70%)" }}
