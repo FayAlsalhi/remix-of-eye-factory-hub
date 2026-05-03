@@ -343,17 +343,18 @@ const DashboardTab = () => {
         })()}
       </div>
 
-      {/* Active Inspections in Period (heatmap) */}
+      {/* Active Inspections + Defect Distribution side by side */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
       {(() => {
         const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+        const days = ['Mon','Wed','Fri'];
         const rand = (n: number) => {
           const x = Math.sin(n * 9301 + 49297) * 233280;
           return x - Math.floor(x);
         };
         const weeks = 53;
-        const CELL = 10;
-        const GAP = 3;
+        const CELL = 7;
+        const GAP = 2;
         const grid: number[][] = Array.from({ length: 7 }, (_, r) =>
           Array.from({ length: weeks }, (_, w) => {
             const r2 = rand(r * 53 + w);
@@ -368,110 +369,99 @@ const DashboardTab = () => {
           if (v === 0) return { bg: '#081018', glow: 'none' };
           if (v <= 10) return { bg: '#0d3b25', glow: 'none' };
           if (v <= 30) return { bg: '#15803d', glow: 'none' };
-          if (v <= 60) return { bg: '#22c55e', glow: '0 0 5px rgba(34,197,94,0.4)' };
-          return { bg: '#4ade80', glow: '0 0 8px rgba(74,222,128,0.8)' };
+          if (v <= 60) return { bg: '#22c55e', glow: '0 0 4px rgba(34,197,94,0.4)' };
+          return { bg: '#4ade80', glow: '0 0 6px rgba(74,222,128,0.7)' };
         };
         const gridWidth = weeks * CELL + (weeks - 1) * GAP;
         return (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            <div
-              className="lg:col-span-2 rounded-[18px] border bg-gradient-to-br from-[#050B16] to-[#071426] backdrop-blur-sm shadow-[0_0_30px_rgba(0,255,220,0.08)]"
-              style={{ borderColor: 'rgba(0,255,220,0.12)', padding: 24 }}
-            >
-              <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-                <div className="flex items-center gap-2">
-                  <Eye className="w-4 h-4 text-cyan-300" />
-                  <h3 className="text-base font-semibold text-foreground">Active Inspections in Period</h3>
+          <div
+            className="rounded-[18px] border bg-gradient-to-br from-[#050B16] to-[#071426] backdrop-blur-sm shadow-[0_0_30px_rgba(0,255,220,0.08)]"
+            style={{ borderColor: 'rgba(0,255,220,0.12)', padding: 20 }}
+          >
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-full bg-cyan-500/15 border border-cyan-400/20 flex items-center justify-center">
+                  <Eye className="w-3.5 h-3.5 text-cyan-300" />
                 </div>
-                <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
-                  <span>Less</span>
-                  {[0, 5, 20, 45, 80].map((v, i) => {
-                    const c = colorFor(v);
-                    return (
-                      <span
-                        key={i}
-                        className="inline-block rounded-[2px]"
-                        style={{ width: 10, height: 10, background: c.bg, boxShadow: c.glow }}
-                      />
-                    );
-                  })}
-                  <span>More</span>
-                </div>
+                <h3 className="text-sm font-semibold text-foreground">Active Inspections in Period</h3>
               </div>
+              <div className="flex items-center gap-1.5 text-[9px] text-muted-foreground">
+                <span>Less</span>
+                {[0, 5, 20, 45, 80].map((v, i) => {
+                  const c = colorFor(v);
+                  return (
+                    <span
+                      key={i}
+                      className="inline-block rounded-[2px]"
+                      style={{ width: 8, height: 8, background: c.bg, boxShadow: c.glow }}
+                    />
+                  );
+                })}
+                <span>More</span>
+              </div>
+            </div>
 
-              <div className="flex gap-5 items-start">
-                {/* Heatmap */}
-                <div className="flex-1 min-w-0">
-                  <div className="w-full" style={{ maxWidth: gridWidth + 24 }}>
-                    {/* Months row */}
-                    <div className="flex mb-1.5" style={{ marginLeft: 24, width: gridWidth }}>
-                      {months.map((m) => (
-                        <div
-                          key={m}
-                          className="text-[10px] text-muted-foreground"
-                          style={{ flex: '1 1 0', minWidth: 0 }}
-                        >
-                          {m}
-                        </div>
+            <div className="flex gap-4 items-start">
+              <div className="flex-1 min-w-0 overflow-hidden">
+                <div style={{ width: gridWidth + 20 }}>
+                  <div className="flex mb-1" style={{ marginLeft: 20, width: gridWidth }}>
+                    {months.map((m) => (
+                      <div
+                        key={m}
+                        className="text-[9px] text-muted-foreground"
+                        style={{ flex: '1 1 0', minWidth: 0 }}
+                      >
+                        {m}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex">
+                    <div className="flex flex-col justify-between" style={{ marginRight: 4, width: 16, height: 7 * CELL + 6 * GAP }}>
+                      {days.map((d) => (
+                        <div key={d} className="text-[8px] text-muted-foreground leading-none">{d}</div>
                       ))}
                     </div>
 
-                    <div className="flex">
-                      {/* Day labels */}
-                      <div className="flex flex-col" style={{ gap: GAP, marginRight: 6, width: 18 }}>
-                        {days.map((d) => (
-                          <div
-                            key={d}
-                            className="text-[9px] text-muted-foreground flex items-center"
-                            style={{ height: CELL }}
-                          >
-                            {d}
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Cells grid */}
-                      <div className="flex flex-col" style={{ gap: GAP }}>
-                        {grid.map((row, ri) => (
-                          <div key={ri} className="flex" style={{ gap: GAP }}>
-                            {row.map((v, ci) => {
-                              const c = colorFor(v);
-                              return (
-                                <div
-                                  key={ci}
-                                  title={`${v} inspections`}
-                                  style={{
-                                    width: CELL,
-                                    height: CELL,
-                                    borderRadius: 3,
-                                    background: c.bg,
-                                    boxShadow: c.glow,
-                                    flexShrink: 0,
-                                  }}
-                                />
-                              );
-                            })}
-                          </div>
-                        ))}
-                      </div>
+                    <div className="flex flex-col" style={{ gap: GAP }}>
+                      {grid.map((row, ri) => (
+                        <div key={ri} className="flex" style={{ gap: GAP }}>
+                          {row.map((v, ci) => {
+                            const c = colorFor(v);
+                            return (
+                              <div
+                                key={ci}
+                                title={`${v} inspections`}
+                                style={{
+                                  width: CELL,
+                                  height: CELL,
+                                  borderRadius: 2,
+                                  background: c.bg,
+                                  boxShadow: c.glow,
+                                  flexShrink: 0,
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Right summary column */}
-                <div className="flex flex-col justify-between gap-4 min-w-[140px] border-l border-white/5 pl-5 self-stretch">
-                  {[
-                    { label: 'Year 2026', value: '242', sub: 'Total Inspections' },
-                    { label: 'This Month', value: '28', sub: 'Total Inspections' },
-                    { label: 'Today', value: '3', sub: 'Total Inspections' },
-                  ].map((s, i) => (
-                    <div key={i}>
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{s.label}</p>
-                      <p className="text-2xl font-semibold text-foreground tracking-tight mt-0.5">{s.value}</p>
-                      <p className="text-[10px] text-muted-foreground">{s.sub}</p>
-                    </div>
-                  ))}
-                </div>
+              <div className="flex flex-col justify-between gap-3 min-w-[110px] border-l border-white/5 pl-4 self-stretch">
+                {[
+                  { label: 'Year 2026', value: '242', sub: 'Total Inspections' },
+                  { label: 'This Month', value: '28', sub: 'Total Inspections' },
+                  { label: 'Today', value: '3', sub: 'Total Inspections' },
+                ].map((s, i) => (
+                  <div key={i}>
+                    <p className="text-[9px] text-muted-foreground uppercase tracking-wider">{s.label}</p>
+                    <p className="text-xl font-semibold text-foreground tracking-tight mt-0.5">{s.value}</p>
+                    <p className="text-[9px] text-muted-foreground">{s.sub}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -508,33 +498,33 @@ const DashboardTab = () => {
               </button>
             </div>
 
-            <div className="grid grid-cols-5 relative">
+            <div className="grid grid-cols-5 gap-2 relative">
               {defects.map((d, i) => {
                 const Icon = d.Icon;
                 return (
                   <div
                     key={i}
-                    className={`flex flex-col items-center text-center px-4 py-2 ${
+                    className={`flex flex-col items-center text-center px-1 py-2 ${
                       i < defects.length - 1 ? 'border-r border-white/5' : ''
                     }`}
                   >
                     <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center mb-3 border"
+                      className="w-9 h-9 rounded-lg flex items-center justify-center mb-2 border"
                       style={{
                         background: `${d.color}14`,
                         borderColor: `${d.color}33`,
-                        boxShadow: `0 0 14px ${d.color}22`,
+                        boxShadow: `0 0 12px ${d.color}22`,
                       }}
                     >
-                      <Icon className="w-5 h-5" style={{ color: d.color }} />
+                      <Icon className="w-4 h-4" style={{ color: d.color }} />
                     </div>
-                    <p className="text-xs text-muted-foreground mb-1.5">{d.label}</p>
-                    <p className="text-3xl font-semibold text-foreground tracking-tight leading-none">
+                    <p className="text-[10px] text-muted-foreground mb-1 truncate w-full">{d.label}</p>
+                    <p className="text-2xl font-semibold text-foreground tracking-tight leading-none">
                       {d.value}
-                      <span className="text-base text-muted-foreground font-normal ml-0.5">%</span>
+                      <span className="text-sm text-muted-foreground font-normal ml-0.5">%</span>
                     </p>
-                    <p className="text-[10px] text-muted-foreground mt-1.5 mb-3">{d.value} Defects</p>
-                    <div className="w-full h-1.5 rounded-full bg-white/[0.04] overflow-hidden">
+                    <p className="text-[9px] text-muted-foreground mt-1 mb-2">{d.value} Defects</p>
+                    <div className="w-full h-1 rounded-full bg-white/[0.04] overflow-hidden">
                       <div
                         className="h-full rounded-full"
                         style={{
@@ -551,6 +541,7 @@ const DashboardTab = () => {
           </div>
         );
       })()}
+      </div>
 
       {/* Sector performance + Health */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
