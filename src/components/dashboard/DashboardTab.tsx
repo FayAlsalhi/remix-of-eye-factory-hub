@@ -498,33 +498,33 @@ const DashboardTab = () => {
               </button>
             </div>
 
-            <div className="grid grid-cols-5 relative">
+            <div className="grid grid-cols-5 gap-2 relative">
               {defects.map((d, i) => {
                 const Icon = d.Icon;
                 return (
                   <div
                     key={i}
-                    className={`flex flex-col items-center text-center px-4 py-2 ${
+                    className={`flex flex-col items-center text-center px-1 py-2 ${
                       i < defects.length - 1 ? 'border-r border-white/5' : ''
                     }`}
                   >
                     <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center mb-3 border"
+                      className="w-9 h-9 rounded-lg flex items-center justify-center mb-2 border"
                       style={{
                         background: `${d.color}14`,
                         borderColor: `${d.color}33`,
-                        boxShadow: `0 0 14px ${d.color}22`,
+                        boxShadow: `0 0 12px ${d.color}22`,
                       }}
                     >
-                      <Icon className="w-5 h-5" style={{ color: d.color }} />
+                      <Icon className="w-4 h-4" style={{ color: d.color }} />
                     </div>
-                    <p className="text-xs text-muted-foreground mb-1.5">{d.label}</p>
-                    <p className="text-3xl font-semibold text-foreground tracking-tight leading-none">
+                    <p className="text-[10px] text-muted-foreground mb-1 truncate w-full">{d.label}</p>
+                    <p className="text-2xl font-semibold text-foreground tracking-tight leading-none">
                       {d.value}
-                      <span className="text-base text-muted-foreground font-normal ml-0.5">%</span>
+                      <span className="text-sm text-muted-foreground font-normal ml-0.5">%</span>
                     </p>
-                    <p className="text-[10px] text-muted-foreground mt-1.5 mb-3">{d.value} Defects</p>
-                    <div className="w-full h-1.5 rounded-full bg-white/[0.04] overflow-hidden">
+                    <p className="text-[9px] text-muted-foreground mt-1 mb-2">{d.value} Defects</p>
+                    <div className="w-full h-1 rounded-full bg-white/[0.04] overflow-hidden">
                       <div
                         className="h-full rounded-full"
                         style={{
@@ -541,6 +541,7 @@ const DashboardTab = () => {
           </div>
         );
       })()}
+      </div>
 
       {/* Sector performance + Health */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
