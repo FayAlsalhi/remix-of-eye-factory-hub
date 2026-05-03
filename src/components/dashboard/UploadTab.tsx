@@ -7,9 +7,9 @@ import solarPanelImg from '@/assets/solar-panel-cracked.jpg';
 type Severity = 'critical' | 'warning' | 'normal';
 
 interface Detection {
-  label: string;
+  id: string;
+  label: 'Cracks' | 'Snow' | 'Dust' | 'Bird Droppings' | 'Clean';
   severity: Severity;
-  // bounding box in % (left, top, width, height)
   box: { left: number; top: number; width: number; height: number };
 }
 
