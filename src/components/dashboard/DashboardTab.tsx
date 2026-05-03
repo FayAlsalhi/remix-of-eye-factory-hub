@@ -238,75 +238,138 @@ const DashboardTab = () => {
         </div>
       </div>
 
-      {/* Recent Alerts + Live Feed + Defect Distribution */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        {/* Recent Alerts */}
-        <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)]">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Bell className="w-4 h-4 text-cyan-300" />
-              <h3 className="text-base font-semibold text-foreground">Recent Alerts</h3>
+      {/* Active Inspections in Period (heatmap) */}
+      {(() => {
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+        // deterministic pseudo-random generator
+        const rand = (n: number) => {
+          const x = Math.sin(n * 9301 + 49297) * 233280;
+          return x - Math.floor(x);
+        };
+        const weeks = 53;
+        const grid: number[][] = Array.from({ length: 7 }, (_, r) =>
+          Array.from({ length: weeks }, (_, w) => {
+            const r2 = rand(r * 53 + w);
+            if (r2 < 0.45) return 0;
+            if (r2 < 0.7) return Math.floor(r2 * 20) + 1;
+            if (r2 < 0.88) return Math.floor(r2 * 30) + 11;
+            if (r2 < 0.97) return Math.floor(r2 * 50) + 31;
+            return Math.floor(r2 * 40) + 61;
+          })
+        );
+        const colorFor = (v: number) => {
+          if (v === 0) return { bg: '#081018', glow: 'none' };
+          if (v <= 10) return { bg: '#0d3b25', glow: 'none' };
+          if (v <= 30) return { bg: '#15803d', glow: 'none' };
+          if (v <= 60) return { bg: '#22c55e', glow: '0 0 6px rgba(34,197,94,0.45)' };
+          return { bg: '#4ade80', glow: '0 0 10px rgba(74,222,128,0.85)' };
+        };
+        return (
+          <div
+            className="rounded-[18px] border bg-gradient-to-br from-[#050B16] to-[#071426] backdrop-blur-sm shadow-[0_0_40px_rgba(0,255,220,0.08)]"
+            style={{ borderColor: 'rgba(0,255,220,0.12)', padding: 28 }}
+          >
+            <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+              <div className="flex items-center gap-2">
+                <Eye className="w-4 h-4 text-cyan-300" />
+                <h3 className="text-base font-semibold text-foreground">Active Inspections in Period</h3>
+              </div>
+              <div className="flex items-center gap-3 text-[10px] text-muted-foreground">
+                <span>Less</span>
+                {[0, 5, 20, 45, 80].map((v, i) => {
+                  const c = colorFor(v);
+                  return (
+                    <span
+                      key={i}
+                      className="inline-block rounded-[3px]"
+                      style={{ width: 12, height: 12, background: c.bg, boxShadow: c.glow }}
+                    />
+                  );
+                })}
+                <span>More</span>
+              </div>
             </div>
-            <span className="text-xs text-muted-foreground hover:text-foreground cursor-pointer">View all</span>
-          </div>
-          <div className="space-y-3">
-            {[
-              { sev: 'Critical', color: 'rose', dot: 'bg-rose-500', ring: 'border-rose-500/30 bg-rose-500/10 text-rose-300', title: 'Cracks detected on panel surface', loc: 'SP-001 · Sector A-12', time: '2m ago' },
-              { sev: 'Warning', color: 'amber', dot: 'bg-amber-400', ring: 'border-amber-400/30 bg-amber-400/10 text-amber-300', title: 'Heavy dust accumulation', loc: 'SP-047 · Sector B-08', time: '14m ago' },
-              { sev: 'Info', color: 'sky', dot: 'bg-sky-400', ring: 'border-sky-400/30 bg-sky-400/10 text-sky-300', title: 'Inspection completed', loc: 'Sector C-15', time: '38m ago' },
-              { sev: 'Warning', color: 'amber', dot: 'bg-amber-400', ring: 'border-amber-400/30 bg-amber-400/10 text-amber-300', title: 'Bird droppings detected', loc: 'SP-112 · Sector D-20', time: '1h ago' },
-            ].map((a, i) => (
-              <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition">
-                <span className={`mt-1.5 w-2 h-2 rounded-full ${a.dot} shadow-[0_0_8px_currentColor]`} />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <p className="text-sm text-foreground truncate">{a.title}</p>
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full border ${a.ring}`}>{a.sev}</span>
+
+            <div className="flex gap-6">
+              {/* Heatmap */}
+              <div className="flex-1 overflow-x-auto">
+                <div className="inline-block">
+                  {/* Months row */}
+                  <div className="flex mb-2" style={{ marginLeft: 32 }}>
+                    {months.map((m) => (
+                      <div
+                        key={m}
+                        className="text-[11px] text-muted-foreground"
+                        style={{ width: (weeks / 12) * (16 + 8), flexShrink: 0 }}
+                      >
+                        {m}
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{a.loc}</span>
-                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{a.time}</span>
+
+                  <div className="flex">
+                    {/* Day labels */}
+                    <div className="flex flex-col" style={{ gap: 8, marginRight: 8, width: 24 }}>
+                      {days.map((d) => (
+                        <div
+                          key={d}
+                          className="text-[11px] text-muted-foreground flex items-center"
+                          style={{ height: 16 }}
+                        >
+                          {d}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Cells grid: 7 rows x weeks cols */}
+                    <div className="flex flex-col" style={{ gap: 8 }}>
+                      {grid.map((row, ri) => (
+                        <div key={ri} className="flex" style={{ gap: 8 }}>
+                          {row.map((v, ci) => {
+                            const c = colorFor(v);
+                            return (
+                              <div
+                                key={ci}
+                                title={`${v} inspections`}
+                                style={{
+                                  width: 16,
+                                  height: 16,
+                                  borderRadius: 4,
+                                  background: c.bg,
+                                  boxShadow: c.glow,
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Live Feed (RGB) */}
-        <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)]">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Radio className="w-4 h-4 text-cyan-300" />
-              <h3 className="text-base font-semibold text-foreground">Live Feed (RGB)</h3>
-            </div>
-            <span className="flex items-center gap-1.5 text-xs text-cyan-300 cursor-pointer hover:text-cyan-200">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-300 animate-pulse shadow-[0_0_8px_currentColor]" />
-              View live
-            </span>
-          </div>
-          <div className="relative rounded-xl overflow-hidden border border-white/10">
-            <img src={liveFeedImg} alt="Live RGB feed of solar panel with detected defects" className="w-full h-44 object-cover" />
-            <span className="absolute top-2 left-2 text-[10px] px-2 py-0.5 rounded-full bg-rose-500/90 text-white font-semibold tracking-wide shadow-[0_0_10px_rgba(244,63,94,0.5)]">
-              ● DEFECTIVE
-            </span>
-            <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded-full bg-black/60 text-foreground border border-white/10 backdrop-blur-sm">
-              SP-001
-            </span>
-            <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] text-foreground/90 bg-black/50 backdrop-blur-sm rounded-lg px-2 py-1 border border-white/10">
-              <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-cyan-300" />Sector A-12</span>
-              <span className="flex items-center gap-1"><Clock className="w-3 h-3 text-cyan-300" />14:23:08</span>
+              {/* Right summary column */}
+              <div className="flex flex-col justify-center gap-6 min-w-[180px] border-l border-white/5 pl-6">
+                {[
+                  { label: 'Year 2026', value: '242', sub: 'Total Inspections' },
+                  { label: 'This Month', value: '28', sub: 'Total Inspections' },
+                  { label: 'Today', value: '3', sub: 'Total Inspections' },
+                ].map((s, i) => (
+                  <div key={i}>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider">{s.label}</p>
+                    <p className="text-3xl font-semibold text-foreground tracking-tight mt-1">{s.value}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{s.sub}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          <div className="mt-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
-              <span className="text-xs text-foreground">Cracks — heavy</span>
-            </div>
-            <span className="text-[10px] px-2 py-0.5 rounded-full border border-rose-500/30 bg-rose-500/10 text-rose-300">98% confidence</span>
-          </div>
-        </div>
+        );
+      })()}
 
+      {/* Defect Distribution */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Defect Distribution */}
         {(() => {
           const defects = [
