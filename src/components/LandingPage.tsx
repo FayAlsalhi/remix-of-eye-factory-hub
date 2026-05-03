@@ -173,20 +173,20 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
       </section>
 
       {/* Capabilities */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-10 py-24">
-        <div className="mb-10">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-4">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-24">
+        <div className="mb-8 sm:mb-10">
+          <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-3 sm:mb-4">
             Advanced AI for every panel
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight">
             Powerful Capabilities Built for Solar Excellence
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base text-muted-foreground max-w-2xl">
             Our platform combines computer vision, machine learning, and analytics to help you operate at peak efficiency.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           {/* Left: capability cards */}
           <div className="grid sm:grid-cols-2 gap-4">
             {capabilities.map((c) => (
