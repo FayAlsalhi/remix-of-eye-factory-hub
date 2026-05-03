@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    /* Premium black-based dark theme — Qiyaf brand: teal + orange accents */
-    --background: 0 0% 4%;
+    /* Unified Qiya dark navy theme — matches dashboard System Overview */
+    --background: 213 65% 5%;        /* #050B16 */
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 7%;
+    --card: 213 70% 8%;              /* #071426 */
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 6%;
+    --popover: 213 70% 7%;
     --popover-foreground: 0 0% 98%;
 
     /* Teal/cyan primary from logo */
     --primary: 184 75% 48%;
     --primary-foreground: 0 0% 4%;
 
-    --secondary: 0 0% 10%;
+    --secondary: 213 60% 11%;        /* #0A1B33 */
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 62%;
+    --muted: 213 50% 13%;
+    --muted-foreground: 210 15% 65%;
 
     /* Amber/orange accent from logo */
     --accent: 28 95% 58%;
@@ -31,11 +31,10 @@
     --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 14%;
-    --input: 0 0% 12%;
+    --border: 213 40% 18%;
+    --input: 213 50% 13%;
     --ring: 184 75% 48%;
 
-    /* Brand gradient tokens */
     --gradient-brand: linear-gradient(135deg, hsl(184 75% 48%), hsl(28 95% 58%));
     --gradient-radial-glow: radial-gradient(ellipse at top, hsl(184 75% 48% / 0.15), transparent 60%);
     --shadow-brand: 0 20px 60px -20px hsl(184 75% 48% / 0.4);
@@ -43,44 +42,44 @@
 
     --radius: 0.5rem;
 
-    --sidebar-background: 210 45% 9%;
-    --sidebar-foreground: 40 30% 92%;
-    --sidebar-primary: 188 75% 42%;
-    --sidebar-primary-foreground: 210 45% 8%;
-    --sidebar-accent: 210 35% 14%;
-    --sidebar-accent-foreground: 40 30% 92%;
-    --sidebar-border: 210 30% 18%;
-    --sidebar-ring: 188 75% 42%;
+    --sidebar-background: 213 65% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 184 75% 48%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 213 60% 11%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 213 40% 18%;
+    --sidebar-ring: 184 75% 48%;
   }
 
   .dark {
-    --background: 0 0% 4%;
+    --background: 213 65% 5%;
     --foreground: 0 0% 98%;
-    --card: 0 0% 7%;
+    --card: 213 70% 8%;
     --card-foreground: 0 0% 98%;
-    --popover: 0 0% 6%;
+    --popover: 213 70% 7%;
     --popover-foreground: 0 0% 98%;
     --primary: 184 75% 48%;
     --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 10%;
+    --secondary: 213 60% 11%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 62%;
+    --muted: 213 50% 13%;
+    --muted-foreground: 210 15% 65%;
     --accent: 28 95% 58%;
     --accent-foreground: 0 0% 4%;
     --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 14%;
-    --input: 0 0% 12%;
+    --border: 213 40% 18%;
+    --input: 213 50% 13%;
     --ring: 184 75% 48%;
 
-    --sidebar-background: 0 0% 5%;
+    --sidebar-background: 213 65% 6%;
     --sidebar-foreground: 0 0% 95%;
     --sidebar-primary: 184 75% 48%;
     --sidebar-primary-foreground: 0 0% 4%;
-    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent: 213 60% 11%;
     --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 14%;
+    --sidebar-border: 213 40% 18%;
     --sidebar-ring: 184 75% 48%;
   }
 }
