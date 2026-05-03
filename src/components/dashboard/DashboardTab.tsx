@@ -566,10 +566,17 @@ const DashboardTab = () => {
       {/* Sector performance + Health */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <div className="lg:col-span-2 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 backdrop-blur-sm">
-          <h3 className="text-base font-semibold text-foreground mb-4">Sector Performance</h3>
-          <div className="overflow-x-auto">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-base font-semibold text-foreground">Sector Performance</h3>
+            <span className="text-xs text-muted-foreground">{sectors.length} sectors</span>
+          </div>
+          <div
+            className={`overflow-x-auto overflow-y-auto pr-1 transition-all ${
+              showAllSectors ? 'max-h-[420px]' : 'max-h-[280px]'
+            }`}
+          >
             <table className="w-full text-sm">
-              <thead>
+              <thead className="sticky top-0 bg-[#0a1422]/95 backdrop-blur-sm z-10">
                 <tr className="text-xs text-muted-foreground border-b border-white/5">
                   <th className="text-left font-normal py-3 pr-4">Sector</th>
                   <th className="text-left font-normal py-3 pr-4">Total Inspected</th>
@@ -597,6 +604,15 @@ const DashboardTab = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="mt-3 flex justify-center border-t border-white/5 pt-3">
+            <button
+              onClick={() => setShowAllSectors((v) => !v)}
+              className="flex items-center gap-1.5 text-xs text-cyan-300 hover:text-cyan-200 transition px-3 py-1.5 rounded-md hover:bg-white/5"
+            >
+              {showAllSectors ? 'Show Less' : 'See More'}
+              <ChevronDown className={`w-3 h-3 transition-transform ${showAllSectors ? 'rotate-180' : ''}`} />
+            </button>
           </div>
         </div>
 
