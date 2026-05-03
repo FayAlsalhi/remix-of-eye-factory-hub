@@ -347,32 +347,31 @@ const DashboardTab = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
       {(() => {
         const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        const days = ['Mon','Wed','Fri'];
         const rand = (n: number) => {
           const x = Math.sin(n * 9301 + 49297) * 233280;
           return x - Math.floor(x);
         };
         const weeks = 53;
-        const CELL = 7;
-        const GAP = 2;
+        const CELL = 11;
+        const GAP = 3;
         const grid: number[][] = Array.from({ length: 7 }, (_, r) =>
           Array.from({ length: weeks }, (_, w) => {
             const r2 = rand(r * 53 + w);
-            if (r2 < 0.45) return 0;
-            if (r2 < 0.7) return Math.floor(r2 * 20) + 1;
-            if (r2 < 0.88) return Math.floor(r2 * 30) + 11;
-            if (r2 < 0.97) return Math.floor(r2 * 50) + 31;
+            if (r2 < 0.62) return 0;
+            if (r2 < 0.82) return Math.floor(r2 * 20) + 1;
+            if (r2 < 0.93) return Math.floor(r2 * 30) + 11;
+            if (r2 < 0.98) return Math.floor(r2 * 50) + 31;
             return Math.floor(r2 * 40) + 61;
           })
         );
         const colorFor = (v: number) => {
-          if (v === 0) return { bg: '#081018', glow: 'none' };
-          if (v <= 10) return { bg: '#0d3b25', glow: 'none' };
-          if (v <= 30) return { bg: '#15803d', glow: 'none' };
-          if (v <= 60) return { bg: '#22c55e', glow: '0 0 4px rgba(34,197,94,0.4)' };
-          return { bg: '#4ade80', glow: '0 0 6px rgba(74,222,128,0.7)' };
+          if (v === 0) return '#161b22';
+          if (v <= 10) return '#0e4429';
+          if (v <= 30) return '#006d32';
+          if (v <= 60) return '#26a641';
+          return '#39d353';
         };
-        const gridWidth = weeks * CELL + (weeks - 1) * GAP;
+        const years = ['2026', '2025', '2024', '2023'];
         return (
           <div
             className="rounded-[18px] border bg-gradient-to-br from-[#050B16] to-[#071426] backdrop-blur-sm shadow-[0_0_30px_rgba(0,255,220,0.08)]"
@@ -383,62 +382,58 @@ const DashboardTab = () => {
                 <div className="w-7 h-7 rounded-full bg-cyan-500/15 border border-cyan-400/20 flex items-center justify-center">
                   <Eye className="w-3.5 h-3.5 text-cyan-300" />
                 </div>
-                <h3 className="text-sm font-semibold text-foreground">Active Inspections in Period</h3>
-              </div>
-              <div className="flex items-center gap-1.5 text-[9px] text-muted-foreground">
-                <span>Less</span>
-                {[0, 5, 20, 45, 80].map((v, i) => {
-                  const c = colorFor(v);
-                  return (
-                    <span
-                      key={i}
-                      className="inline-block rounded-[2px]"
-                      style={{ width: 8, height: 8, background: c.bg, boxShadow: c.glow }}
-                    />
-                  );
-                })}
-                <span>More</span>
+                <div>
+                  <h3 className="text-sm font-semibold text-foreground leading-tight">Active Inspections</h3>
+                  <p className="text-[10px] text-muted-foreground">242 inspections in 2026</p>
+                </div>
               </div>
             </div>
 
             <div className="flex gap-4 items-start">
-              <div className="flex-1 min-w-0 overflow-hidden">
-                <div style={{ width: gridWidth + 20 }}>
-                  <div className="flex mb-1" style={{ marginLeft: 20, width: gridWidth }}>
-                    {months.map((m) => (
+              <div className="flex-1 min-w-0 overflow-x-auto">
+                <div className="inline-block">
+                  {/* Months row */}
+                  <div className="flex" style={{ marginLeft: 22, gap: GAP }}>
+                    {months.map((m, i) => (
                       <div
                         key={m}
-                        className="text-[9px] text-muted-foreground"
-                        style={{ flex: '1 1 0', minWidth: 0 }}
+                        className="text-[10px] text-muted-foreground"
+                        style={{ width: (CELL + GAP) * (i === 11 ? 4 : i === 1 ? 4 : 4) - GAP }}
                       >
                         {m}
                       </div>
                     ))}
                   </div>
 
-                  <div className="flex">
-                    <div className="flex flex-col justify-between" style={{ marginRight: 4, width: 16, height: 7 * CELL + 6 * GAP }}>
-                      {days.map((d) => (
-                        <div key={d} className="text-[8px] text-muted-foreground leading-none">{d}</div>
+                  <div className="flex mt-1.5">
+                    {/* Day labels: only Mon/Wed/Fri at rows 0/2/4 */}
+                    <div className="flex flex-col mr-1.5" style={{ width: 18 }}>
+                      {['Mon', '', 'Wed', '', 'Fri', '', ''].map((d, i) => (
+                        <div
+                          key={i}
+                          className="text-[9px] text-muted-foreground leading-none flex items-center"
+                          style={{ height: CELL, marginBottom: i < 6 ? GAP : 0 }}
+                        >
+                          {d}
+                        </div>
                       ))}
                     </div>
 
-                    <div className="flex flex-col" style={{ gap: GAP }}>
-                      {grid.map((row, ri) => (
-                        <div key={ri} className="flex" style={{ gap: GAP }}>
-                          {row.map((v, ci) => {
-                            const c = colorFor(v);
+                    {/* Cells: column-based (each column = a week, top->bottom = Sun..Sat) */}
+                    <div className="flex" style={{ gap: GAP }}>
+                      {Array.from({ length: weeks }, (_, w) => (
+                        <div key={w} className="flex flex-col" style={{ gap: GAP }}>
+                          {Array.from({ length: 7 }, (_, r) => {
+                            const v = grid[r][w];
                             return (
                               <div
-                                key={ci}
+                                key={r}
                                 title={`${v} inspections`}
                                 style={{
                                   width: CELL,
                                   height: CELL,
-                                  borderRadius: 2,
-                                  background: c.bg,
-                                  boxShadow: c.glow,
-                                  flexShrink: 0,
+                                  borderRadius: 3,
+                                  background: colorFor(v),
                                 }}
                               />
                             );
@@ -447,26 +442,42 @@ const DashboardTab = () => {
                       ))}
                     </div>
                   </div>
+
+                  {/* Footer: legend */}
+                  <div className="flex items-center justify-end gap-1.5 mt-3 text-[10px] text-muted-foreground" style={{ marginRight: 4 }}>
+                    <span>Less</span>
+                    {[0, 5, 20, 45, 80].map((v, i) => (
+                      <span
+                        key={i}
+                        className="inline-block"
+                        style={{ width: 10, height: 10, borderRadius: 2, background: colorFor(v) }}
+                      />
+                    ))}
+                    <span>More</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex flex-col justify-between gap-3 min-w-[110px] border-l border-white/5 pl-4 self-stretch">
-                {[
-                  { label: 'Year 2026', value: '242', sub: 'Total Inspections' },
-                  { label: 'This Month', value: '28', sub: 'Total Inspections' },
-                  { label: 'Today', value: '3', sub: 'Total Inspections' },
-                ].map((s, i) => (
-                  <div key={i}>
-                    <p className="text-[9px] text-muted-foreground uppercase tracking-wider">{s.label}</p>
-                    <p className="text-xl font-semibold text-foreground tracking-tight mt-0.5">{s.value}</p>
-                    <p className="text-[9px] text-muted-foreground">{s.sub}</p>
-                  </div>
+              {/* Year selector */}
+              <div className="flex flex-col gap-1 min-w-[64px] pl-3 border-l border-white/5 self-stretch">
+                {years.map((y, i) => (
+                  <button
+                    key={y}
+                    className={`text-left px-2.5 py-1.5 rounded-md text-xs transition ${
+                      i === 0
+                        ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-400/20'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-white/5 border border-transparent'
+                    }`}
+                  >
+                    {y}
+                  </button>
                 ))}
               </div>
             </div>
           </div>
         );
       })()}
+
 
       {/* Defect Distribution */}
       {(() => {
