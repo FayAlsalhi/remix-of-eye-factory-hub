@@ -177,12 +177,7 @@ const UploadTab = () => {
     <div className="space-y-6">
       {/* Unified Upload / Analysis Result card */}
       <div
-        className={`rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)] hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition p-6 flex flex-col ${
-          showImageState
-            ? 'bg-gradient-to-br from-white/[0.04] to-white/[0.01]'
-            : 'bg-gradient-to-br from-white/[0.04] to-white/[0.01]'
-        }`}
-        style={showImageState ? { borderColor: 'rgba(0,255,220,0.12)' } : undefined}
+        className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-sm shadow-[0_0_30px_rgba(0,108,158,0.06)] hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition p-6 flex flex-col"
       >
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-foreground">
