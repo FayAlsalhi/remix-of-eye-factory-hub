@@ -571,7 +571,7 @@ const DashboardTab = () => {
             <span className="text-xs text-muted-foreground">{sectors.length} sectors</span>
           </div>
           <div
-            className={`overflow-x-auto overflow-y-auto pr-1 transition-all ${
+            className={`qiya-scroll overflow-x-auto overflow-y-auto pr-1 transition-all ${
               showAllSectors ? 'max-h-[420px]' : 'max-h-[280px]'
             }`}
           >
