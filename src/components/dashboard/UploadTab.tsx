@@ -74,9 +74,9 @@ const severityStyles: Record<Severity, { dot: string; pill: string; border: stri
 };
 
 const detections: Detection[] = [
-  { label: 'Cracks', severity: 'critical', box: { left: 12, top: 18, width: 26, height: 22 } },
-  { label: 'Snow', severity: 'warning', box: { left: 55, top: 12, width: 32, height: 28 } },
-  { label: 'Dust', severity: 'warning', box: { left: 30, top: 58, width: 38, height: 24 } },
+  { id: 'C-102', label: 'Cracks', severity: 'critical', box: { left: 12, top: 18, width: 26, height: 22 } },
+  { id: 'S-205', label: 'Snow', severity: 'warning', box: { left: 55, top: 12, width: 32, height: 28 } },
+  { id: 'D-309', label: 'Dust', severity: 'warning', box: { left: 30, top: 58, width: 38, height: 24 } },
 ];
 
 const recommendations: Recommendation[] = [
