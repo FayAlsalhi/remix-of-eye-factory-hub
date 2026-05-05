@@ -22,12 +22,9 @@ const pillars = [
 ];
 
 const team = [
-  { name: "Team Member 1", role: "Founder & AI Lead", linkedin: "#" },
-  { name: "Team Member 2", role: "Computer Vision Engineer", linkedin: "#" },
-  { name: "Team Member 3", role: "Full-Stack Developer", linkedin: "#" },
-  { name: "Team Member 4", role: "Drone & Hardware", linkedin: "#" },
-  { name: "Team Member 5", role: "Product & Design", linkedin: "#" },
-  { name: "Team Member 6", role: "Data & Analytics", linkedin: "#" },
+  { name: "Lamis Alzara", role: "Front-End Developer", linkedin: "https://www.linkedin.com/in/lamees-alzaree-22903134b" },
+  { name: "Ghala Alshayb", role: "Back-End Developer", linkedin: "https://www.linkedin.com/in/ghala-alshayb-b31929353" },
+  { name: "Rana Alghidani", role: "Back-End Developer", linkedin: "https://www.linkedin.com/in/rana-alghidani-84b024354" },
 ];
 
 const About = () => {
@@ -142,9 +139,6 @@ const About = () => {
               </div>
             ))}
           </div>
-          <p className="text-center text-xs text-muted-foreground mt-8">
-            Names and LinkedIn profiles are placeholders — update them anytime.
-          </p>
         </div>
       </section>
 
