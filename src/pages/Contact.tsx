@@ -22,10 +22,6 @@ const contactItems = [
   },
 ];
 
-const socials = [
-  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/qiyaf" },
-];
-
 const Contact = () => {
   return (
     <SiteLayout>
