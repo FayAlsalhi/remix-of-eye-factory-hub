@@ -86,7 +86,7 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
               className="h-40 w-auto object-contain"
             />
           </div>
-          <span className="absolute top-2 -right-4 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-500 text-white text-[9px] font-bold tracking-wider shadow-md leading-none z-10">
+          <span className="absolute top-2 -right-8 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-500 text-white text-[9px] font-bold tracking-wider shadow-md leading-none z-10">
             <span className="w-1 h-1 bg-white rounded-full animate-pulse"></span>
             {t.live}
           </span>
