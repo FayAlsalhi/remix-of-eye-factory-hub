@@ -78,13 +78,15 @@ const Dashboard = ({ userName, userEmail, onLogout }: DashboardProps) => {
       {/* Top Header with Logo + Actions */}
       <header className="h-20 bg-card border-b border-border flex items-center justify-between px-3 sm:px-4 md:px-6 gap-2 sm:gap-4 py-2">
         {/* Logo + small LIVE badge top-right */}
-        <div className="relative shrink-0 h-20 flex items-center overflow-hidden">
-          <img
-            src={qiyafLogo}
-            alt="Qiyaf"
-            className="h-40 w-auto object-contain"
-          />
-          <span className="absolute -top-1 -right-3 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-red-500 text-white text-[8px] font-bold tracking-wider shadow-md leading-none">
+        <div className="relative shrink-0 h-20 flex items-center">
+          <div className="h-20 overflow-hidden flex items-center">
+            <img
+              src={qiyafLogo}
+              alt="Qiyaf"
+              className="h-40 w-auto object-contain"
+            />
+          </div>
+          <span className="absolute top-2 -right-4 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-500 text-white text-[9px] font-bold tracking-wider shadow-md leading-none z-10">
             <span className="w-1 h-1 bg-white rounded-full animate-pulse"></span>
             {t.live}
           </span>
