@@ -1,4 +1,4 @@
-import { Mail, MapPin, GraduationCap, Linkedin, Sparkles } from "lucide-react";
+import { Mail, MapPin, GraduationCap, Sparkles } from "lucide-react";
 import SiteLayout from "@/components/SiteLayout";
 
 const contactItems = [
@@ -71,32 +71,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Socials */}
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10 pb-16 sm:pb-24">
-        <div
-          className="rounded-2xl border border-border/60 p-8 md:p-10 text-center"
-          style={{ background: "radial-gradient(ellipse at top, hsl(28 95% 58% / 0.12), transparent 70%)" }}
-        >
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">Follow Our Journey</h2>
-          <p className="text-muted-foreground max-w-md mx-auto mb-6">
-            Stay updated as we keep building Qiyaf and sharing what we learn along the way.
-          </p>
-          <div className="flex items-center justify-center gap-3">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                className="w-12 h-12 rounded-lg border border-border/60 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
-              >
-                <s.icon className="w-5 h-5" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
     </SiteLayout>
   );
 };
