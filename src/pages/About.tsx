@@ -25,6 +25,8 @@ const team = [
   { name: "Lamis Alzara", role: "Front-End Developer", linkedin: "https://www.linkedin.com/in/lamees-alzaree-22903134b" },
   { name: "Ghala Alshayb", role: "Back-End Developer", linkedin: "https://www.linkedin.com/in/ghala-alshayb-b31929353" },
   { name: "Rana Alghidani", role: "Back-End Developer", linkedin: "https://www.linkedin.com/in/rana-alghidani-84b024354" },
+  { name: "Fay Alsalhi", role: "AI Engineer / Front-End Developer", linkedin: "https://www.linkedin.com/in/fay-alsalhi-b526372ab" },
+  { name: "Deem Alnughmush", role: "AI Engineer", linkedin: "https://www.linkedin.com/in/deem-ali" },
 ];
 
 const About = () => {
