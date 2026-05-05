@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Play, ArrowRight, Sparkles, Activity, BarChart3, Shield, Eye, Bell, FileText, ScanLine } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import qiyafLogo from "@/assets/qiyaf-logo-new.png";
 import heroComposition from "@/assets/hero-composition.jpg";
 import dashboardPreview from "@/assets/dashboard-preview.png";
@@ -33,6 +35,7 @@ const capabilities = [
 ];
 
 const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
+  const [demoOpen, setDemoOpen] = useState(false);
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Background ambient glow */}
@@ -145,6 +148,7 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
                 </Button>
                 <Button
                   variant="outline"
+                  onClick={() => setDemoOpen(true)}
                   className="h-12 px-7 rounded-lg bg-background/30 backdrop-blur-sm border-border/80 hover:bg-secondary/50 text-foreground"
                 >
                   <Play className="w-4 h-4 mr-1 fill-current" />
@@ -243,6 +247,21 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
           </div>
         </div>
       </footer>
+
+      <Dialog open={demoOpen} onOpenChange={setDemoOpen}>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background border-border/60">
+          <DialogTitle className="sr-only">Qiyaf Demo Video</DialogTitle>
+          <div className="aspect-video w-full">
+            <iframe
+              src="https://drive.google.com/file/d/1Plk_qtc11bV4pF_u7m1QFJ5-VlFjrB19/preview"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              className="w-full h-full border-0"
+              title="Qiyaf Demo"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
