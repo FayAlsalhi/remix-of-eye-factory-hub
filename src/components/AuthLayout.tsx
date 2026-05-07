@@ -19,7 +19,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
         src={authBgEmblem}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-0 h-full w-[55%] object-cover object-right select-none opacity-95"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-30 sm:opacity-95 sm:left-auto sm:right-0 sm:top-0 sm:inset-auto sm:h-full sm:w-[55%] sm:object-right select-none"
         style={{
           filter:
             'drop-shadow(0 20px 60px rgba(255,152,0,0.18)) drop-shadow(0 10px 40px rgba(17,197,217,0.18))',

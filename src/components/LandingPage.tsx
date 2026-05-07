@@ -89,12 +89,20 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
         <img
           src={heroComposition}
           alt="Qiyaf AI drone inspecting solar panels with live dashboard analytics"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-[70%_center] sm:object-center"
         />
-        {/* Dark gradient overlay — strongest on the left to highlight text */}
+        {/* Dark gradient overlay — vertical on mobile for legibility, horizontal on desktop */}
         <div
           aria-hidden
-          className="absolute inset-0"
+          className="absolute inset-0 sm:hidden"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(2,8,20,0.85) 0%, rgba(2,8,20,0.7) 40%, rgba(2,8,20,0.6) 70%, rgba(2,8,20,0.9) 100%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 hidden sm:block"
           style={{
             background:
               "linear-gradient(90deg, rgba(2,8,20,0.95) 0%, rgba(2,8,20,0.88) 30%, rgba(2,8,20,0.65) 50%, rgba(2,8,20,0.25) 75%, rgba(2,8,20,0.05) 100%)",
