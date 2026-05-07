@@ -219,7 +219,7 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
           </div>
 
           {/* Right: dashboard preview */}
-          <div className="relative rounded-2xl overflow-hidden border border-border/60 min-h-[400px] bg-background flex items-center justify-center p-4">
+          <div className="relative flex items-center justify-center min-h-[400px]">
             <img
               src={dashboardPreview}
               alt="Qiyaf dashboard preview"
