@@ -12,7 +12,7 @@ const pillars = [
   {
     icon: Lightbulb,
     title: "Our Vision",
-    desc: "A future where every solar asset in the region is monitored continuously — surface defects detected early before they cost a single kilowatt.",
+    desc: "A future where every solar asset in the region is monitored continuously, surface defects detected early before they cost a single kilowatt.",
   },
   {
     icon: Sun,
@@ -48,7 +48,7 @@ const About = () => {
           </span>
         </h1>
         <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Qiyaf began as a graduation project at Qassim University — and grew into a full inspection platform that
+          Qiyaf began as a graduation project at Qassim University, and grew into a full inspection platform that
           combines drones, computer vision, and analytics to support the Kingdom’s renewable-energy ambitions.
         </p>
       </section>
@@ -70,7 +70,7 @@ const About = () => {
               <h3 className="text-2xl font-bold mb-2">Qassim University</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Qiyaf is developed by a team of computer-science students at Qassim University as part of our
-                graduation project. The platform reflects months of research, prototyping, and field experiments —
+                graduation project. The platform reflects months of research, prototyping, and field experiments ,
                 guided by faculty advisors and inspired by the Kingdom’s Vision 2030 renewable-energy goals.
               </p>
             </div>
@@ -103,7 +103,7 @@ const About = () => {
             <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-3">The team</p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Meet the Builders</h2>
             <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-              The students behind Qiyaf — engineers, designers, and researchers from Qassim University.
+              The students behind Qiyaf, engineers, designers, and researchers from Qassim University.
             </p>
           </div>
 
@@ -148,7 +148,7 @@ const About = () => {
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-20 text-center">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Want to know more?</h2>
         <p className="text-muted-foreground max-w-xl mx-auto mb-7">
-          Get in touch with the team — we’re always happy to discuss the project, the technology, or potential
+          Get in touch with the team, we’re always happy to discuss the project, the technology, or potential
           collaborations.
         </p>
         <Button

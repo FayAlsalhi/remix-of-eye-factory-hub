@@ -22,7 +22,7 @@ const useCases = [
   {
     icon: Eye,
     title: "Surface Defect Detection",
-    desc: "Identify cracks, dust, snow, bird droppings, and clean panels with high computer-vision precision — five visible classes supported.",
+    desc: "Identify cracks, dust, snow, bird droppings, and clean panels with high computer-vision precision, five visible classes supported.",
   },
   {
     icon: Activity,
@@ -53,7 +53,7 @@ const techStack = [
 const workflow = [
   { step: "01", title: "Plan the Mission", desc: "Define the site, panels, and inspection cadence inside Qiyaf." },
   { step: "02", title: "Capture in Flight", desc: "UAVs autonomously scan rows and stream RGB images of the panel surface to the cloud." },
-  { step: "03", title: "AI Inference", desc: "The model classifies each panel into one of five surface classes: bird droppings, clean, cracks, dust, or snow — with bounding boxes." },
+  { step: "03", title: "AI Inference", desc: "The model classifies each panel into one of five surface classes: bird droppings, clean, cracks, dust, or snow, with bounding boxes." },
   { step: "04", title: "Act & Report", desc: "Operators receive alerts, dispatch crews, and download executive reports." },
 ];
 
@@ -76,7 +76,7 @@ const Solution = () => {
           </span>
         </h1>
         <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Qiyaf turns aerial imagery into a measurable boost in solar performance — combining autonomous drones,
+          Qiyaf turns aerial imagery into a measurable boost in solar performance, combining autonomous drones,
           purpose-built AI models, and an analytics layer your O&M team will actually use.
         </p>
       </section>
@@ -110,7 +110,7 @@ const Solution = () => {
             <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-3">How it works</p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">A Four-Step Workflow</h2>
             <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-              From mission planning to executive reporting — every step runs inside one platform.
+              From mission planning to executive reporting, every step runs inside one platform.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
