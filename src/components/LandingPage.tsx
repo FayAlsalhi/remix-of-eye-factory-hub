@@ -142,7 +142,7 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
               </h1>
 
               <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-md leading-relaxed">
-                AI-powered RGB surface inspection for solar panels — UAVs capture imagery, our model detects visible surface defects, and reports guide engineers to act.
+                Detect defects early, reduce downtime, and maximize solar performance with real-time AI insights.
               </p>
 
               <div className="mt-9 flex flex-wrap gap-4">
