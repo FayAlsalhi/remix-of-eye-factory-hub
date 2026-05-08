@@ -209,29 +209,8 @@ const UploadTab = () => {
             </div>
           </div>
         ) : hasResult ? (
-          <div className="relative rounded-xl overflow-hidden border border-white/10 mx-auto w-full max-w-[640px]">
-            <img src={solarPanelImg} alt="Analyzed solar panel" className="w-full h-[320px] object-cover" />
-            <div className="absolute inset-0">
-              {detections.map((d, i) => {
-                const s = severityStyles[d.severity];
-                return (
-                  <div
-                    key={i}
-                    className={`absolute border-2 ${s.border} rounded-md`}
-                    style={{
-                      left: `${d.box.left}%`,
-                      top: `${d.box.top}%`,
-                      width: `${d.box.width}%`,
-                      height: `${d.box.height}%`,
-                    }}
-                  >
-                    <span className={`absolute -top-6 left-0 text-[10px] px-2 py-0.5 rounded ${s.pill} border whitespace-nowrap font-medium`}>
-                      {d.label} • {d.id}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+          <div className="relative rounded-xl overflow-hidden border border-white/10 mx-auto w-full max-w-[640px] bg-black">
+            <img src={solarPanelImg} alt="Analyzed solar panel" className="w-full h-[320px] object-contain" />
           </div>
         ) : (
           <>
