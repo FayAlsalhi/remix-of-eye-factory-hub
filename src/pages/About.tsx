@@ -125,8 +125,8 @@ const About = () => {
                       .join("")}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold truncate">{m.name}</h3>
-                    <p className="text-xs text-muted-foreground truncate">{m.role}</p>
+                    <h3 className="font-semibold break-words leading-tight">{m.name}</h3>
+                    <p className="text-xs text-muted-foreground break-words leading-snug mt-1">{m.role}</p>
                   </div>
                   <a
                     href={m.linkedin}
