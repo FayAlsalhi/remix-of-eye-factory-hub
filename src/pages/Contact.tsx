@@ -42,7 +42,7 @@ const Contact = () => {
         </h1>
         <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
           Have a question about Qiyaf, want a demo, or interested in collaborating? Reach out through any of the
-          channels below — we’d love to hear from you.
+          channels below, we’d love to hear from you.
         </p>
       </section>
 
