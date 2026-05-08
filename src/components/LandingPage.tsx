@@ -242,9 +242,14 @@ const LandingPage = ({ onGetStarted, onLogin }: LandingPageProps) => {
             <div className="md:col-span-3">
               <h4 className="text-sm font-semibold mb-4">Quick Links</h4>
               <ul className="flex flex-wrap gap-x-8 gap-y-2.5">
-                {["Home", "Solution", "About", "Contact"].map((l) => (
-                  <li key={l}>
-                    <a className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">{l}</a>
+                {[
+                  { label: "Home", to: "/" },
+                  { label: "Solution", to: "/solution" },
+                  { label: "About", to: "/about" },
+                  { label: "Contact", to: "/contact" },
+                ].map((l) => (
+                  <li key={l.label}>
+                    <Link to={l.to} className="text-sm text-muted-foreground hover:text-foreground transition-colors">{l.label}</Link>
                   </li>
                 ))}
               </ul>
