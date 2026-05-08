@@ -2,11 +2,12 @@ import React, { useState, useMemo, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { AlertTriangle, CheckCircle, Video, Clock, Filter, Sparkles, FileText, MessageSquare } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import solarDusty from '@/assets/solar-panel-dusty.jpg';
-import solarCracked from '@/assets/solar-panel-cracked.jpg';
-import solarClean from '@/assets/solar-panel-clean.jpg';
-import solarSnow from '@/assets/solar-panel-snow.jpg';
-import solarBirdDroppings from '@/assets/solar-panel-bird-droppings.jpg';
+import detectionResult1 from '@/assets/detection-result-1.jpg';
+const solarDusty = detectionResult1;
+const solarCracked = detectionResult1;
+const solarClean = detectionResult1;
+const solarSnow = detectionResult1;
+const solarBirdDroppings = detectionResult1;
 
 // Premium card styles — reusable
 const cardBase =
