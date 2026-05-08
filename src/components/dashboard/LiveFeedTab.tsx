@@ -151,28 +151,11 @@ const LiveFeedTab = () => {
               <img
                 src={selectedAlert.image}
                 alt={`Solar Panel ${selectedAlert.id}`}
-                className="w-full h-80 object-cover"
-                style={{ filter: 'brightness(0.78) contrast(1.08) saturate(0.95)' }}
+                className="w-full h-80 object-contain bg-black"
+                style={{ filter: 'brightness(0.9) contrast(1.05) saturate(0.98)' }}
               />
               {/* vignette overlay */}
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.55)_100%)]" />
-
-              {selectedAlert.isDefective && selectedAlert.boxPosition && (
-                <div
-                  className={`absolute ${selectedAlert.boxColor} ${selectedAlert.glow} rounded-md pointer-events-none`}
-                  style={{
-                    top: selectedAlert.boxPosition.top,
-                    left: selectedAlert.boxPosition.left,
-                    width: selectedAlert.boxPosition.width,
-                    height: selectedAlert.boxPosition.height,
-                    borderWidth: '2px',
-                  }}
-                >
-                  <div className={`absolute -top-6 left-0 px-2 py-0.5 text-[10px] font-bold rounded ${selectedAlert.tagBg} border`}>
-                    {selectedAlert.label}
-                  </div>
-                </div>
-              )}
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.45)_100%)]" />
 
               <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-medium bg-black/55 text-white/85 border border-white/10 backdrop-blur-sm">
                 Camera: Front · RGB
