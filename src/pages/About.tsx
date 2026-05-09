@@ -107,15 +107,17 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-            {team.map((m) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {team.map((m, i) => (
               <div
                 key={m.name}
-                className="group rounded-xl border border-border/60 bg-background/40 p-6 hover:border-primary/40 transition-colors"
+                className={`group rounded-xl border border-border/60 bg-background/40 p-6 hover:border-primary/40 transition-colors ${
+                  team.length === 5 && i === 3 ? "lg:col-start-1 lg:col-end-3" : ""
+                } ${team.length === 5 && i === 3 ? "lg:col-span-1" : ""}`}
               >
                 <div className="flex items-center gap-4">
                   <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold text-primary-foreground shrink-0"
+                    className="w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold text-primary-foreground shrink-0"
                     style={{ background: "var(--gradient-brand)" }}
                   >
                     {m.name
@@ -125,15 +127,15 @@ const About = () => {
                       .join("")}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold break-words leading-tight">{m.name}</h3>
-                    <p className="text-xs text-muted-foreground break-words leading-snug mt-1">{m.role}</p>
+                    <h3 className="font-semibold text-lg break-words leading-tight">{m.name}</h3>
+                    <p className="text-sm text-muted-foreground break-words leading-snug mt-1">{m.role}</p>
                   </div>
                   <a
                     href={m.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${m.name} on LinkedIn`}
-                    className="w-9 h-9 rounded-md border border-border/60 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+                    className="w-10 h-10 rounded-md border border-border/60 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors shrink-0"
                   >
                     <Linkedin className="w-4 h-4" />
                   </a>
