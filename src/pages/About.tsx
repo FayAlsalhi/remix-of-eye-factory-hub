@@ -107,28 +107,22 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {team.map((m, i) => (
+          {(() => {
+            const renderCard = (m: typeof team[number]) => (
               <div
                 key={m.name}
-                className={`group rounded-xl border border-border/60 bg-background/40 p-6 hover:border-primary/40 transition-colors ${
-                  team.length === 5 && i === 3 ? "lg:col-start-1 lg:col-end-3" : ""
-                } ${team.length === 5 && i === 3 ? "lg:col-span-1" : ""}`}
+                className="group rounded-xl border border-border/60 bg-background/40 p-6 hover:border-primary/40 transition-colors"
               >
                 <div className="flex items-center gap-4">
                   <div
                     className="w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold text-primary-foreground shrink-0"
                     style={{ background: "var(--gradient-brand)" }}
                   >
-                    {m.name
-                      .split(" ")
-                      .map((s) => s[0])
-                      .slice(0, 2)
-                      .join("")}
+                    {m.name.split(" ").map((s) => s[0]).slice(0, 2).join("")}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-lg break-words leading-tight">{m.name}</h3>
-                    <p className="text-sm text-muted-foreground break-words leading-snug mt-1">{m.role}</p>
+                    <h3 className="font-semibold text-lg leading-tight whitespace-nowrap">{m.name}</h3>
+                    <p className="text-sm text-muted-foreground leading-snug mt-1">{m.role}</p>
                   </div>
                   <a
                     href={m.linkedin}
@@ -141,8 +135,18 @@ const About = () => {
                   </a>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+            return (
+              <div className="space-y-6 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {team.slice(0, 3).map(renderCard)}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:max-w-[66%] lg:mx-auto">
+                  {team.slice(3).map(renderCard)}
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </section>
 
