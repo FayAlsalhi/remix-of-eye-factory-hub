@@ -1,7 +1,9 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Upload, Loader2, Zap, Snowflake, Lightbulb, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
+import { predictInspection } from '@/lib/api';
 import solarPanelImg from '@/assets/detection-result-2.jpg';
 
 type Severity = 'critical' | 'warning' | 'normal';
