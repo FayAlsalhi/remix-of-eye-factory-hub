@@ -137,6 +137,7 @@ const UploadTab = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [hasResult, setHasResult] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -162,24 +163,36 @@ const UploadTab = () => {
     if (e.target.files) handleFiles(e.target.files);
   };
 
-  const handleFiles = async (files: FileList) => {
+  const handleFiles = (files: FileList) => {
     if (files.length === 0) return;
     const file = files[0];
-
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     setPreviewUrl(URL.createObjectURL(file));
+    setSelectedFile(file);
+    setHasResult(false);
+  };
+
+  const handleBrowse = () => fileInputRef.current?.click();
+
+  const handleAnalyze = async () => {
+    if (!selectedFile) {
+      handleBrowse();
+      return;
+    }
     setIsAnalyzing(true);
     setHasResult(false);
-
     try {
-      const result = await predictInspection(file);
+      const result = await predictInspection(selectedFile);
       console.log('Inspection prediction result:', result);
       setHasResult(true);
     } catch (err) {
       console.error('Inspection prediction failed:', err);
+      const description = err instanceof Error
+        ? err.message
+        : (typeof err === 'string' ? err : JSON.stringify(err));
       toast({
         title: 'Analysis failed',
-        description: err instanceof Error ? err.message : 'Could not reach the inspection API.',
+        description,
         variant: 'destructive',
       });
     } finally {
@@ -187,11 +200,10 @@ const UploadTab = () => {
     }
   };
 
-  const handleBrowse = () => fileInputRef.current?.click();
-
   const handleClear = () => {
     setHasResult(false);
     setIsAnalyzing(false);
+    setSelectedFile(null);
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     setPreviewUrl(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
