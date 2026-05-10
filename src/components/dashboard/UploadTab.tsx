@@ -277,8 +277,18 @@ const UploadTab = () => {
               />
             </div>
 
-            <Button className="w-full mt-4" disabled={isAnalyzing} onClick={handleBrowse}>
-              Analyze File
+            {selectedFile && (
+              <p className="text-xs text-muted-foreground mt-3 truncate">
+                Selected: <span className="text-foreground">{selectedFile.name}</span>
+              </p>
+            )}
+
+            <Button
+              className="w-full mt-4"
+              disabled={isAnalyzing || !selectedFile}
+              onClick={handleAnalyze}
+            >
+              {isAnalyzing ? 'Analyzing...' : 'Analyze File'}
             </Button>
           </>
         )}
