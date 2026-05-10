@@ -236,7 +236,7 @@ const UploadTab = () => {
           </div>
         ) : hasResult ? (
           <div className="relative rounded-xl overflow-hidden border border-white/10 mx-auto w-full max-w-[640px] bg-black">
-            <img src={solarPanelImg} alt="Analyzed solar panel" className="w-full h-[320px] object-contain" />
+            <img src={previewUrl ?? solarPanelImg} alt="Analyzed solar panel" className="w-full h-[320px] object-contain" />
           </div>
         ) : (
           <>
