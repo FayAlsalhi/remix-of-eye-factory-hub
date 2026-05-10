@@ -1,7 +1,9 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Upload, Loader2, Zap, Snowflake, Lightbulb, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
+import { predictInspection } from '@/lib/api';
 import solarPanelImg from '@/assets/detection-result-2.jpg';
 
 type Severity = 'critical' | 'warning' | 'normal';
@@ -130,10 +132,18 @@ const priorityStyles: Record<Recommendation['priority'], string> = {
 
 const UploadTab = () => {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const [isDragging, setIsDragging] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [hasResult, setHasResult] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -152,14 +162,28 @@ const UploadTab = () => {
     if (e.target.files) handleFiles(e.target.files);
   };
 
-  const handleFiles = (files: FileList) => {
-    if (files.length > 0) {
-      setIsAnalyzing(true);
-      setHasResult(false);
-      setTimeout(() => {
-        setIsAnalyzing(false);
-        setHasResult(true);
-      }, 1800);
+  const handleFiles = async (files: FileList) => {
+    if (files.length === 0) return;
+    const file = files[0];
+
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    setPreviewUrl(URL.createObjectURL(file));
+    setIsAnalyzing(true);
+    setHasResult(false);
+
+    try {
+      const result = await predictInspection(file);
+      console.log('Inspection prediction result:', result);
+      setHasResult(true);
+    } catch (err) {
+      console.error('Inspection prediction failed:', err);
+      toast({
+        title: 'Analysis failed',
+        description: err instanceof Error ? err.message : 'Could not reach the inspection API.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsAnalyzing(false);
     }
   };
 
@@ -168,6 +192,8 @@ const UploadTab = () => {
   const handleClear = () => {
     setHasResult(false);
     setIsAnalyzing(false);
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    setPreviewUrl(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -210,7 +236,7 @@ const UploadTab = () => {
           </div>
         ) : hasResult ? (
           <div className="relative rounded-xl overflow-hidden border border-white/10 mx-auto w-full max-w-[640px] bg-black">
-            <img src={solarPanelImg} alt="Analyzed solar panel" className="w-full h-[320px] object-contain" />
+            <img src={previewUrl ?? solarPanelImg} alt="Analyzed solar panel" className="w-full h-[320px] object-contain" />
           </div>
         ) : (
           <>
